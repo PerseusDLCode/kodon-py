@@ -18,6 +18,26 @@ branch_labels: Union[str, Sequence[str], None] = ('default',)
 depends_on: Union[str, Sequence[str], None] = None
 
 
+# URN component columns shared by textparts, elements, and tokens
+URN_COMPONENT_COLUMNS = [
+    sa.Column("collection", sa.String(), nullable=True),
+    sa.Column("work_component", sa.String(), nullable=True),
+    sa.Column("passage_component", sa.String(), nullable=True),
+    sa.Column("text_group", sa.String(), nullable=True),
+    sa.Column("work", sa.String(), nullable=True),
+    sa.Column("version", sa.String(), nullable=True),
+    sa.Column("exemplar", sa.String(), nullable=True),
+    sa.Column("citations", sa.JSON(), nullable=True),
+    sa.Column("integer_citations", sa.JSON(), nullable=True),
+]
+
+# Subreference columns for elements and tokens only
+SUBREFERENCE_COLUMNS = [
+    sa.Column("token_strings", sa.JSON(), nullable=True),
+    sa.Column("token_indexes", sa.JSON(), nullable=True),
+]
+
+
 def upgrade() -> None:
     """Create all tables."""
     # Documents table
@@ -45,6 +65,16 @@ def upgrade() -> None:
         sa.Column('subtype', sa.String(), nullable=True),
         sa.Column('type', sa.String(), nullable=True),
         sa.Column('urn', sa.String(), nullable=False, unique=True),
+        # URN component columns
+        sa.Column("collection", sa.String(), nullable=True),
+        sa.Column("work_component", sa.String(), nullable=True),
+        sa.Column("passage_component", sa.String(), nullable=True),
+        sa.Column("text_group", sa.String(), nullable=True),
+        sa.Column("work", sa.String(), nullable=True),
+        sa.Column("version", sa.String(), nullable=True),
+        sa.Column("exemplar", sa.String(), nullable=True),
+        sa.Column("citations", sa.JSON(), nullable=True),
+        sa.Column("integer_citations", sa.JSON(), nullable=True),
     )
 
     # Elements table
@@ -57,6 +87,19 @@ def upgrade() -> None:
         sa.Column('tagname', sa.String(), nullable=False),
         sa.Column('textpart_id', sa.Integer(), sa.ForeignKey('textparts.id'), nullable=False),
         sa.Column('urn', sa.String(), nullable=False),
+        # URN component columns
+        sa.Column("collection", sa.String(), nullable=True),
+        sa.Column("work_component", sa.String(), nullable=True),
+        sa.Column("passage_component", sa.String(), nullable=True),
+        sa.Column("text_group", sa.String(), nullable=True),
+        sa.Column("work", sa.String(), nullable=True),
+        sa.Column("version", sa.String(), nullable=True),
+        sa.Column("exemplar", sa.String(), nullable=True),
+        sa.Column("citations", sa.JSON(), nullable=True),
+        sa.Column("integer_citations", sa.JSON(), nullable=True),
+        # Subreference columns
+        sa.Column("token_strings", sa.JSON(), nullable=True),
+        sa.Column("token_indexes", sa.JSON(), nullable=True),
     )
 
     # Tokens table
@@ -69,6 +112,19 @@ def upgrade() -> None:
         sa.Column('textpart_id', sa.Integer(), sa.ForeignKey('textparts.id'), nullable=False),
         sa.Column('urn', sa.String(), nullable=False),
         sa.Column('whitespace', sa.Boolean(), nullable=False),
+        # URN component columns
+        sa.Column("collection", sa.String(), nullable=True),
+        sa.Column("work_component", sa.String(), nullable=True),
+        sa.Column("passage_component", sa.String(), nullable=True),
+        sa.Column("text_group", sa.String(), nullable=True),
+        sa.Column("work", sa.String(), nullable=True),
+        sa.Column("version", sa.String(), nullable=True),
+        sa.Column("exemplar", sa.String(), nullable=True),
+        sa.Column("citations", sa.JSON(), nullable=True),
+        sa.Column("integer_citations", sa.JSON(), nullable=True),
+        # Subreference columns
+        sa.Column("token_strings", sa.JSON(), nullable=True),
+        sa.Column("token_indexes", sa.JSON(), nullable=True),
     )
 
 

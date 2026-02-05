@@ -30,6 +30,8 @@
 {% set selected_commentaries = selected_commentaries | default([]) %}
 {% set filtered_comments = filtered_comments | default(comments) %}
 
+{% extends 'base.html.jinja' %}
+{% block content %}
 <article class="mx-auto w-full" data-theme="{{ daisy_ui_theme }}">
 	<div class="col-span-full flex justify-between">
 		<div>
@@ -109,3 +111,4 @@
 		</section>
 	</div>
 </article>
+{% endblock %}

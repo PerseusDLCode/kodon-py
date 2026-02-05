@@ -12,3 +12,7 @@ wheels/
 instance
 tmp
 kodon-db.sqlite
+
+static/output.css
+
+tailwindcss

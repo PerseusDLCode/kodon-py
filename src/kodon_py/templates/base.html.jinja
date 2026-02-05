@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     {% block head %}
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='output.css') }}" />
     <title>{% block title %}Kodon{% endblock %}</title>
     {% endblock %}
 </head>
@@ -10,7 +10,7 @@
     <div id="content">{% block content %}{% endblock %}</div>
     <div id="footer">
         {% block footer %}
-        &copy; Copyright 2025
+        &copy; Copyright 2026
         {% endblock %}
     </div>
 </body>

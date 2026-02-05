@@ -36,7 +36,6 @@ from xml.sax.handler import ContentHandler
 
 import lxml.sax  # pyright: ignore
 import stanza
-
 from lxml import etree
 
 NAMESPACES = {"tei": "http://www.tei-c.org/ns/1.0"}
@@ -448,7 +447,7 @@ class TEIParser(ContentHandler):
         if self.tokenizer is None:
             self.initialize_tokenizer()
 
-        doc = self.tokenizer(s)
+        doc = self.tokenizer(s) # pyright: ignore
 
         if doc is None:
             return []
