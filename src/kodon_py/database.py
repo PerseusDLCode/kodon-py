@@ -1,3 +1,5 @@
+# DEPRECATED: Unclear whether the database is helpful over JSON files
+
 from flask_alembic import Alembic
 from flask_sqlalchemy_lite import SQLAlchemy
 
