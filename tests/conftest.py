@@ -6,10 +6,6 @@ import tempfile
 from pathlib import Path
 
 import pytest
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
-
-from kodon_py.database import Model
 
 
 @pytest.fixture
@@ -33,25 +29,6 @@ def test_tei_file(test_tei_dir):
     if not files:
         pytest.skip("No test TEI files available in test_tei/")
     return files[0]
-
-
-@pytest.fixture
-def db_path(temp_dir):
-    """Create a temporary database."""
-    path = temp_dir / "test.sqlite"
-    engine = create_engine(f"sqlite:///{path}")
-    Model.metadata.create_all(engine)
-    return path
-
-
-@pytest.fixture
-def db_session(db_path):
-    """Create a database session for testing."""
-    engine = create_engine(f"sqlite:///{db_path}")
-    session_factory = sessionmaker(bind=engine)
-    session = scoped_session(session_factory)
-    yield session
-    session.remove()
 
 
 @pytest.fixture

@@ -7,11 +7,11 @@ ainsi que de
 l'[Initiative humanités biomédicales de l'Alliance Sorbonne Université](https://humanites-biomedicales.sorbonne-universite.fr)
 pour sa partie latine.
 
-TEI Parser with SQLite Database Export
+TEI Parser with JSON export
 ---------------------------------------
 
-This module parses TEI (Text Encoding Initiative) XML files and can save
-the parsed data to a SQLite database.
+This module parses TEI (Text Encoding Initiative) XML files
+to JSON.
 
 Usage:
     from kodon_py.tei_parser.tei_parser import TEIParser

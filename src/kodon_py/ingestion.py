@@ -1,16 +1,13 @@
 """
 Two-phase ingestion pipeline for TEI XML documents.
 
-Phase 1: Parse TEI XML files to JSON (intermediate storage)
-Phase 2: Load JSON files into the SQLite database
+Phase 1: Parse TEI XML files to JSON
 
 Progress is tracked by file existence:
 - Phase 1 complete: JSON file exists for the TEI source
-- Phase 2 complete: Document URN exists in the database
 
 Resumability:
 - Parse phase skips files that already have JSON output
-- Load phase skips documents that already exist in the database
 """
 
 import json
@@ -18,6 +15,8 @@ import logging
 from pathlib import Path
 from types import SimpleNamespace
 from typing import Iterator
+
+from kodon_py.tei_parser import TEIParser
 
 logger = logging.getLogger(__name__)
 
@@ -64,8 +63,6 @@ def parse_tei_to_json(tei_path: Path, output_path: Path) -> dict:
     Returns:
         The parsed data dictionary.
     """
-    from kodon_py.tei_parser import TEIParser
-
     logger.info(f"Parsing: {tei_path}")
 
     parser = TEIParser(tei_path)
@@ -121,129 +118,3 @@ def json_to_parser_like(parsed_data: dict) -> SimpleNamespace:
         textparts=parsed_data.get("textparts", []),
         elements=parsed_data.get("elements", []),
     )
-
-
-def document_exists(db_session, urn: str) -> bool:
-    """
-    Check if a document with the given URN exists in the database.
-
-    Args:
-        db_session: SQLAlchemy scoped session.
-        urn: The document URN to check.
-
-    Returns:
-        True if document exists, False otherwise.
-    """
-    from kodon_py.database import Document
-
-    return db_session.query(Document).filter(Document.urn == urn).first() is not None
-
-
-def load_json_to_database(json_path: Path, db_session) -> str | None:
-    """
-    Load a parsed JSON file into the database.
-
-    Skips documents that already exist in the database.
-
-    Args:
-        json_path: Path to the JSON file.
-        db_session: SQLAlchemy scoped session.
-
-    Returns:
-        The URN of the loaded document, or None if skipped.
-    """
-    from kodon_py.api import save_to_db
-
-    logger.info(f"Loading: {json_path}")
-
-    with open(json_path, "r", encoding="utf-8") as f:
-        parsed_data = json.load(f)
-
-    urn = parsed_data.get("urn")
-
-    if not urn:
-        raise ValueError(f"No URN found in {json_path}")
-
-    # Skip if already exists
-    if document_exists(db_session, urn):
-        logger.info(f"Skipping existing document: {urn}")
-        return None
-
-    # Wrap JSON data to look like TEIParser
-    parser_like = json_to_parser_like(parsed_data)
-
-    # Use existing save_to_db
-    save_to_db(db_session, parser_like)
-
-    logger.info(f"Loaded document: {urn}")
-
-    return urn
-
-
-def get_ingestion_status(
-    source_dir: Path,
-    output_dir: Path,
-    db_session,
-) -> dict:
-    """
-    Check the ingestion status of all TEI files.
-
-    Args:
-        source_dir: Root directory containing TEI XML files.
-        output_dir: Root directory containing JSON output files.
-        db_session: SQLAlchemy scoped session.
-
-    Returns:
-        Dict with status information:
-        {
-            "total": int,
-            "parsed": int,
-            "loaded": int,
-            "files": [
-                {
-                    "tei_path": str,
-                    "json_path": str,
-                    "parsed": bool,
-                    "loaded": bool,
-                    "urn": str | None,
-                },
-                ...
-            ]
-        }
-    """
-    from kodon_py.database import Document
-
-    files = []
-
-    # Get all URNs currently in the database
-    loaded_urns = set(
-        urn for (urn,) in db_session.query(Document.urn).all()
-    )
-
-    for tei_path in discover_tei_files(source_dir):
-        json_path = get_json_path(tei_path, source_dir, output_dir)
-        parsed = json_path.exists()
-
-        urn = None
-        loaded = False
-
-        if parsed:
-            with open(json_path, "r", encoding="utf-8") as f:
-                data = json.load(f)
-                urn = data.get("urn")
-                loaded = urn in loaded_urns
-
-        files.append({
-            "tei_path": str(tei_path),
-            "json_path": str(json_path),
-            "parsed": parsed,
-            "loaded": loaded,
-            "urn": urn,
-        })
-
-    return {
-        "total": len(files),
-        "parsed": sum(1 for f in files if f["parsed"]),
-        "loaded": sum(1 for f in files if f["loaded"]),
-        "files": files,
-    }
