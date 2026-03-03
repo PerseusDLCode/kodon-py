@@ -42,7 +42,8 @@ def ingest():
 @ingest.command("parse")
 @click.argument("source_dir", type=click.Path(exists=True, path_type=Path))
 @click.option(
-    "--output-dir", "-o",
+    "--output-dir",
+    "-o",
     type=click.Path(path_type=Path),
     default=DEFAULT_OUTPUT_DIR,
     help=f"Output directory for JSON files (default: {DEFAULT_OUTPUT_DIR})",

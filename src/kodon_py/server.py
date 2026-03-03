@@ -86,3 +86,26 @@ def load_passage_from_urn(urn: str, json_dir: str):
         }
         for tpurn, elements in groups.items()
     ]
+
+
+def load_toc_from_urn(urn: str, json_dir: str):
+    parsed = parse_urn(urn)
+
+    if not parsed.collection or not parsed.work_component:
+        return None
+
+    work_path = os.path.join(
+        json_dir,
+        parsed.text_group,
+        parsed.work,
+        f"metadata.json",
+    )
+
+    if not os.path.exists(work_path):
+        return None
+
+    data = None
+    with open(work_path) as f:
+        data = json.load(f)
+
+    return data

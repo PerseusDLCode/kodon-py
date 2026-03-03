@@ -16,7 +16,7 @@ from pathlib import Path
 from types import SimpleNamespace
 from typing import Iterator
 
-from kodon_py.tei_parser import TEIParser
+from kodon_py.tei_parser import TEIParser, create_table_of_contents
 
 logger = logging.getLogger(__name__)
 
@@ -90,31 +90,21 @@ def parse_tei_to_json(tei_path: Path, output_path: Path) -> dict:
 
     logger.info(f"Saved JSON: {output_path}")
 
+    metadata_path = str(output_path).replace(output_path.name, "metadata.json")
+
+    toc = create_table_of_contents(parser.textparts, parser.textpart_labels)
+
+    metadata = {
+        "author": parser.author,
+        "language": parser.language,
+        "table_of_contents": toc,
+        "title": parser.title,
+        "urn": parser.urn,
+    }
+
+    with open(metadata_path, "w", encoding="utf-8") as f:
+        json.dump(metadata, f, ensure_ascii=False, indent=2)
+
+    logger.info(f"Saved metadata: {metadata_path}")
+
     return parsed_data
-
-
-def json_to_parser_like(parsed_data: dict) -> SimpleNamespace:
-    """
-    Wrap parsed JSON data in an object that mimics TEIParser's interface.
-
-    This allows reusing save_to_db which expects a TEIParser-like object.
-
-    Args:
-        parsed_data: Dict loaded from a parsed JSON file.
-
-    Returns:
-        SimpleNamespace with TEIParser-compatible attributes.
-    """
-    return SimpleNamespace(
-        author=parsed_data.get("author"),
-        editionStmt=parsed_data.get("editionStmt"),
-        language=parsed_data.get("language"),
-        publicationStmt=parsed_data.get("publicationStmt"),
-        respStmt=parsed_data.get("respStmt"),
-        sourceDesc=parsed_data.get("sourceDesc"),
-        title=parsed_data.get("title"),
-        urn=parsed_data.get("urn"),
-        textpart_labels=parsed_data.get("textpart_labels", []),
-        textparts=parsed_data.get("textparts", []),
-        elements=parsed_data.get("elements", []),
-    )
