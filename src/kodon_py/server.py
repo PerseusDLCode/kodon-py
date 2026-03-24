@@ -55,10 +55,25 @@ def load_passage_from_urn(urn: str, json_dir: str | Path):
         work_data = json.load(f)
 
     if not parsed.passage_component:
-        textparts_data = work_data.get("textparts", [])
-        if not textparts_data:
+        textparts = work_data.get("textparts", [])
+        if not textparts:
             return None
-        first = sorted(textparts_data, key=lambda t: t["index"])[0]
+
+        textpart_labels = work_data.get("textpart_labels")
+
+        assert textpart_labels is not None, f"No textpart_labels for {urn}"
+
+        target_textpart_label = None
+
+        if len(textpart_labels) > 2:
+            target_textpart_label = textpart_labels[-2]
+        else:
+            target_textpart_label = textpart_labels[-1]
+
+        reachable_textparts = [
+            t for t in textparts if t["subtype"] == target_textpart_label
+        ]
+        first = sorted(reachable_textparts, key=lambda t: t["index"])[0]
         parsed = parse_urn(first["urn"])
 
     passage = str(parsed.passage_component)
