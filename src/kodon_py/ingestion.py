@@ -1,10 +1,9 @@
 """
-Two-phase ingestion pipeline for TEI XML documents.
+Ingestion pipeline for TEI XML documents.
 
-Phase 1: Parse TEI XML files to JSON
+Parses TEI XML files to JSON
 
-Progress is tracked by file existence:
-- Phase 1 complete: JSON file exists for the TEI source
+Progress is tracked by file existence.
 
 Resumability:
 - Parse phase skips files that already have JSON output
@@ -13,7 +12,6 @@ Resumability:
 import json
 import logging
 from pathlib import Path
-from types import SimpleNamespace
 from typing import Iterator
 
 from kodon_py.tei_parser import TEIParser, create_table_of_contents
@@ -90,7 +88,9 @@ def parse_tei_to_json(tei_path: Path, output_path: Path) -> dict:
 
     logger.info(f"Saved JSON: {output_path}")
 
-    metadata_path = str(output_path).replace(output_path.name, "metadata.json")
+    metadata_path = str(output_path).replace(
+        output_path.stem, f"{output_path.stem}.metadata"
+    )
 
     toc = create_table_of_contents(parser.textparts, parser.textpart_labels)
 

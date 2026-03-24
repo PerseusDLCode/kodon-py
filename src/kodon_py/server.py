@@ -1,10 +1,10 @@
 import json
 import os
+from pathlib import Path
 
-from flask import Flask, abort, render_template
+from flask import Flask
 
 from kodon_py.config import default_config
-from kodon_py.tei_parser import create_table_of_contents
 from kodon_py.urn_utils import parse_urn
 
 
@@ -35,7 +35,7 @@ def create_app(json_dir=None, config=None, test_config=None):
     return app
 
 
-def load_passage_from_urn(urn: str, json_dir: str):
+def load_passage_from_urn(urn: str, json_dir: str | Path):
     parsed = parse_urn(urn)
 
     if not parsed.collection or not parsed.work_component:
@@ -43,8 +43,8 @@ def load_passage_from_urn(urn: str, json_dir: str):
 
     work_path = os.path.join(
         json_dir,
-        parsed.text_group,
-        parsed.work,
+        str(parsed.text_group),
+        str(parsed.work),
         f"{parsed.work_component}.json",
     )
 
@@ -61,13 +61,13 @@ def load_passage_from_urn(urn: str, json_dir: str):
         first = sorted(textparts_data, key=lambda t: t["index"])[0]
         parsed = parse_urn(first["urn"])
 
-    passage = parsed.passage_component
+    passage = str(parsed.passage_component)
 
     all_elements = work_data.get("elements", [])
 
     def textpart_matches(textpart_urn: str) -> bool:
         tp_passage = parse_urn(textpart_urn).passage_component
-        return tp_passage == passage or tp_passage.startswith(passage + ".")
+        return tp_passage == passage or str(tp_passage).startswith(passage + ".")
 
     matching = [e for e in all_elements if textpart_matches(e["textpart_urn"])]
 
@@ -96,9 +96,9 @@ def load_toc_from_urn(urn: str, json_dir: str):
 
     work_path = os.path.join(
         json_dir,
-        parsed.text_group,
-        parsed.work,
-        f"metadata.json",
+        str(parsed.text_group),
+        str(parsed.work),
+        f"{parsed.work_component}.metadata.json",
     )
 
     if not os.path.exists(work_path):

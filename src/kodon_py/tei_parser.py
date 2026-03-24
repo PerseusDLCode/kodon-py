@@ -64,6 +64,22 @@ logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
 
+greek_tokenizer = stanza.Pipeline(
+    "grc",
+    processors="tokenize",
+    package="perseus",
+    model_dir="./stanza_models",
+    download_method=stanza.DownloadMethod.REUSE_RESOURCES,
+)
+
+latin_tokenizer = stanza.Pipeline(
+    "la",
+    processors="tokenize",
+    package="perseus",
+    model_dir="./stanza_models",
+    download_method=stanza.DownloadMethod.REUSE_RESOURCES,
+)
+
 def create_table_of_contents(textparts, textpart_labels):
     textparts = [
         dict(
@@ -338,24 +354,6 @@ class TEIParser(ContentHandler):
 
         self.element_stack.append(attrs)
 
-    def initialize_tokenizer(self):
-        if self.language == "grc":
-            self.tokenizer = stanza.Pipeline(
-                "grc",
-                processors="tokenize",
-                package="perseus",
-                model_dir="./stanza_models",
-                download_method=stanza.DownloadMethod.REUSE_RESOURCES,
-            )
-        elif self.language in ("la", "lat"):
-            self.tokenizer = stanza.Pipeline(
-                "la",
-                processors="tokenize",
-                package="perseus",
-                model_dir="./stanza_models",
-                download_method=stanza.DownloadMethod.REUSE_RESOURCES,
-            )
-
     def process_tokens(self, tokens):
         text_run = []
 
@@ -444,10 +442,16 @@ class TEIParser(ContentHandler):
                 self.handle_element(localname, clean_attrs)
 
     def tokenize(self, s: str):
-        if self.tokenizer is None:
-            self.initialize_tokenizer()
+        tokenizer = None
 
-        doc = self.tokenizer(s) # pyright: ignore
+        if self.language == "grc":
+            tokenizer = greek_tokenizer
+        elif self.language in ("la", "lat"):
+            tokenizer = latin_tokenizer
+        else:
+            tokenizer = greek_tokenizer
+
+        doc = tokenizer(s)
 
         if doc is None:
             return []
