@@ -313,21 +313,24 @@ class TEIParser(ContentHandler):
         else:
             textpart = self.textpart_stack[-1]
 
+        textpart_index = -1
+        urn_element_index = -1
+        current_textpart_urn = self.current_textpart_urn
         if textpart is None:
             logger.warning(
                 f"{self.urn}\nOrphaned element: {tagname}, {attrs} — no textpart available."
             )
-            return
-
-        textpart_index = textpart["index"]
-        urn_element_index = sum(
-            [
-                1
-                for el in self.elements + self.element_stack
-                if el["textpart_urn"] == self.current_textpart_urn
-                and el["tagname"] == tagname
-            ]
-        )
+            current_textpart_urn = f"{self.urn}:-1"
+        else:
+            textpart_index = textpart["index"]
+            urn_element_index = sum(
+                [
+                    1
+                    for el in self.elements + self.element_stack
+                    if el["textpart_urn"] == current_textpart_urn
+                    and el["tagname"] == tagname
+                ]
+            )
 
         element_index = self.global_element_index
         self.global_element_index += 1
@@ -338,8 +341,8 @@ class TEIParser(ContentHandler):
                 "index": element_index,
                 "tagname": tagname,
                 "textpart_index": textpart_index,
-                "textpart_urn": self.current_textpart_urn,
-                "urn": f"{self.current_textpart_urn}@<{tagname}>[{urn_element_index}]",
+                "textpart_urn": current_textpart_urn,
+                "urn": f"{current_textpart_urn}@<{tagname}>[{urn_element_index}]",
             }
         )
 
