@@ -54,8 +54,8 @@ def load_passage_from_urn(urn: str, json_dir: str | Path):
     with open(work_path) as f:
         work_data = json.load(f)
 
+    textparts = work_data.get("textparts", [])
     if not parsed.passage_component:
-        textparts = work_data.get("textparts", [])
         if not textparts:
             return None
 
@@ -73,18 +73,24 @@ def load_passage_from_urn(urn: str, json_dir: str | Path):
         reachable_textparts = [
             t for t in textparts if t["subtype"] == target_textpart_label
         ]
-        first = sorted(reachable_textparts, key=lambda t: t["index"])[0]
-        parsed = parse_urn(first["urn"])
+        textpart = sorted(reachable_textparts, key=lambda t: t["index"])[0]
+        parsed = parse_urn(textpart["urn"])
+    else:
+        textpart = [t for t in textparts if t["urn"] == urn][0]
 
     passage = str(parsed.passage_component)
 
     all_elements = work_data.get("elements", [])
 
-    def textpart_matches(textpart_urn: str) -> bool:
+    def textpart_matches(e: dict) -> bool:
+        if textpart["index"] == e["textpart_index"]:
+            return True
+
+        textpart_urn = e["textpart_urn"]
         tp_passage = parse_urn(textpart_urn).passage_component
         return tp_passage == passage or str(tp_passage).startswith(passage + ".")
 
-    matching = [e for e in all_elements if textpart_matches(e["textpart_urn"])]
+    matching = [e for e in all_elements if textpart_matches(e)]
 
     if not matching:
         return None
