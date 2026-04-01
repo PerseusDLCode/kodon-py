@@ -80,6 +80,7 @@ latin_tokenizer = stanza.Pipeline(
     download_method=stanza.DownloadMethod.REUSE_RESOURCES,
 )
 
+
 def create_table_of_contents(textparts, textpart_labels):
     textparts = [
         dict(
@@ -142,15 +143,22 @@ class TEIParser(ContentHandler):
     publicationStmt, respStmt, and sourceDesc are stored
     as strings for later parsing and use.
     """
+
     def __init__(self, filename: Path | str):
         self.filename = filename
         self.tree = etree.parse(filename)
         self.tokenizer = None
 
         self.author = self.get_author()
+        # citable_elements are those that are defined
+        # in the refsDecl; we need to track these in
+        # order to update the URN whenever we encounter
+        # one.
+        self.citable_elements = self.get_citable_elements()
         self.editionStmt = self.get_editionStmt()
         self.language = None
         self.publicationStmt = self.get_publicationStmt()
+        self.refsDecl = self.get_refsDecl()
         self.respStmt = self.get_respStmt()
         self.sourceDesc = self.get_sourceDesc()
         self.title = self.get_title()
@@ -263,13 +271,21 @@ class TEIParser(ContentHandler):
         el = self.tree.find(".//tei:author", namespaces=NAMESPACES)
 
         if el is not None:
-            return etree.tostring(el, encoding="unicode", method="text", xml_declaration=False)
+            return etree.tostring(
+                el, encoding="unicode", method="text", xml_declaration=False
+            )
+
+    def get_citable_elements(self):
+        refsDecl = self.tree.find(".//tei:refsDecl", namespaces=NAMESPACES)
 
     def get_editionStmt(self):
         return self.get_stringifiedXML("editionStmt")
 
     def get_publicationStmt(self):
         return self.get_stringifiedXML("publicationStmt")
+
+    def get_refsDecl(self):
+        return self.get_stringifiedXML("refsDecl")
 
     def get_respStmt(self):
         return self.get_stringifiedXML("respStmt")
@@ -290,7 +306,9 @@ class TEIParser(ContentHandler):
         el = self.tree.find(".//tei:title", namespaces=NAMESPACES)
 
         if el is not None:
-            return etree.tostring(el, encoding="unicode", method="text", xml_declaration=False)
+            return etree.tostring(
+                el, encoding="unicode", method="text", xml_declaration=False
+            )
 
     def handle_div(self, attrs: dict):
         if attrs["type"] == "edition":
