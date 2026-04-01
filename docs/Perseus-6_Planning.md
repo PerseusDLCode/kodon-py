@@ -1,4 +1,4 @@
-# Perseus 6 Planning
+# Perseus 6 Planning – 2026-04-01
 
 ## Start with P4
 
@@ -13,13 +13,17 @@
 #### Cliff
 
 - [ ] Convert TEI XML to canonical schema for rendering using XSLT (still TEI XML, but "normalized")
-- [ ] Convert milestones to divs in drama so that they are addressable via refsDecl (for chunking)
-- [ ] Discuss chunking methods
+- [ ] Convert normalized TEI XML to HTML
 
 #### Charles
 
+- [ ] Map out P4 (just high-level understanding)
 - [ ] Enable token-level annotations of normalized TEI XML
-- [ ] Convert normalized TEI XML to HTML
+- [ ] Convert milestones to divs in drama so that they are addressable via refsDecl (for chunking)
+
+#### Both
+
+- [ ] Discuss chunking methods
 
 ### TODO
 
