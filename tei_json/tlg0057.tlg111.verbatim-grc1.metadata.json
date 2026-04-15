@@ -1,0 +1,62 @@
+{
+  "author": "\nGalenus\n\n        ",
+  "language": "grc",
+  "table_of_contents": [
+    {
+      "depth": 0,
+      "label": "Chapter 1",
+      "urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
+      "subtype": "chapter"
+    },
+    {
+      "depth": 0,
+      "label": "Chapter 2",
+      "urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
+      "subtype": "chapter"
+    },
+    {
+      "depth": 0,
+      "label": "Chapter 3",
+      "urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
+      "subtype": "chapter"
+    },
+    {
+      "depth": 0,
+      "label": "Chapter 4",
+      "urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
+      "subtype": "chapter"
+    },
+    {
+      "depth": 0,
+      "label": "Chapter 5",
+      "urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
+      "subtype": "chapter"
+    },
+    {
+      "depth": 0,
+      "label": "Chapter 6",
+      "urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
+      "subtype": "chapter"
+    },
+    {
+      "depth": 0,
+      "label": "Chapter 7",
+      "urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:7",
+      "subtype": "chapter"
+    },
+    {
+      "depth": 0,
+      "label": "Chapter 8",
+      "urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
+      "subtype": "chapter"
+    },
+    {
+      "depth": 0,
+      "label": "Chapter 9",
+      "urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
+      "subtype": "chapter"
+    }
+  ],
+  "title": "Quod qualitates incorporeae sint\n        ",
+  "urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1"
+}

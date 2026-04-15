@@ -56,6 +56,7 @@ def sample_parsed_data():
         "textparts": [
             {
                 "index": 0,
+                "depth": 0,
                 "location": ["1"],
                 "n": "1",
                 "subtype": "chapter",

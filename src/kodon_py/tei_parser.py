@@ -67,6 +67,7 @@ logger.addHandler(file_handler)
 def create_table_of_contents(textparts, textpart_labels):
     textparts = [
         dict(
+            depth=t["depth"],
             label=f"{t['subtype'].capitalize()} {t.get('n', '')}".strip(),
             urn=t["urn"],
             subtype=t["subtype"],
@@ -78,16 +79,14 @@ def create_table_of_contents(textparts, textpart_labels):
     if len(textpart_labels) == 1:
         return textparts
 
-    hierarchy = list(textpart_labels)
-
-    return nest_textparts(textparts, hierarchy)
+    return nest_textparts(textparts)
 
 
-def nest_textparts(textparts, hierarchy):
+def nest_textparts(textparts):
     stack = []
 
     for item in textparts:
-        level = hierarchy.index(item["subtype"])
+        level = item["depth"]
 
         if len(stack) == 0:
             stack.append((level, item))
@@ -205,6 +204,7 @@ class TEIParser(ContentHandler):
 
         attrs.update(
             {
+                "depth": len(self.textpart_stack),
                 "index": len(self.textpart_stack) + len(self.textparts),
                 "location": location,
                 "urn": self.current_textpart_urn,

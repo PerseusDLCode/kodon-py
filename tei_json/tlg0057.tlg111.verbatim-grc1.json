@@ -1,5 +1,5 @@
 {
-  "source_file": "/Users/pletcher/code/ajmc/kodon-py/test_tei/tlg0057.tlg111.verbatim-grc1.xml",
+  "source_file": "/Users/pletcher/code/PerseusCode/kodon-py/test_tei/tlg0057.tlg111.verbatim-grc1.xml",
   "author": "\nGalenus\n\n        ",
   "editionStmt": "<editionStmt xmlns=\"http://www.tei-c.org/ns/1.0\" resp=\"#Galenus_verbatim\">\n<edition n=\"1\">Digital edition of the texts printed in Kühn’s edition.\n<date type=\"upload\" when=\"2024\">2024</date>\n</edition>\n</editionStmt>\n",
   "language": "grc",
@@ -16,6 +16,7 @@
       "type": "textpart",
       "subtype": "chapter",
       "n": "1",
+      "depth": 0,
       "index": 0,
       "location": [
         "1"
@@ -1643,6 +1644,7 @@
       "type": "textpart",
       "subtype": "chapter",
       "n": "2",
+      "depth": 0,
       "index": 1,
       "location": [
         "2"
@@ -4685,6 +4687,7 @@
       "type": "textpart",
       "subtype": "chapter",
       "n": "3",
+      "depth": 0,
       "index": 2,
       "location": [
         "3"
@@ -7542,6 +7545,7 @@
       "type": "textpart",
       "subtype": "chapter",
       "n": "4",
+      "depth": 0,
       "index": 3,
       "location": [
         "4"
@@ -10974,6 +10978,7 @@
       "type": "textpart",
       "subtype": "chapter",
       "n": "5",
+      "depth": 0,
       "index": 4,
       "location": [
         "5"
@@ -12811,6 +12816,7 @@
       "type": "textpart",
       "subtype": "chapter",
       "n": "6",
+      "depth": 0,
       "index": 5,
       "location": [
         "6"
@@ -14798,6 +14804,7 @@
       "type": "textpart",
       "subtype": "chapter",
       "n": "7",
+      "depth": 0,
       "index": 6,
       "location": [
         "7"
@@ -15625,6 +15632,7 @@
       "type": "textpart",
       "subtype": "chapter",
       "n": "8",
+      "depth": 0,
       "index": 7,
       "location": [
         "8"
@@ -16842,6 +16850,7 @@
       "type": "textpart",
       "subtype": "chapter",
       "n": "9",
+      "depth": 0,
       "index": 8,
       "location": [
         "9"
@@ -18173,6 +18182,35 @@
   ],
   "elements": [
     {
+      "n": "19.463",
+      "children": [],
+      "index": 0,
+      "tagname": "pb",
+      "textpart_index": -1,
+      "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:-1",
+      "urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:-1@<pb>[-1]"
+    },
+    {
+      "unit": "ed2page",
+      "n": "2.60",
+      "children": [],
+      "index": 1,
+      "tagname": "milestone",
+      "textpart_index": -1,
+      "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:-1",
+      "urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:-1@<milestone>[-1]"
+    },
+    {
+      "unit": "ed1page",
+      "n": "5.403",
+      "children": [],
+      "index": 2,
+      "tagname": "milestone",
+      "textpart_index": -1,
+      "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:-1",
+      "urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:-1@<milestone>[-1]"
+    },
+    {
       "children": [
         {
           "tagname": "text_run",
@@ -18203,11 +18241,11 @@
               "whitespace": true
             }
           ],
-          "index": 1
+          "index": 4
         },
         {
           "children": [],
-          "index": 2,
+          "index": 5,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -18232,11 +18270,11 @@
               "whitespace": true
             }
           ],
-          "index": 3
+          "index": 6
         },
         {
           "children": [],
-          "index": 4,
+          "index": 7,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -18251,10 +18289,10 @@
               "whitespace": false
             }
           ],
-          "index": 5
+          "index": 8
         }
       ],
-      "index": 0,
+      "index": 3,
       "tagname": "head",
       "textpart_index": 0,
       "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -18266,7 +18304,7 @@
         {
           "n": "1",
           "children": [],
-          "index": 7,
+          "index": 10,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -18302,17 +18340,17 @@
                       "whitespace": false
                     }
                   ],
-                  "index": 10
+                  "index": 13
                 }
               ],
-              "index": 9,
+              "index": 12,
               "tagname": "num",
               "textpart_index": 0,
               "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
               "urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1@<num>[0]"
             }
           ],
-          "index": 8,
+          "index": 11,
           "tagname": "label",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -18357,12 +18395,12 @@
               "whitespace": true
             }
           ],
-          "index": 11
+          "index": 14
         },
         {
           "n": "2",
           "children": [],
-          "index": 12,
+          "index": 15,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -18427,12 +18465,12 @@
               "whitespace": true
             }
           ],
-          "index": 13
+          "index": 16
         },
         {
           "n": "3",
           "children": [],
-          "index": 14,
+          "index": 17,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -18497,12 +18535,12 @@
               "whitespace": true
             }
           ],
-          "index": 15
+          "index": 18
         },
         {
           "n": "4",
           "children": [],
-          "index": 16,
+          "index": 19,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -18552,12 +18590,12 @@
               "whitespace": true
             }
           ],
-          "index": 17
+          "index": 20
         },
         {
           "n": "5",
           "children": [],
-          "index": 18,
+          "index": 21,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -18612,12 +18650,12 @@
               "whitespace": true
             }
           ],
-          "index": 19
+          "index": 22
         },
         {
           "n": "6",
           "children": [],
-          "index": 20,
+          "index": 23,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -18672,12 +18710,12 @@
               "whitespace": true
             }
           ],
-          "index": 21
+          "index": 24
         },
         {
           "n": "7",
           "children": [],
-          "index": 22,
+          "index": 25,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -18742,12 +18780,12 @@
               "whitespace": true
             }
           ],
-          "index": 23
+          "index": 26
         },
         {
           "n": "19.464",
           "children": [],
-          "index": 24,
+          "index": 27,
           "tagname": "pb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -18756,7 +18794,7 @@
         {
           "n": "1",
           "children": [],
-          "index": 25,
+          "index": 28,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -18806,12 +18844,12 @@
               "whitespace": true
             }
           ],
-          "index": 26
+          "index": 29
         },
         {
           "n": "2",
           "children": [],
-          "index": 27,
+          "index": 30,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -18866,12 +18904,12 @@
               "whitespace": true
             }
           ],
-          "index": 28
+          "index": 31
         },
         {
           "n": "3",
           "children": [],
-          "index": 29,
+          "index": 32,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -18931,12 +18969,12 @@
               "whitespace": true
             }
           ],
-          "index": 30
+          "index": 33
         },
         {
           "n": "4",
           "children": [],
-          "index": 31,
+          "index": 34,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -18991,12 +19029,12 @@
               "whitespace": true
             }
           ],
-          "index": 32
+          "index": 35
         },
         {
           "n": "5",
           "children": [],
-          "index": 33,
+          "index": 36,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -19061,12 +19099,12 @@
               "whitespace": true
             }
           ],
-          "index": 34
+          "index": 37
         },
         {
           "n": "6",
           "children": [],
-          "index": 35,
+          "index": 38,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -19141,12 +19179,12 @@
               "whitespace": true
             }
           ],
-          "index": 36
+          "index": 39
         },
         {
           "n": "7",
           "children": [],
-          "index": 37,
+          "index": 40,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -19201,12 +19239,12 @@
               "whitespace": true
             }
           ],
-          "index": 38
+          "index": 41
         },
         {
           "n": "8",
           "children": [],
-          "index": 39,
+          "index": 42,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -19266,12 +19304,12 @@
               "whitespace": true
             }
           ],
-          "index": 40
+          "index": 43
         },
         {
           "n": "9",
           "children": [],
-          "index": 41,
+          "index": 44,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -19341,12 +19379,12 @@
               "whitespace": true
             }
           ],
-          "index": 42
+          "index": 45
         },
         {
           "n": "10",
           "children": [],
-          "index": 43,
+          "index": 46,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -19411,12 +19449,12 @@
               "whitespace": true
             }
           ],
-          "index": 44
+          "index": 47
         },
         {
           "n": "11",
           "children": [],
-          "index": 45,
+          "index": 48,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -19481,12 +19519,12 @@
               "whitespace": true
             }
           ],
-          "index": 46
+          "index": 49
         },
         {
           "n": "12",
           "children": [],
-          "index": 47,
+          "index": 50,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -19546,12 +19584,12 @@
               "whitespace": true
             }
           ],
-          "index": 48
+          "index": 51
         },
         {
           "n": "13",
           "children": [],
-          "index": 49,
+          "index": 52,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -19616,12 +19654,12 @@
               "whitespace": true
             }
           ],
-          "index": 50
+          "index": 53
         },
         {
           "n": "14",
           "children": [],
-          "index": 51,
+          "index": 54,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -19676,12 +19714,12 @@
               "whitespace": true
             }
           ],
-          "index": 52
+          "index": 55
         },
         {
           "n": "15",
           "children": [],
-          "index": 53,
+          "index": 56,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -19741,12 +19779,12 @@
               "whitespace": true
             }
           ],
-          "index": 54
+          "index": 57
         },
         {
           "n": "16",
           "children": [],
-          "index": 55,
+          "index": 58,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -19831,12 +19869,12 @@
               "whitespace": true
             }
           ],
-          "index": 56
+          "index": 59
         },
         {
           "n": "17",
           "children": [],
-          "index": 57,
+          "index": 60,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -19856,13 +19894,13 @@
               "whitespace": true
             }
           ],
-          "index": 58
+          "index": 61
         },
         {
           "unit": "ed2page",
           "n": "2.61",
           "children": [],
-          "index": 59,
+          "index": 62,
           "tagname": "milestone",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -19897,12 +19935,12 @@
               "whitespace": true
             }
           ],
-          "index": 60
+          "index": 63
         },
         {
           "n": "19.465",
           "children": [],
-          "index": 61,
+          "index": 64,
           "tagname": "pb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -19911,7 +19949,7 @@
         {
           "n": "1",
           "children": [],
-          "index": 62,
+          "index": 65,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -19976,12 +20014,12 @@
               "whitespace": true
             }
           ],
-          "index": 63
+          "index": 66
         },
         {
           "n": "2",
           "children": [],
-          "index": 64,
+          "index": 67,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -20046,12 +20084,12 @@
               "whitespace": true
             }
           ],
-          "index": 65
+          "index": 68
         },
         {
           "n": "3",
           "children": [],
-          "index": 66,
+          "index": 69,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -20111,12 +20149,12 @@
               "whitespace": true
             }
           ],
-          "index": 67
+          "index": 70
         },
         {
           "n": "4",
           "children": [],
-          "index": 68,
+          "index": 71,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -20176,12 +20214,12 @@
               "whitespace": true
             }
           ],
-          "index": 69
+          "index": 72
         },
         {
           "n": "5",
           "children": [],
-          "index": 70,
+          "index": 73,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -20231,12 +20269,12 @@
               "whitespace": true
             }
           ],
-          "index": 71
+          "index": 74
         },
         {
           "n": "6",
           "children": [],
-          "index": 72,
+          "index": 75,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -20291,12 +20329,12 @@
               "whitespace": true
             }
           ],
-          "index": 73
+          "index": 76
         },
         {
           "n": "7",
           "children": [],
-          "index": 74,
+          "index": 77,
           "tagname": "lb",
           "textpart_index": 0,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -20356,10 +20394,10 @@
               "whitespace": false
             }
           ],
-          "index": 75
+          "index": 78
         }
       ],
-      "index": 6,
+      "index": 9,
       "tagname": "p",
       "textpart_index": 0,
       "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:1",
@@ -20371,7 +20409,7 @@
         {
           "n": "8",
           "children": [],
-          "index": 77,
+          "index": 80,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -20407,17 +20445,17 @@
                       "whitespace": false
                     }
                   ],
-                  "index": 80
+                  "index": 83
                 }
               ],
-              "index": 79,
+              "index": 82,
               "tagname": "num",
               "textpart_index": 1,
               "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
               "urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2@<num>[0]"
             }
           ],
-          "index": 78,
+          "index": 81,
           "tagname": "label",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -20462,12 +20500,12 @@
               "whitespace": true
             }
           ],
-          "index": 81
+          "index": 84
         },
         {
           "n": "9",
           "children": [],
-          "index": 82,
+          "index": 85,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -20522,12 +20560,12 @@
               "whitespace": true
             }
           ],
-          "index": 83
+          "index": 86
         },
         {
           "n": "10",
           "children": [],
-          "index": 84,
+          "index": 87,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -20587,12 +20625,12 @@
               "whitespace": true
             }
           ],
-          "index": 85
+          "index": 88
         },
         {
           "n": "11",
           "children": [],
-          "index": 86,
+          "index": 89,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -20667,12 +20705,12 @@
               "whitespace": true
             }
           ],
-          "index": 87
+          "index": 90
         },
         {
           "n": "12",
           "children": [],
-          "index": 88,
+          "index": 91,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -20722,12 +20760,12 @@
               "whitespace": true
             }
           ],
-          "index": 89
+          "index": 92
         },
         {
           "n": "13",
           "children": [],
-          "index": 90,
+          "index": 93,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -20792,12 +20830,12 @@
               "whitespace": true
             }
           ],
-          "index": 91
+          "index": 94
         },
         {
           "n": "14",
           "children": [],
-          "index": 92,
+          "index": 95,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -20867,12 +20905,12 @@
               "whitespace": true
             }
           ],
-          "index": 93
+          "index": 96
         },
         {
           "n": "15",
           "children": [],
-          "index": 94,
+          "index": 97,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -20932,12 +20970,12 @@
               "whitespace": true
             }
           ],
-          "index": 95
+          "index": 98
         },
         {
           "n": "16",
           "children": [],
-          "index": 96,
+          "index": 99,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -20987,12 +21025,12 @@
               "whitespace": true
             }
           ],
-          "index": 97
+          "index": 100
         },
         {
           "n": "17",
           "children": [],
-          "index": 98,
+          "index": 101,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -21057,12 +21095,12 @@
               "whitespace": true
             }
           ],
-          "index": 99
+          "index": 102
         },
         {
           "n": "19.466",
           "children": [],
-          "index": 100,
+          "index": 103,
           "tagname": "pb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -21071,7 +21109,7 @@
         {
           "n": "1",
           "children": [],
-          "index": 101,
+          "index": 104,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -21136,12 +21174,12 @@
               "whitespace": true
             }
           ],
-          "index": 102
+          "index": 105
         },
         {
           "n": "2",
           "children": [],
-          "index": 103,
+          "index": 106,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -21201,12 +21239,12 @@
               "whitespace": true
             }
           ],
-          "index": 104
+          "index": 107
         },
         {
           "n": "3",
           "children": [],
-          "index": 105,
+          "index": 108,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -21281,12 +21319,12 @@
               "whitespace": true
             }
           ],
-          "index": 106
+          "index": 109
         },
         {
           "n": "4",
           "children": [],
-          "index": 107,
+          "index": 110,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -21341,12 +21379,12 @@
               "whitespace": true
             }
           ],
-          "index": 108
+          "index": 111
         },
         {
           "n": "5",
           "children": [],
-          "index": 109,
+          "index": 112,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -21401,12 +21439,12 @@
               "whitespace": true
             }
           ],
-          "index": 110
+          "index": 113
         },
         {
           "n": "6",
           "children": [],
-          "index": 111,
+          "index": 114,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -21466,12 +21504,12 @@
               "whitespace": true
             }
           ],
-          "index": 112
+          "index": 115
         },
         {
           "n": "7",
           "children": [],
-          "index": 113,
+          "index": 116,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -21536,12 +21574,12 @@
               "whitespace": true
             }
           ],
-          "index": 114
+          "index": 117
         },
         {
           "n": "8",
           "children": [],
-          "index": 115,
+          "index": 118,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -21586,12 +21624,12 @@
               "whitespace": true
             }
           ],
-          "index": 116
+          "index": 119
         },
         {
           "n": "9",
           "children": [],
-          "index": 117,
+          "index": 120,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -21661,12 +21699,12 @@
               "whitespace": true
             }
           ],
-          "index": 118
+          "index": 121
         },
         {
           "n": "10",
           "children": [],
-          "index": 119,
+          "index": 122,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -21721,12 +21759,12 @@
               "whitespace": true
             }
           ],
-          "index": 120
+          "index": 123
         },
         {
           "n": "11",
           "children": [],
-          "index": 121,
+          "index": 124,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -21791,12 +21829,12 @@
               "whitespace": true
             }
           ],
-          "index": 122
+          "index": 125
         },
         {
           "n": "12",
           "children": [],
-          "index": 123,
+          "index": 126,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -21831,13 +21869,13 @@
               "whitespace": true
             }
           ],
-          "index": 124
+          "index": 127
         },
         {
           "unit": "ed1page",
           "n": "5.404",
           "children": [],
-          "index": 125,
+          "index": 128,
           "tagname": "milestone",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -21852,12 +21890,12 @@
               "whitespace": true
             }
           ],
-          "index": 126
+          "index": 129
         },
         {
           "n": "13",
           "children": [],
-          "index": 127,
+          "index": 130,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -21917,12 +21955,12 @@
               "whitespace": true
             }
           ],
-          "index": 128
+          "index": 131
         },
         {
           "n": "14",
           "children": [],
-          "index": 129,
+          "index": 132,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -21992,12 +22030,12 @@
               "whitespace": true
             }
           ],
-          "index": 130
+          "index": 133
         },
         {
           "n": "15",
           "children": [],
-          "index": 131,
+          "index": 134,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -22062,12 +22100,12 @@
               "whitespace": true
             }
           ],
-          "index": 132
+          "index": 135
         },
         {
           "n": "16",
           "children": [],
-          "index": 133,
+          "index": 136,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -22132,12 +22170,12 @@
               "whitespace": true
             }
           ],
-          "index": 134
+          "index": 137
         },
         {
           "n": "17",
           "children": [],
-          "index": 135,
+          "index": 138,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -22192,12 +22230,12 @@
               "whitespace": true
             }
           ],
-          "index": 136
+          "index": 139
         },
         {
           "n": "18",
           "children": [],
-          "index": 137,
+          "index": 140,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -22262,12 +22300,12 @@
               "whitespace": true
             }
           ],
-          "index": 138
+          "index": 141
         },
         {
           "n": "19.467",
           "children": [],
-          "index": 139,
+          "index": 142,
           "tagname": "pb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -22276,7 +22314,7 @@
         {
           "n": "1",
           "children": [],
-          "index": 140,
+          "index": 143,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -22346,12 +22384,12 @@
               "whitespace": true
             }
           ],
-          "index": 141
+          "index": 144
         },
         {
           "n": "2",
           "children": [],
-          "index": 142,
+          "index": 145,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -22426,12 +22464,12 @@
               "whitespace": true
             }
           ],
-          "index": 143
+          "index": 146
         },
         {
           "n": "3",
           "children": [],
-          "index": 144,
+          "index": 147,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -22486,12 +22524,12 @@
               "whitespace": true
             }
           ],
-          "index": 145
+          "index": 148
         },
         {
           "n": "4",
           "children": [],
-          "index": 146,
+          "index": 149,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -22556,12 +22594,12 @@
               "whitespace": true
             }
           ],
-          "index": 147
+          "index": 150
         },
         {
           "n": "5",
           "children": [],
-          "index": 148,
+          "index": 151,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -22621,12 +22659,12 @@
               "whitespace": true
             }
           ],
-          "index": 149
+          "index": 152
         },
         {
           "n": "6",
           "children": [],
-          "index": 150,
+          "index": 153,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -22696,12 +22734,12 @@
               "whitespace": true
             }
           ],
-          "index": 151
+          "index": 154
         },
         {
           "n": "7",
           "children": [],
-          "index": 152,
+          "index": 155,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -22766,12 +22804,12 @@
               "whitespace": true
             }
           ],
-          "index": 153
+          "index": 156
         },
         {
           "n": "8",
           "children": [],
-          "index": 154,
+          "index": 157,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -22831,12 +22869,12 @@
               "whitespace": true
             }
           ],
-          "index": 155
+          "index": 158
         },
         {
           "n": "9",
           "children": [],
-          "index": 156,
+          "index": 159,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -22891,12 +22929,12 @@
               "whitespace": true
             }
           ],
-          "index": 157
+          "index": 160
         },
         {
           "n": "10",
           "children": [],
-          "index": 158,
+          "index": 161,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -22956,12 +22994,12 @@
               "whitespace": true
             }
           ],
-          "index": 159
+          "index": 162
         },
         {
           "n": "11",
           "children": [],
-          "index": 160,
+          "index": 163,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -23031,12 +23069,12 @@
               "whitespace": true
             }
           ],
-          "index": 161
+          "index": 164
         },
         {
           "n": "12",
           "children": [],
-          "index": 162,
+          "index": 165,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -23106,12 +23144,12 @@
               "whitespace": true
             }
           ],
-          "index": 163
+          "index": 166
         },
         {
           "n": "13",
           "children": [],
-          "index": 164,
+          "index": 167,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -23171,12 +23209,12 @@
               "whitespace": true
             }
           ],
-          "index": 165
+          "index": 168
         },
         {
           "n": "14",
           "children": [],
-          "index": 166,
+          "index": 169,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -23236,12 +23274,12 @@
               "whitespace": true
             }
           ],
-          "index": 167
+          "index": 170
         },
         {
           "n": "15",
           "children": [],
-          "index": 168,
+          "index": 171,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -23296,12 +23334,12 @@
               "whitespace": true
             }
           ],
-          "index": 169
+          "index": 172
         },
         {
           "n": "16",
           "children": [],
-          "index": 170,
+          "index": 173,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -23331,13 +23369,13 @@
               "whitespace": true
             }
           ],
-          "index": 171
+          "index": 174
         },
         {
           "unit": "ed2page",
           "n": "2.62",
           "children": [],
-          "index": 172,
+          "index": 175,
           "tagname": "milestone",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -23372,12 +23410,12 @@
               "whitespace": true
             }
           ],
-          "index": 173
+          "index": 176
         },
         {
           "n": "17",
           "children": [],
-          "index": 174,
+          "index": 177,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -23442,12 +23480,12 @@
               "whitespace": true
             }
           ],
-          "index": 175
+          "index": 178
         },
         {
           "n": "18",
           "children": [],
-          "index": 176,
+          "index": 179,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -23507,12 +23545,12 @@
               "whitespace": true
             }
           ],
-          "index": 177
+          "index": 180
         },
         {
           "n": "19.468",
           "children": [],
-          "index": 178,
+          "index": 181,
           "tagname": "pb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -23521,7 +23559,7 @@
         {
           "n": "1",
           "children": [],
-          "index": 179,
+          "index": 182,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -23581,12 +23619,12 @@
               "whitespace": true
             }
           ],
-          "index": 180
+          "index": 183
         },
         {
           "n": "2",
           "children": [],
-          "index": 181,
+          "index": 184,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -23641,12 +23679,12 @@
               "whitespace": true
             }
           ],
-          "index": 182
+          "index": 185
         },
         {
           "n": "3",
           "children": [],
-          "index": 183,
+          "index": 186,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -23691,12 +23729,12 @@
               "whitespace": true
             }
           ],
-          "index": 184
+          "index": 187
         },
         {
           "n": "4",
           "children": [],
-          "index": 185,
+          "index": 188,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -23756,12 +23794,12 @@
               "whitespace": true
             }
           ],
-          "index": 186
+          "index": 189
         },
         {
           "n": "5",
           "children": [],
-          "index": 187,
+          "index": 190,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -23816,12 +23854,12 @@
               "whitespace": true
             }
           ],
-          "index": 188
+          "index": 191
         },
         {
           "n": "6",
           "children": [],
-          "index": 189,
+          "index": 192,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -23881,12 +23919,12 @@
               "whitespace": true
             }
           ],
-          "index": 190
+          "index": 193
         },
         {
           "n": "7",
           "children": [],
-          "index": 191,
+          "index": 194,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -23951,12 +23989,12 @@
               "whitespace": true
             }
           ],
-          "index": 192
+          "index": 195
         },
         {
           "n": "8",
           "children": [],
-          "index": 193,
+          "index": 196,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -24031,12 +24069,12 @@
               "whitespace": true
             }
           ],
-          "index": 194
+          "index": 197
         },
         {
           "n": "9",
           "children": [],
-          "index": 195,
+          "index": 198,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -24096,12 +24134,12 @@
               "whitespace": true
             }
           ],
-          "index": 196
+          "index": 199
         },
         {
           "n": "10",
           "children": [],
-          "index": 197,
+          "index": 200,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -24151,12 +24189,12 @@
               "whitespace": true
             }
           ],
-          "index": 198
+          "index": 201
         },
         {
           "n": "11",
           "children": [],
-          "index": 199,
+          "index": 202,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -24216,12 +24254,12 @@
               "whitespace": true
             }
           ],
-          "index": 200
+          "index": 203
         },
         {
           "n": "12",
           "children": [],
-          "index": 201,
+          "index": 204,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -24261,12 +24299,12 @@
               "whitespace": true
             }
           ],
-          "index": 202
+          "index": 205
         },
         {
           "n": "13",
           "children": [],
-          "index": 203,
+          "index": 206,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -24321,12 +24359,12 @@
               "whitespace": true
             }
           ],
-          "index": 204
+          "index": 207
         },
         {
           "n": "14",
           "children": [],
-          "index": 205,
+          "index": 208,
           "tagname": "lb",
           "textpart_index": 1,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -24381,10 +24419,10 @@
               "whitespace": false
             }
           ],
-          "index": 206
+          "index": 209
         }
       ],
-      "index": 76,
+      "index": 79,
       "tagname": "p",
       "textpart_index": 1,
       "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:2",
@@ -24396,7 +24434,7 @@
         {
           "n": "15",
           "children": [],
-          "index": 208,
+          "index": 211,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -24432,17 +24470,17 @@
                       "whitespace": false
                     }
                   ],
-                  "index": 211
+                  "index": 214
                 }
               ],
-              "index": 210,
+              "index": 213,
               "tagname": "num",
               "textpart_index": 2,
               "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
               "urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3@<num>[0]"
             }
           ],
-          "index": 209,
+          "index": 212,
           "tagname": "label",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -24482,12 +24520,12 @@
               "whitespace": true
             }
           ],
-          "index": 212
+          "index": 215
         },
         {
           "n": "16",
           "children": [],
-          "index": 213,
+          "index": 216,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -24547,12 +24585,12 @@
               "whitespace": true
             }
           ],
-          "index": 214
+          "index": 217
         },
         {
           "n": "17",
           "children": [],
-          "index": 215,
+          "index": 218,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -24607,12 +24645,12 @@
               "whitespace": true
             }
           ],
-          "index": 216
+          "index": 219
         },
         {
           "n": "19.469",
           "children": [],
-          "index": 217,
+          "index": 220,
           "tagname": "pb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -24621,7 +24659,7 @@
         {
           "n": "1",
           "children": [],
-          "index": 218,
+          "index": 221,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -24681,12 +24719,12 @@
               "whitespace": true
             }
           ],
-          "index": 219
+          "index": 222
         },
         {
           "n": "2",
           "children": [],
-          "index": 220,
+          "index": 223,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -24741,12 +24779,12 @@
               "whitespace": true
             }
           ],
-          "index": 221
+          "index": 224
         },
         {
           "n": "3",
           "children": [],
-          "index": 222,
+          "index": 225,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -24811,12 +24849,12 @@
               "whitespace": true
             }
           ],
-          "index": 223
+          "index": 226
         },
         {
           "n": "4",
           "children": [],
-          "index": 224,
+          "index": 227,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -24876,12 +24914,12 @@
               "whitespace": true
             }
           ],
-          "index": 225
+          "index": 228
         },
         {
           "n": "5",
           "children": [],
-          "index": 226,
+          "index": 229,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -24931,12 +24969,12 @@
               "whitespace": true
             }
           ],
-          "index": 227
+          "index": 230
         },
         {
           "n": "6",
           "children": [],
-          "index": 228,
+          "index": 231,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -24981,12 +25019,12 @@
               "whitespace": true
             }
           ],
-          "index": 229
+          "index": 232
         },
         {
           "n": "7",
           "children": [],
-          "index": 230,
+          "index": 233,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -25041,12 +25079,12 @@
               "whitespace": true
             }
           ],
-          "index": 231
+          "index": 234
         },
         {
           "n": "8",
           "children": [],
-          "index": 232,
+          "index": 235,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -25106,12 +25144,12 @@
               "whitespace": true
             }
           ],
-          "index": 233
+          "index": 236
         },
         {
           "n": "9",
           "children": [],
-          "index": 234,
+          "index": 237,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -25156,12 +25194,12 @@
               "whitespace": true
             }
           ],
-          "index": 235
+          "index": 238
         },
         {
           "n": "10",
           "children": [],
-          "index": 236,
+          "index": 239,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -25221,12 +25259,12 @@
               "whitespace": true
             }
           ],
-          "index": 237
+          "index": 240
         },
         {
           "n": "11",
           "children": [],
-          "index": 238,
+          "index": 241,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -25271,12 +25309,12 @@
               "whitespace": true
             }
           ],
-          "index": 239
+          "index": 242
         },
         {
           "n": "12",
           "children": [],
-          "index": 240,
+          "index": 243,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -25341,12 +25379,12 @@
               "whitespace": true
             }
           ],
-          "index": 241
+          "index": 244
         },
         {
           "n": "13",
           "children": [],
-          "index": 242,
+          "index": 245,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -25406,12 +25444,12 @@
               "whitespace": true
             }
           ],
-          "index": 243
+          "index": 246
         },
         {
           "n": "14",
           "children": [],
-          "index": 244,
+          "index": 247,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -25481,12 +25519,12 @@
               "whitespace": true
             }
           ],
-          "index": 245
+          "index": 248
         },
         {
           "n": "15",
           "children": [],
-          "index": 246,
+          "index": 249,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -25556,12 +25594,12 @@
               "whitespace": true
             }
           ],
-          "index": 247
+          "index": 250
         },
         {
           "n": "16",
           "children": [],
-          "index": 248,
+          "index": 251,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -25606,12 +25644,12 @@
               "whitespace": true
             }
           ],
-          "index": 249
+          "index": 252
         },
         {
           "n": "17",
           "children": [],
-          "index": 250,
+          "index": 253,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -25671,12 +25709,12 @@
               "whitespace": true
             }
           ],
-          "index": 251
+          "index": 254
         },
         {
           "n": "18",
           "children": [],
-          "index": 252,
+          "index": 255,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -25741,12 +25779,12 @@
               "whitespace": true
             }
           ],
-          "index": 253
+          "index": 256
         },
         {
           "n": "19.470",
           "children": [],
-          "index": 254,
+          "index": 257,
           "tagname": "pb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -25755,7 +25793,7 @@
         {
           "n": "1",
           "children": [],
-          "index": 255,
+          "index": 258,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -25825,12 +25863,12 @@
               "whitespace": true
             }
           ],
-          "index": 256
+          "index": 259
         },
         {
           "n": "2",
           "children": [],
-          "index": 257,
+          "index": 260,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -25895,12 +25933,12 @@
               "whitespace": true
             }
           ],
-          "index": 258
+          "index": 261
         },
         {
           "n": "3",
           "children": [],
-          "index": 259,
+          "index": 262,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -25960,12 +25998,12 @@
               "whitespace": true
             }
           ],
-          "index": 260
+          "index": 263
         },
         {
           "n": "4",
           "children": [],
-          "index": 261,
+          "index": 264,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -26010,12 +26048,12 @@
               "whitespace": true
             }
           ],
-          "index": 262
+          "index": 265
         },
         {
           "n": "5",
           "children": [],
-          "index": 263,
+          "index": 266,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -26075,12 +26113,12 @@
               "whitespace": true
             }
           ],
-          "index": 264
+          "index": 267
         },
         {
           "n": "6",
           "children": [],
-          "index": 265,
+          "index": 268,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -26145,12 +26183,12 @@
               "whitespace": true
             }
           ],
-          "index": 266
+          "index": 269
         },
         {
           "n": "7",
           "children": [],
-          "index": 267,
+          "index": 270,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -26210,12 +26248,12 @@
               "whitespace": true
             }
           ],
-          "index": 268
+          "index": 271
         },
         {
           "n": "8",
           "children": [],
-          "index": 269,
+          "index": 272,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -26285,12 +26323,12 @@
               "whitespace": true
             }
           ],
-          "index": 270
+          "index": 273
         },
         {
           "n": "9",
           "children": [],
-          "index": 271,
+          "index": 274,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -26340,12 +26378,12 @@
               "whitespace": true
             }
           ],
-          "index": 272
+          "index": 275
         },
         {
           "n": "10",
           "children": [],
-          "index": 273,
+          "index": 276,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -26410,12 +26448,12 @@
               "whitespace": true
             }
           ],
-          "index": 274
+          "index": 277
         },
         {
           "n": "11",
           "children": [],
-          "index": 275,
+          "index": 278,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -26480,12 +26518,12 @@
               "whitespace": true
             }
           ],
-          "index": 276
+          "index": 279
         },
         {
           "n": "12",
           "children": [],
-          "index": 277,
+          "index": 280,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -26545,12 +26583,12 @@
               "whitespace": true
             }
           ],
-          "index": 278
+          "index": 281
         },
         {
           "n": "13",
           "children": [],
-          "index": 279,
+          "index": 282,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -26620,12 +26658,12 @@
               "whitespace": true
             }
           ],
-          "index": 280
+          "index": 283
         },
         {
           "n": "14",
           "children": [],
-          "index": 281,
+          "index": 284,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -26680,12 +26718,12 @@
               "whitespace": true
             }
           ],
-          "index": 282
+          "index": 285
         },
         {
           "n": "15",
           "children": [],
-          "index": 283,
+          "index": 286,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -26745,12 +26783,12 @@
               "whitespace": true
             }
           ],
-          "index": 284
+          "index": 287
         },
         {
           "n": "16",
           "children": [],
-          "index": 285,
+          "index": 288,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -26825,12 +26863,12 @@
               "whitespace": true
             }
           ],
-          "index": 286
+          "index": 289
         },
         {
           "n": "17",
           "children": [],
-          "index": 287,
+          "index": 290,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -26865,13 +26903,13 @@
               "whitespace": true
             }
           ],
-          "index": 288
+          "index": 291
         },
         {
           "unit": "ed2page",
           "n": "2.63",
           "children": [],
-          "index": 289,
+          "index": 292,
           "tagname": "milestone",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -26891,12 +26929,12 @@
               "whitespace": true
             }
           ],
-          "index": 290
+          "index": 293
         },
         {
           "n": "18",
           "children": [],
-          "index": 291,
+          "index": 294,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -26941,12 +26979,12 @@
               "whitespace": true
             }
           ],
-          "index": 292
+          "index": 295
         },
         {
           "n": "19.471",
           "children": [],
-          "index": 293,
+          "index": 296,
           "tagname": "pb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -26955,7 +26993,7 @@
         {
           "n": "1",
           "children": [],
-          "index": 294,
+          "index": 297,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -27000,12 +27038,12 @@
               "whitespace": true
             }
           ],
-          "index": 295
+          "index": 298
         },
         {
           "n": "2",
           "children": [],
-          "index": 296,
+          "index": 299,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -27075,12 +27113,12 @@
               "whitespace": true
             }
           ],
-          "index": 297
+          "index": 300
         },
         {
           "n": "3",
           "children": [],
-          "index": 298,
+          "index": 301,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -27145,12 +27183,12 @@
               "whitespace": true
             }
           ],
-          "index": 299
+          "index": 302
         },
         {
           "n": "4",
           "children": [],
-          "index": 300,
+          "index": 303,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -27205,12 +27243,12 @@
               "whitespace": true
             }
           ],
-          "index": 301
+          "index": 304
         },
         {
           "n": "5",
           "children": [],
-          "index": 302,
+          "index": 305,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -27270,12 +27308,12 @@
               "whitespace": true
             }
           ],
-          "index": 303
+          "index": 306
         },
         {
           "n": "6",
           "children": [],
-          "index": 304,
+          "index": 307,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -27330,12 +27368,12 @@
               "whitespace": true
             }
           ],
-          "index": 305
+          "index": 308
         },
         {
           "n": "7",
           "children": [],
-          "index": 306,
+          "index": 309,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -27395,12 +27433,12 @@
               "whitespace": true
             }
           ],
-          "index": 307
+          "index": 310
         },
         {
           "n": "8",
           "children": [],
-          "index": 308,
+          "index": 311,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -27460,12 +27498,12 @@
               "whitespace": true
             }
           ],
-          "index": 309
+          "index": 312
         },
         {
           "n": "9",
           "children": [],
-          "index": 310,
+          "index": 313,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -27520,12 +27558,12 @@
               "whitespace": true
             }
           ],
-          "index": 311
+          "index": 314
         },
         {
           "n": "10",
           "children": [],
-          "index": 312,
+          "index": 315,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -27590,12 +27628,12 @@
               "whitespace": true
             }
           ],
-          "index": 313
+          "index": 316
         },
         {
           "n": "11",
           "children": [],
-          "index": 314,
+          "index": 317,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -27665,12 +27703,12 @@
               "whitespace": true
             }
           ],
-          "index": 315
+          "index": 318
         },
         {
           "n": "12",
           "children": [],
-          "index": 316,
+          "index": 319,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -27725,12 +27763,12 @@
               "whitespace": true
             }
           ],
-          "index": 317
+          "index": 320
         },
         {
           "n": "13",
           "children": [],
-          "index": 318,
+          "index": 321,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -27790,12 +27828,12 @@
               "whitespace": true
             }
           ],
-          "index": 319
+          "index": 322
         },
         {
           "n": "14",
           "children": [],
-          "index": 320,
+          "index": 323,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -27860,12 +27898,12 @@
               "whitespace": true
             }
           ],
-          "index": 321
+          "index": 324
         },
         {
           "n": "15",
           "children": [],
-          "index": 322,
+          "index": 325,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -27930,12 +27968,12 @@
               "whitespace": true
             }
           ],
-          "index": 323
+          "index": 326
         },
         {
           "n": "16",
           "children": [],
-          "index": 324,
+          "index": 327,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -28000,12 +28038,12 @@
               "whitespace": true
             }
           ],
-          "index": 325
+          "index": 328
         },
         {
           "n": "17",
           "children": [],
-          "index": 326,
+          "index": 329,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -28060,12 +28098,12 @@
               "whitespace": true
             }
           ],
-          "index": 327
+          "index": 330
         },
         {
           "n": "19.472",
           "children": [],
-          "index": 328,
+          "index": 331,
           "tagname": "pb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -28074,7 +28112,7 @@
         {
           "n": "1",
           "children": [],
-          "index": 329,
+          "index": 332,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -28129,12 +28167,12 @@
               "whitespace": true
             }
           ],
-          "index": 330
+          "index": 333
         },
         {
           "n": "2",
           "children": [],
-          "index": 331,
+          "index": 334,
           "tagname": "lb",
           "textpart_index": 2,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -28184,10 +28222,10 @@
               "whitespace": false
             }
           ],
-          "index": 332
+          "index": 335
         }
       ],
-      "index": 207,
+      "index": 210,
       "tagname": "p",
       "textpart_index": 2,
       "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:3",
@@ -28199,7 +28237,7 @@
         {
           "n": "3",
           "children": [],
-          "index": 334,
+          "index": 337,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -28235,17 +28273,17 @@
                       "whitespace": false
                     }
                   ],
-                  "index": 337
+                  "index": 340
                 }
               ],
-              "index": 336,
+              "index": 339,
               "tagname": "num",
               "textpart_index": 3,
               "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
               "urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4@<num>[0]"
             }
           ],
-          "index": 335,
+          "index": 338,
           "tagname": "label",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -28295,12 +28333,12 @@
               "whitespace": true
             }
           ],
-          "index": 338
+          "index": 341
         },
         {
           "n": "4",
           "children": [],
-          "index": 339,
+          "index": 342,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -28370,12 +28408,12 @@
               "whitespace": true
             }
           ],
-          "index": 340
+          "index": 343
         },
         {
           "n": "5",
           "children": [],
-          "index": 341,
+          "index": 344,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -28440,12 +28478,12 @@
               "whitespace": true
             }
           ],
-          "index": 342
+          "index": 345
         },
         {
           "n": "6",
           "children": [],
-          "index": 343,
+          "index": 346,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -28505,12 +28543,12 @@
               "whitespace": true
             }
           ],
-          "index": 344
+          "index": 347
         },
         {
           "n": "7",
           "children": [],
-          "index": 345,
+          "index": 348,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -28565,12 +28603,12 @@
               "whitespace": true
             }
           ],
-          "index": 346
+          "index": 349
         },
         {
           "n": "8",
           "children": [],
-          "index": 347,
+          "index": 350,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -28635,12 +28673,12 @@
               "whitespace": true
             }
           ],
-          "index": 348
+          "index": 351
         },
         {
           "n": "9",
           "children": [],
-          "index": 349,
+          "index": 352,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -28700,12 +28738,12 @@
               "whitespace": true
             }
           ],
-          "index": 350
+          "index": 353
         },
         {
           "n": "10",
           "children": [],
-          "index": 351,
+          "index": 354,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -28770,12 +28808,12 @@
               "whitespace": true
             }
           ],
-          "index": 352
+          "index": 355
         },
         {
           "n": "11",
           "children": [],
-          "index": 353,
+          "index": 356,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -28840,12 +28878,12 @@
               "whitespace": true
             }
           ],
-          "index": 354
+          "index": 357
         },
         {
           "n": "12",
           "children": [],
-          "index": 355,
+          "index": 358,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -28920,12 +28958,12 @@
               "whitespace": true
             }
           ],
-          "index": 356
+          "index": 359
         },
         {
           "n": "13",
           "children": [],
-          "index": 357,
+          "index": 360,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -28985,12 +29023,12 @@
               "whitespace": true
             }
           ],
-          "index": 358
+          "index": 361
         },
         {
           "n": "14",
           "children": [],
-          "index": 359,
+          "index": 362,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -29040,12 +29078,12 @@
               "whitespace": true
             }
           ],
-          "index": 360
+          "index": 363
         },
         {
           "n": "15",
           "children": [],
-          "index": 361,
+          "index": 364,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -29095,12 +29133,12 @@
               "whitespace": true
             }
           ],
-          "index": 362
+          "index": 365
         },
         {
           "n": "16",
           "children": [],
-          "index": 363,
+          "index": 366,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -29155,12 +29193,12 @@
               "whitespace": true
             }
           ],
-          "index": 364
+          "index": 367
         },
         {
           "n": "17",
           "children": [],
-          "index": 365,
+          "index": 368,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -29220,12 +29258,12 @@
               "whitespace": true
             }
           ],
-          "index": 366
+          "index": 369
         },
         {
           "n": "19.473",
           "children": [],
-          "index": 367,
+          "index": 370,
           "tagname": "pb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -29234,7 +29272,7 @@
         {
           "n": "1",
           "children": [],
-          "index": 368,
+          "index": 371,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -29294,12 +29332,12 @@
               "whitespace": true
             }
           ],
-          "index": 369
+          "index": 372
         },
         {
           "n": "2",
           "children": [],
-          "index": 370,
+          "index": 373,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -29344,12 +29382,12 @@
               "whitespace": true
             }
           ],
-          "index": 371
+          "index": 374
         },
         {
           "n": "3",
           "children": [],
-          "index": 372,
+          "index": 375,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -29404,12 +29442,12 @@
               "whitespace": true
             }
           ],
-          "index": 373
+          "index": 376
         },
         {
           "n": "4",
           "children": [],
-          "index": 374,
+          "index": 377,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -29459,13 +29497,13 @@
               "whitespace": true
             }
           ],
-          "index": 375
+          "index": 378
         },
         {
           "unit": "ed1page",
           "n": "5.405",
           "children": [],
-          "index": 376,
+          "index": 379,
           "tagname": "milestone",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -29480,12 +29518,12 @@
               "whitespace": true
             }
           ],
-          "index": 377
+          "index": 380
         },
         {
           "n": "5",
           "children": [],
-          "index": 378,
+          "index": 381,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -29560,12 +29598,12 @@
               "whitespace": true
             }
           ],
-          "index": 379
+          "index": 382
         },
         {
           "n": "6",
           "children": [],
-          "index": 380,
+          "index": 383,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -29620,12 +29658,12 @@
               "whitespace": true
             }
           ],
-          "index": 381
+          "index": 384
         },
         {
           "n": "7",
           "children": [],
-          "index": 382,
+          "index": 385,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -29680,12 +29718,12 @@
               "whitespace": true
             }
           ],
-          "index": 383
+          "index": 386
         },
         {
           "n": "8",
           "children": [],
-          "index": 384,
+          "index": 387,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -29750,12 +29788,12 @@
               "whitespace": true
             }
           ],
-          "index": 385
+          "index": 388
         },
         {
           "n": "9",
           "children": [],
-          "index": 386,
+          "index": 389,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -29810,12 +29848,12 @@
               "whitespace": true
             }
           ],
-          "index": 387
+          "index": 390
         },
         {
           "n": "10",
           "children": [],
-          "index": 388,
+          "index": 391,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -29875,12 +29913,12 @@
               "whitespace": true
             }
           ],
-          "index": 389
+          "index": 392
         },
         {
           "n": "11",
           "children": [],
-          "index": 390,
+          "index": 393,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -29940,12 +29978,12 @@
               "whitespace": true
             }
           ],
-          "index": 391
+          "index": 394
         },
         {
           "n": "12",
           "children": [],
-          "index": 392,
+          "index": 395,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -30000,12 +30038,12 @@
               "whitespace": true
             }
           ],
-          "index": 393
+          "index": 396
         },
         {
           "n": "13",
           "children": [],
-          "index": 394,
+          "index": 397,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -30080,12 +30118,12 @@
               "whitespace": true
             }
           ],
-          "index": 395
+          "index": 398
         },
         {
           "n": "14",
           "children": [],
-          "index": 396,
+          "index": 399,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -30150,12 +30188,12 @@
               "whitespace": true
             }
           ],
-          "index": 397
+          "index": 400
         },
         {
           "n": "15",
           "children": [],
-          "index": 398,
+          "index": 401,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -30205,12 +30243,12 @@
               "whitespace": true
             }
           ],
-          "index": 399
+          "index": 402
         },
         {
           "n": "16",
           "children": [],
-          "index": 400,
+          "index": 403,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -30235,13 +30273,13 @@
               "whitespace": true
             }
           ],
-          "index": 401
+          "index": 404
         },
         {
           "unit": "ed2page",
           "n": "2.64",
           "children": [],
-          "index": 402,
+          "index": 405,
           "tagname": "milestone",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -30296,12 +30334,12 @@
               "whitespace": true
             }
           ],
-          "index": 403
+          "index": 406
         },
         {
           "n": "17",
           "children": [],
-          "index": 404,
+          "index": 407,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -30361,12 +30399,12 @@
               "whitespace": true
             }
           ],
-          "index": 405
+          "index": 408
         },
         {
           "n": "19.474",
           "children": [],
-          "index": 406,
+          "index": 409,
           "tagname": "pb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -30375,7 +30413,7 @@
         {
           "n": "1",
           "children": [],
-          "index": 407,
+          "index": 410,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -30445,12 +30483,12 @@
               "whitespace": true
             }
           ],
-          "index": 408
+          "index": 411
         },
         {
           "n": "2",
           "children": [],
-          "index": 409,
+          "index": 412,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -30510,12 +30548,12 @@
               "whitespace": true
             }
           ],
-          "index": 410
+          "index": 413
         },
         {
           "n": "3",
           "children": [],
-          "index": 411,
+          "index": 414,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -30575,12 +30613,12 @@
               "whitespace": true
             }
           ],
-          "index": 412
+          "index": 415
         },
         {
           "n": "4",
           "children": [],
-          "index": 413,
+          "index": 416,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -30640,12 +30678,12 @@
               "whitespace": true
             }
           ],
-          "index": 414
+          "index": 417
         },
         {
           "n": "5",
           "children": [],
-          "index": 415,
+          "index": 418,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -30710,12 +30748,12 @@
               "whitespace": true
             }
           ],
-          "index": 416
+          "index": 419
         },
         {
           "n": "6",
           "children": [],
-          "index": 417,
+          "index": 420,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -30775,12 +30813,12 @@
               "whitespace": true
             }
           ],
-          "index": 418
+          "index": 421
         },
         {
           "n": "7",
           "children": [],
-          "index": 419,
+          "index": 422,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -30840,12 +30878,12 @@
               "whitespace": true
             }
           ],
-          "index": 420
+          "index": 423
         },
         {
           "n": "8",
           "children": [],
-          "index": 421,
+          "index": 424,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -30905,12 +30943,12 @@
               "whitespace": true
             }
           ],
-          "index": 422
+          "index": 425
         },
         {
           "n": "9",
           "children": [],
-          "index": 423,
+          "index": 426,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -30970,12 +31008,12 @@
               "whitespace": true
             }
           ],
-          "index": 424
+          "index": 427
         },
         {
           "n": "10",
           "children": [],
-          "index": 425,
+          "index": 428,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -31030,12 +31068,12 @@
               "whitespace": true
             }
           ],
-          "index": 426
+          "index": 429
         },
         {
           "n": "11",
           "children": [],
-          "index": 427,
+          "index": 430,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -31080,12 +31118,12 @@
               "whitespace": true
             }
           ],
-          "index": 428
+          "index": 431
         },
         {
           "n": "12",
           "children": [],
-          "index": 429,
+          "index": 432,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -31135,12 +31173,12 @@
               "whitespace": true
             }
           ],
-          "index": 430
+          "index": 433
         },
         {
           "n": "13",
           "children": [],
-          "index": 431,
+          "index": 434,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -31200,12 +31238,12 @@
               "whitespace": true
             }
           ],
-          "index": 432
+          "index": 435
         },
         {
           "n": "14",
           "children": [],
-          "index": 433,
+          "index": 436,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -31275,12 +31313,12 @@
               "whitespace": true
             }
           ],
-          "index": 434
+          "index": 437
         },
         {
           "n": "15",
           "children": [],
-          "index": 435,
+          "index": 438,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -31315,12 +31353,12 @@
               "whitespace": true
             }
           ],
-          "index": 436
+          "index": 439
         },
         {
           "n": "16",
           "children": [],
-          "index": 437,
+          "index": 440,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -31380,12 +31418,12 @@
               "whitespace": true
             }
           ],
-          "index": 438
+          "index": 441
         },
         {
           "n": "17",
           "children": [],
-          "index": 439,
+          "index": 442,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -31425,12 +31463,12 @@
               "whitespace": true
             }
           ],
-          "index": 440
+          "index": 443
         },
         {
           "n": "18",
           "children": [],
-          "index": 441,
+          "index": 444,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -31480,12 +31518,12 @@
               "whitespace": true
             }
           ],
-          "index": 442
+          "index": 445
         },
         {
           "n": "19.475",
           "children": [],
-          "index": 443,
+          "index": 446,
           "tagname": "pb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -31494,7 +31532,7 @@
         {
           "n": "1",
           "children": [],
-          "index": 444,
+          "index": 447,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -31549,12 +31587,12 @@
               "whitespace": true
             }
           ],
-          "index": 445
+          "index": 448
         },
         {
           "n": "2",
           "children": [],
-          "index": 446,
+          "index": 449,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -31599,12 +31637,12 @@
               "whitespace": true
             }
           ],
-          "index": 447
+          "index": 450
         },
         {
           "n": "3",
           "children": [],
-          "index": 448,
+          "index": 451,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -31654,12 +31692,12 @@
               "whitespace": true
             }
           ],
-          "index": 449
+          "index": 452
         },
         {
           "n": "4",
           "children": [],
-          "index": 450,
+          "index": 453,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -31714,12 +31752,12 @@
               "whitespace": true
             }
           ],
-          "index": 451
+          "index": 454
         },
         {
           "n": "5",
           "children": [],
-          "index": 452,
+          "index": 455,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -31779,12 +31817,12 @@
               "whitespace": true
             }
           ],
-          "index": 453
+          "index": 456
         },
         {
           "n": "6",
           "children": [],
-          "index": 454,
+          "index": 457,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -31844,12 +31882,12 @@
               "whitespace": true
             }
           ],
-          "index": 455
+          "index": 458
         },
         {
           "n": "7",
           "children": [],
-          "index": 456,
+          "index": 459,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -31894,12 +31932,12 @@
               "whitespace": true
             }
           ],
-          "index": 457
+          "index": 460
         },
         {
           "n": "8",
           "children": [],
-          "index": 458,
+          "index": 461,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -31964,12 +32002,12 @@
               "whitespace": true
             }
           ],
-          "index": 459
+          "index": 462
         },
         {
           "n": "9",
           "children": [],
-          "index": 460,
+          "index": 463,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -32029,12 +32067,12 @@
               "whitespace": true
             }
           ],
-          "index": 461
+          "index": 464
         },
         {
           "n": "10",
           "children": [],
-          "index": 462,
+          "index": 465,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -32084,12 +32122,12 @@
               "whitespace": true
             }
           ],
-          "index": 463
+          "index": 466
         },
         {
           "n": "11",
           "children": [],
-          "index": 464,
+          "index": 467,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -32144,12 +32182,12 @@
               "whitespace": true
             }
           ],
-          "index": 465
+          "index": 468
         },
         {
           "n": "12",
           "children": [],
-          "index": 466,
+          "index": 469,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -32209,12 +32247,12 @@
               "whitespace": true
             }
           ],
-          "index": 467
+          "index": 470
         },
         {
           "n": "13",
           "children": [],
-          "index": 468,
+          "index": 471,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -32259,12 +32297,12 @@
               "whitespace": true
             }
           ],
-          "index": 469
+          "index": 472
         },
         {
           "n": "14",
           "children": [],
-          "index": 470,
+          "index": 473,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -32319,12 +32357,12 @@
               "whitespace": true
             }
           ],
-          "index": 471
+          "index": 474
         },
         {
           "n": "15",
           "children": [],
-          "index": 472,
+          "index": 475,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -32369,12 +32407,12 @@
               "whitespace": true
             }
           ],
-          "index": 473
+          "index": 476
         },
         {
           "n": "16",
           "children": [],
-          "index": 474,
+          "index": 477,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -32449,12 +32487,12 @@
               "whitespace": true
             }
           ],
-          "index": 475
+          "index": 478
         },
         {
           "n": "17",
           "children": [],
-          "index": 476,
+          "index": 479,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -32504,12 +32542,12 @@
               "whitespace": true
             }
           ],
-          "index": 477
+          "index": 480
         },
         {
           "n": "18",
           "children": [],
-          "index": 478,
+          "index": 481,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -32589,12 +32627,12 @@
               "whitespace": true
             }
           ],
-          "index": 479
+          "index": 482
         },
         {
           "n": "19.476",
           "children": [],
-          "index": 480,
+          "index": 483,
           "tagname": "pb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -32603,7 +32641,7 @@
         {
           "n": "1",
           "children": [],
-          "index": 481,
+          "index": 484,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -32668,12 +32706,12 @@
               "whitespace": true
             }
           ],
-          "index": 482
+          "index": 485
         },
         {
           "n": "2",
           "children": [],
-          "index": 483,
+          "index": 486,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -32743,12 +32781,12 @@
               "whitespace": true
             }
           ],
-          "index": 484
+          "index": 487
         },
         {
           "n": "3",
           "children": [],
-          "index": 485,
+          "index": 488,
           "tagname": "lb",
           "textpart_index": 3,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -32773,10 +32811,10 @@
               "whitespace": false
             }
           ],
-          "index": 486
+          "index": 489
         }
       ],
-      "index": 333,
+      "index": 336,
       "tagname": "p",
       "textpart_index": 3,
       "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:4",
@@ -32788,7 +32826,7 @@
         {
           "n": "4",
           "children": [],
-          "index": 488,
+          "index": 491,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -32824,17 +32862,17 @@
                       "whitespace": false
                     }
                   ],
-                  "index": 491
+                  "index": 494
                 }
               ],
-              "index": 490,
+              "index": 493,
               "tagname": "num",
               "textpart_index": 4,
               "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
               "urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5@<num>[0]"
             }
           ],
-          "index": 489,
+          "index": 492,
           "tagname": "label",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -32884,12 +32922,12 @@
               "whitespace": true
             }
           ],
-          "index": 492
+          "index": 495
         },
         {
           "n": "5",
           "children": [],
-          "index": 493,
+          "index": 496,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -32954,12 +32992,12 @@
               "whitespace": true
             }
           ],
-          "index": 494
+          "index": 497
         },
         {
           "n": "6",
           "children": [],
-          "index": 495,
+          "index": 498,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -33019,12 +33057,12 @@
               "whitespace": true
             }
           ],
-          "index": 496
+          "index": 499
         },
         {
           "n": "7",
           "children": [],
-          "index": 497,
+          "index": 500,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -33069,12 +33107,12 @@
               "whitespace": true
             }
           ],
-          "index": 498
+          "index": 501
         },
         {
           "n": "8",
           "children": [],
-          "index": 499,
+          "index": 502,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -33139,12 +33177,12 @@
               "whitespace": true
             }
           ],
-          "index": 500
+          "index": 503
         },
         {
           "n": "9",
           "children": [],
-          "index": 501,
+          "index": 504,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -33214,12 +33252,12 @@
               "whitespace": true
             }
           ],
-          "index": 502
+          "index": 505
         },
         {
           "n": "10",
           "children": [],
-          "index": 503,
+          "index": 506,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -33284,12 +33322,12 @@
               "whitespace": true
             }
           ],
-          "index": 504
+          "index": 507
         },
         {
           "n": "11",
           "children": [],
-          "index": 505,
+          "index": 508,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -33339,12 +33377,12 @@
               "whitespace": true
             }
           ],
-          "index": 506
+          "index": 509
         },
         {
           "n": "12",
           "children": [],
-          "index": 507,
+          "index": 510,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -33414,12 +33452,12 @@
               "whitespace": true
             }
           ],
-          "index": 508
+          "index": 511
         },
         {
           "n": "13",
           "children": [],
-          "index": 509,
+          "index": 512,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -33479,12 +33517,12 @@
               "whitespace": true
             }
           ],
-          "index": 510
+          "index": 513
         },
         {
           "n": "14",
           "children": [],
-          "index": 511,
+          "index": 514,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -33554,12 +33592,12 @@
               "whitespace": true
             }
           ],
-          "index": 512
+          "index": 515
         },
         {
           "n": "15",
           "children": [],
-          "index": 513,
+          "index": 516,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -33619,12 +33657,12 @@
               "whitespace": true
             }
           ],
-          "index": 514
+          "index": 517
         },
         {
           "n": "16",
           "children": [],
-          "index": 515,
+          "index": 518,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -33654,13 +33692,13 @@
               "whitespace": true
             }
           ],
-          "index": 516
+          "index": 519
         },
         {
           "unit": "ed2page",
           "n": "2.65",
           "children": [],
-          "index": 517,
+          "index": 520,
           "tagname": "milestone",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -33695,12 +33733,12 @@
               "whitespace": true
             }
           ],
-          "index": 518
+          "index": 521
         },
         {
           "n": "17",
           "children": [],
-          "index": 519,
+          "index": 522,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -33765,12 +33803,12 @@
               "whitespace": true
             }
           ],
-          "index": 520
+          "index": 523
         },
         {
           "n": "19.477",
           "children": [],
-          "index": 521,
+          "index": 524,
           "tagname": "pb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -33779,7 +33817,7 @@
         {
           "n": "1",
           "children": [],
-          "index": 522,
+          "index": 525,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -33829,12 +33867,12 @@
               "whitespace": true
             }
           ],
-          "index": 523
+          "index": 526
         },
         {
           "n": "2",
           "children": [],
-          "index": 524,
+          "index": 527,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -33904,12 +33942,12 @@
               "whitespace": true
             }
           ],
-          "index": 525
+          "index": 528
         },
         {
           "n": "3",
           "children": [],
-          "index": 526,
+          "index": 529,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -33969,12 +34007,12 @@
               "whitespace": true
             }
           ],
-          "index": 527
+          "index": 530
         },
         {
           "n": "4",
           "children": [],
-          "index": 528,
+          "index": 531,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -34034,12 +34072,12 @@
               "whitespace": true
             }
           ],
-          "index": 529
+          "index": 532
         },
         {
           "n": "5",
           "children": [],
-          "index": 530,
+          "index": 533,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -34094,12 +34132,12 @@
               "whitespace": true
             }
           ],
-          "index": 531
+          "index": 534
         },
         {
           "n": "6",
           "children": [],
-          "index": 532,
+          "index": 535,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -34174,12 +34212,12 @@
               "whitespace": true
             }
           ],
-          "index": 533
+          "index": 536
         },
         {
           "n": "7",
           "children": [],
-          "index": 534,
+          "index": 537,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -34239,12 +34277,12 @@
               "whitespace": true
             }
           ],
-          "index": 535
+          "index": 538
         },
         {
           "n": "8",
           "children": [],
-          "index": 536,
+          "index": 539,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -34324,12 +34362,12 @@
               "whitespace": true
             }
           ],
-          "index": 537
+          "index": 540
         },
         {
           "n": "9",
           "children": [],
-          "index": 538,
+          "index": 541,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -34384,12 +34422,12 @@
               "whitespace": true
             }
           ],
-          "index": 539
+          "index": 542
         },
         {
           "n": "10",
           "children": [],
-          "index": 540,
+          "index": 543,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -34444,12 +34482,12 @@
               "whitespace": true
             }
           ],
-          "index": 541
+          "index": 544
         },
         {
           "n": "11",
           "children": [],
-          "index": 542,
+          "index": 545,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -34514,12 +34552,12 @@
               "whitespace": true
             }
           ],
-          "index": 543
+          "index": 546
         },
         {
           "n": "12",
           "children": [],
-          "index": 544,
+          "index": 547,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -34584,12 +34622,12 @@
               "whitespace": true
             }
           ],
-          "index": 545
+          "index": 548
         },
         {
           "n": "13",
           "children": [],
-          "index": 546,
+          "index": 549,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -34649,12 +34687,12 @@
               "whitespace": true
             }
           ],
-          "index": 547
+          "index": 550
         },
         {
           "n": "14",
           "children": [],
-          "index": 548,
+          "index": 551,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -34709,12 +34747,12 @@
               "whitespace": true
             }
           ],
-          "index": 549
+          "index": 552
         },
         {
           "n": "15",
           "children": [],
-          "index": 550,
+          "index": 553,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -34789,12 +34827,12 @@
               "whitespace": true
             }
           ],
-          "index": 551
+          "index": 554
         },
         {
           "n": "16",
           "children": [],
-          "index": 552,
+          "index": 555,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -34859,12 +34897,12 @@
               "whitespace": true
             }
           ],
-          "index": 553
+          "index": 556
         },
         {
           "n": "17",
           "children": [],
-          "index": 554,
+          "index": 557,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -34929,12 +34967,12 @@
               "whitespace": true
             }
           ],
-          "index": 555
+          "index": 558
         },
         {
           "n": "19.478",
           "children": [],
-          "index": 556,
+          "index": 559,
           "tagname": "pb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -34943,7 +34981,7 @@
         {
           "n": "1",
           "children": [],
-          "index": 557,
+          "index": 560,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -35023,12 +35061,12 @@
               "whitespace": true
             }
           ],
-          "index": 558
+          "index": 561
         },
         {
           "n": "2",
           "children": [],
-          "index": 559,
+          "index": 562,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -35078,12 +35116,12 @@
               "whitespace": true
             }
           ],
-          "index": 560
+          "index": 563
         },
         {
           "n": "3",
           "children": [],
-          "index": 561,
+          "index": 564,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -35138,12 +35176,12 @@
               "whitespace": true
             }
           ],
-          "index": 562
+          "index": 565
         },
         {
           "n": "4",
           "children": [],
-          "index": 563,
+          "index": 566,
           "tagname": "lb",
           "textpart_index": 4,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -35193,10 +35231,10 @@
               "whitespace": false
             }
           ],
-          "index": 564
+          "index": 567
         }
       ],
-      "index": 487,
+      "index": 490,
       "tagname": "p",
       "textpart_index": 4,
       "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:5",
@@ -35208,7 +35246,7 @@
         {
           "n": "5",
           "children": [],
-          "index": 566,
+          "index": 569,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -35244,17 +35282,17 @@
                       "whitespace": false
                     }
                   ],
-                  "index": 569
+                  "index": 572
                 }
               ],
-              "index": 568,
+              "index": 571,
               "tagname": "num",
               "textpart_index": 5,
               "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
               "urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6@<num>[0]"
             }
           ],
-          "index": 567,
+          "index": 570,
           "tagname": "label",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -35304,12 +35342,12 @@
               "whitespace": true
             }
           ],
-          "index": 570
+          "index": 573
         },
         {
           "n": "6",
           "children": [],
-          "index": 571,
+          "index": 574,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -35359,12 +35397,12 @@
               "whitespace": true
             }
           ],
-          "index": 572
+          "index": 575
         },
         {
           "n": "7",
           "children": [],
-          "index": 573,
+          "index": 576,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -35439,12 +35477,12 @@
               "whitespace": true
             }
           ],
-          "index": 574
+          "index": 577
         },
         {
           "n": "8",
           "children": [],
-          "index": 575,
+          "index": 578,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -35499,12 +35537,12 @@
               "whitespace": true
             }
           ],
-          "index": 576
+          "index": 579
         },
         {
           "n": "9",
           "children": [],
-          "index": 577,
+          "index": 580,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -35569,12 +35607,12 @@
               "whitespace": true
             }
           ],
-          "index": 578
+          "index": 581
         },
         {
           "n": "10",
           "children": [],
-          "index": 579,
+          "index": 582,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -35639,12 +35677,12 @@
               "whitespace": true
             }
           ],
-          "index": 580
+          "index": 583
         },
         {
           "n": "11",
           "children": [],
-          "index": 581,
+          "index": 584,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -35709,12 +35747,12 @@
               "whitespace": true
             }
           ],
-          "index": 582
+          "index": 585
         },
         {
           "n": "12",
           "children": [],
-          "index": 583,
+          "index": 586,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -35769,12 +35807,12 @@
               "whitespace": true
             }
           ],
-          "index": 584
+          "index": 587
         },
         {
           "n": "13",
           "children": [],
-          "index": 585,
+          "index": 588,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -35834,12 +35872,12 @@
               "whitespace": true
             }
           ],
-          "index": 586
+          "index": 589
         },
         {
           "n": "14",
           "children": [],
-          "index": 587,
+          "index": 590,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -35894,12 +35932,12 @@
               "whitespace": true
             }
           ],
-          "index": 588
+          "index": 591
         },
         {
           "n": "15",
           "children": [],
-          "index": 589,
+          "index": 592,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -35964,12 +36002,12 @@
               "whitespace": true
             }
           ],
-          "index": 590
+          "index": 593
         },
         {
           "n": "16",
           "children": [],
-          "index": 591,
+          "index": 594,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -36029,12 +36067,12 @@
               "whitespace": true
             }
           ],
-          "index": 592
+          "index": 595
         },
         {
           "n": "17",
           "children": [],
-          "index": 593,
+          "index": 596,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -36094,12 +36132,12 @@
               "whitespace": true
             }
           ],
-          "index": 594
+          "index": 597
         },
         {
           "n": "19.479",
           "children": [],
-          "index": 595,
+          "index": 598,
           "tagname": "pb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -36108,7 +36146,7 @@
         {
           "n": "1",
           "children": [],
-          "index": 596,
+          "index": 599,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -36158,12 +36196,12 @@
               "whitespace": true
             }
           ],
-          "index": 597
+          "index": 600
         },
         {
           "n": "2",
           "children": [],
-          "index": 598,
+          "index": 601,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -36228,12 +36266,12 @@
               "whitespace": true
             }
           ],
-          "index": 599
+          "index": 602
         },
         {
           "n": "3",
           "children": [],
-          "index": 600,
+          "index": 603,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -36303,12 +36341,12 @@
               "whitespace": true
             }
           ],
-          "index": 601
+          "index": 604
         },
         {
           "n": "4",
           "children": [],
-          "index": 602,
+          "index": 605,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -36368,12 +36406,12 @@
               "whitespace": true
             }
           ],
-          "index": 603
+          "index": 606
         },
         {
           "n": "5",
           "children": [],
-          "index": 604,
+          "index": 607,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -36423,12 +36461,12 @@
               "whitespace": true
             }
           ],
-          "index": 605
+          "index": 608
         },
         {
           "n": "6",
           "children": [],
-          "index": 606,
+          "index": 609,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -36488,12 +36526,12 @@
               "whitespace": true
             }
           ],
-          "index": 607
+          "index": 610
         },
         {
           "n": "7",
           "children": [],
-          "index": 608,
+          "index": 611,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -36548,12 +36586,12 @@
               "whitespace": true
             }
           ],
-          "index": 609
+          "index": 612
         },
         {
           "n": "8",
           "children": [],
-          "index": 610,
+          "index": 613,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -36613,12 +36651,12 @@
               "whitespace": true
             }
           ],
-          "index": 611
+          "index": 614
         },
         {
           "n": "9",
           "children": [],
-          "index": 612,
+          "index": 615,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -36668,12 +36706,12 @@
               "whitespace": true
             }
           ],
-          "index": 613
+          "index": 616
         },
         {
           "n": "10",
           "children": [],
-          "index": 614,
+          "index": 617,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -36693,10 +36731,10 @@
               "whitespace": false
             }
           ],
-          "index": 615
+          "index": 618
         }
       ],
-      "index": 565,
+      "index": 568,
       "tagname": "p",
       "textpart_index": 5,
       "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -36709,7 +36747,7 @@
             {
               "n": "11",
               "children": [],
-              "index": 618,
+              "index": 621,
               "tagname": "lb",
               "textpart_index": 5,
               "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -36754,10 +36792,10 @@
                   "whitespace": false
                 }
               ],
-              "index": 619
+              "index": 622
             }
           ],
-          "index": 617,
+          "index": 620,
           "tagname": "l",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -36768,7 +36806,7 @@
             {
               "n": "12",
               "children": [],
-              "index": 621,
+              "index": 624,
               "tagname": "lb",
               "textpart_index": 5,
               "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -36823,10 +36861,10 @@
                   "whitespace": false
                 }
               ],
-              "index": 622
+              "index": 625
             }
           ],
-          "index": 620,
+          "index": 623,
           "tagname": "l",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -36837,7 +36875,7 @@
             {
               "n": "13",
               "children": [],
-              "index": 624,
+              "index": 627,
               "tagname": "lb",
               "textpart_index": 5,
               "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -36887,17 +36925,17 @@
                   "whitespace": false
                 }
               ],
-              "index": 625
+              "index": 628
             }
           ],
-          "index": 623,
+          "index": 626,
           "tagname": "l",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
           "urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6@<l>[0]"
         }
       ],
-      "index": 616,
+      "index": 619,
       "tagname": "lg",
       "textpart_index": 5,
       "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -36909,7 +36947,7 @@
         {
           "n": "14",
           "children": [],
-          "index": 627,
+          "index": 630,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -36984,12 +37022,12 @@
               "whitespace": true
             }
           ],
-          "index": 628
+          "index": 631
         },
         {
           "n": "15",
           "children": [],
-          "index": 629,
+          "index": 632,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -37049,12 +37087,12 @@
               "whitespace": true
             }
           ],
-          "index": 630
+          "index": 633
         },
         {
           "n": "16",
           "children": [],
-          "index": 631,
+          "index": 634,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -37074,13 +37112,13 @@
               "whitespace": true
             }
           ],
-          "index": 632
+          "index": 635
         },
         {
           "unit": "ed2page",
           "n": "2.66",
           "children": [],
-          "index": 633,
+          "index": 636,
           "tagname": "milestone",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -37120,12 +37158,12 @@
               "whitespace": true
             }
           ],
-          "index": 634
+          "index": 637
         },
         {
           "n": "17",
           "children": [],
-          "index": 635,
+          "index": 638,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -37190,12 +37228,12 @@
               "whitespace": true
             }
           ],
-          "index": 636
+          "index": 639
         },
         {
           "n": "19.480",
           "children": [],
-          "index": 637,
+          "index": 640,
           "tagname": "pb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -37204,7 +37242,7 @@
         {
           "n": "1",
           "children": [],
-          "index": 638,
+          "index": 641,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -37274,12 +37312,12 @@
               "whitespace": true
             }
           ],
-          "index": 639
+          "index": 642
         },
         {
           "n": "2",
           "children": [],
-          "index": 640,
+          "index": 643,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -37304,13 +37342,13 @@
               "whitespace": true
             }
           ],
-          "index": 641
+          "index": 644
         },
         {
           "unit": "ed1page",
           "n": "5.406",
           "children": [],
-          "index": 642,
+          "index": 645,
           "tagname": "milestone",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -37345,12 +37383,12 @@
               "whitespace": true
             }
           ],
-          "index": 643
+          "index": 646
         },
         {
           "n": "3",
           "children": [],
-          "index": 644,
+          "index": 647,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -37425,12 +37463,12 @@
               "whitespace": true
             }
           ],
-          "index": 645
+          "index": 648
         },
         {
           "n": "4",
           "children": [],
-          "index": 646,
+          "index": 649,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -37480,12 +37518,12 @@
               "whitespace": true
             }
           ],
-          "index": 647
+          "index": 650
         },
         {
           "n": "5",
           "children": [],
-          "index": 648,
+          "index": 651,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -37545,12 +37583,12 @@
               "whitespace": true
             }
           ],
-          "index": 649
+          "index": 652
         },
         {
           "n": "6",
           "children": [],
-          "index": 650,
+          "index": 653,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -37605,12 +37643,12 @@
               "whitespace": true
             }
           ],
-          "index": 651
+          "index": 654
         },
         {
           "n": "7",
           "children": [],
-          "index": 652,
+          "index": 655,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -37665,12 +37703,12 @@
               "whitespace": true
             }
           ],
-          "index": 653
+          "index": 656
         },
         {
           "n": "8",
           "children": [],
-          "index": 654,
+          "index": 657,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -37730,12 +37768,12 @@
               "whitespace": true
             }
           ],
-          "index": 655
+          "index": 658
         },
         {
           "n": "9",
           "children": [],
-          "index": 656,
+          "index": 659,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -37795,12 +37833,12 @@
               "whitespace": true
             }
           ],
-          "index": 657
+          "index": 660
         },
         {
           "n": "10",
           "children": [],
-          "index": 658,
+          "index": 661,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -37860,12 +37898,12 @@
               "whitespace": true
             }
           ],
-          "index": 659
+          "index": 662
         },
         {
           "n": "11",
           "children": [],
-          "index": 660,
+          "index": 663,
           "tagname": "lb",
           "textpart_index": 5,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -37915,10 +37953,10 @@
               "whitespace": false
             }
           ],
-          "index": 661
+          "index": 664
         }
       ],
-      "index": 626,
+      "index": 629,
       "tagname": "p",
       "textpart_index": 5,
       "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:6",
@@ -37930,7 +37968,7 @@
         {
           "n": "12",
           "children": [],
-          "index": 663,
+          "index": 666,
           "tagname": "lb",
           "textpart_index": 6,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:7",
@@ -37966,17 +38004,17 @@
                       "whitespace": false
                     }
                   ],
-                  "index": 666
+                  "index": 669
                 }
               ],
-              "index": 665,
+              "index": 668,
               "tagname": "num",
               "textpart_index": 6,
               "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:7",
               "urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:7@<num>[0]"
             }
           ],
-          "index": 664,
+          "index": 667,
           "tagname": "label",
           "textpart_index": 6,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:7",
@@ -38026,12 +38064,12 @@
               "whitespace": true
             }
           ],
-          "index": 667
+          "index": 670
         },
         {
           "n": "13",
           "children": [],
-          "index": 668,
+          "index": 671,
           "tagname": "lb",
           "textpart_index": 6,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:7",
@@ -38086,12 +38124,12 @@
               "whitespace": true
             }
           ],
-          "index": 669
+          "index": 672
         },
         {
           "n": "14",
           "children": [],
-          "index": 670,
+          "index": 673,
           "tagname": "lb",
           "textpart_index": 6,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:7",
@@ -38161,12 +38199,12 @@
               "whitespace": true
             }
           ],
-          "index": 671
+          "index": 674
         },
         {
           "n": "15",
           "children": [],
-          "index": 672,
+          "index": 675,
           "tagname": "lb",
           "textpart_index": 6,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:7",
@@ -38226,12 +38264,12 @@
               "whitespace": true
             }
           ],
-          "index": 673
+          "index": 676
         },
         {
           "n": "16",
           "children": [],
-          "index": 674,
+          "index": 677,
           "tagname": "lb",
           "textpart_index": 6,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:7",
@@ -38291,12 +38329,12 @@
               "whitespace": true
             }
           ],
-          "index": 675
+          "index": 678
         },
         {
           "n": "17",
           "children": [],
-          "index": 676,
+          "index": 679,
           "tagname": "lb",
           "textpart_index": 6,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:7",
@@ -38346,12 +38384,12 @@
               "whitespace": true
             }
           ],
-          "index": 677
+          "index": 680
         },
         {
           "n": "18",
           "children": [],
-          "index": 678,
+          "index": 681,
           "tagname": "lb",
           "textpart_index": 6,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:7",
@@ -38411,12 +38449,12 @@
               "whitespace": true
             }
           ],
-          "index": 679
+          "index": 682
         },
         {
           "n": "19.481",
           "children": [],
-          "index": 680,
+          "index": 683,
           "tagname": "pb",
           "textpart_index": 6,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:7",
@@ -38425,7 +38463,7 @@
         {
           "n": "1",
           "children": [],
-          "index": 681,
+          "index": 684,
           "tagname": "lb",
           "textpart_index": 6,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:7",
@@ -38485,12 +38523,12 @@
               "whitespace": true
             }
           ],
-          "index": 682
+          "index": 685
         },
         {
           "n": "2",
           "children": [],
-          "index": 683,
+          "index": 686,
           "tagname": "lb",
           "textpart_index": 6,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:7",
@@ -38555,12 +38593,12 @@
               "whitespace": true
             }
           ],
-          "index": 684
+          "index": 687
         },
         {
           "n": "3",
           "children": [],
-          "index": 685,
+          "index": 688,
           "tagname": "lb",
           "textpart_index": 6,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:7",
@@ -38610,12 +38648,12 @@
               "whitespace": true
             }
           ],
-          "index": 686
+          "index": 689
         },
         {
           "n": "4",
           "children": [],
-          "index": 687,
+          "index": 690,
           "tagname": "lb",
           "textpart_index": 6,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:7",
@@ -38675,12 +38713,12 @@
               "whitespace": true
             }
           ],
-          "index": 688
+          "index": 691
         },
         {
           "n": "5",
           "children": [],
-          "index": 689,
+          "index": 692,
           "tagname": "lb",
           "textpart_index": 6,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:7",
@@ -38750,12 +38788,12 @@
               "whitespace": true
             }
           ],
-          "index": 690
+          "index": 693
         },
         {
           "n": "6",
           "children": [],
-          "index": 691,
+          "index": 694,
           "tagname": "lb",
           "textpart_index": 6,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:7",
@@ -38810,12 +38848,12 @@
               "whitespace": true
             }
           ],
-          "index": 692
+          "index": 695
         },
         {
           "n": "7",
           "children": [],
-          "index": 693,
+          "index": 696,
           "tagname": "lb",
           "textpart_index": 6,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:7",
@@ -38885,12 +38923,12 @@
               "whitespace": true
             }
           ],
-          "index": 694
+          "index": 697
         },
         {
           "n": "8",
           "children": [],
-          "index": 695,
+          "index": 698,
           "tagname": "lb",
           "textpart_index": 6,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:7",
@@ -38945,12 +38983,12 @@
               "whitespace": true
             }
           ],
-          "index": 696
+          "index": 699
         },
         {
           "n": "9",
           "children": [],
-          "index": 697,
+          "index": 700,
           "tagname": "lb",
           "textpart_index": 6,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:7",
@@ -39015,10 +39053,10 @@
               "whitespace": false
             }
           ],
-          "index": 698
+          "index": 701
         }
       ],
-      "index": 662,
+      "index": 665,
       "tagname": "p",
       "textpart_index": 6,
       "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:7",
@@ -39030,7 +39068,7 @@
         {
           "n": "10",
           "children": [],
-          "index": 700,
+          "index": 703,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -39066,17 +39104,17 @@
                       "whitespace": false
                     }
                   ],
-                  "index": 703
+                  "index": 706
                 }
               ],
-              "index": 702,
+              "index": 705,
               "tagname": "num",
               "textpart_index": 7,
               "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
               "urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8@<num>[0]"
             }
           ],
-          "index": 701,
+          "index": 704,
           "tagname": "label",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -39121,12 +39159,12 @@
               "whitespace": true
             }
           ],
-          "index": 704
+          "index": 707
         },
         {
           "n": "11",
           "children": [],
-          "index": 705,
+          "index": 708,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -39191,12 +39229,12 @@
               "whitespace": true
             }
           ],
-          "index": 706
+          "index": 709
         },
         {
           "n": "12",
           "children": [],
-          "index": 707,
+          "index": 710,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -39256,12 +39294,12 @@
               "whitespace": true
             }
           ],
-          "index": 708
+          "index": 711
         },
         {
           "n": "13",
           "children": [],
-          "index": 709,
+          "index": 712,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -39331,12 +39369,12 @@
               "whitespace": true
             }
           ],
-          "index": 710
+          "index": 713
         },
         {
           "n": "14",
           "children": [],
-          "index": 711,
+          "index": 714,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -39406,12 +39444,12 @@
               "whitespace": true
             }
           ],
-          "index": 712
+          "index": 715
         },
         {
           "n": "15",
           "children": [],
-          "index": 713,
+          "index": 716,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -39466,12 +39504,12 @@
               "whitespace": true
             }
           ],
-          "index": 714
+          "index": 717
         },
         {
           "n": "16",
           "children": [],
-          "index": 715,
+          "index": 718,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -39521,12 +39559,12 @@
               "whitespace": true
             }
           ],
-          "index": 716
+          "index": 719
         },
         {
           "n": "17",
           "children": [],
-          "index": 717,
+          "index": 720,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -39586,12 +39624,12 @@
               "whitespace": true
             }
           ],
-          "index": 718
+          "index": 721
         },
         {
           "n": "19.482",
           "children": [],
-          "index": 719,
+          "index": 722,
           "tagname": "pb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -39600,7 +39638,7 @@
         {
           "n": "1",
           "children": [],
-          "index": 720,
+          "index": 723,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -39655,12 +39693,12 @@
               "whitespace": true
             }
           ],
-          "index": 721
+          "index": 724
         },
         {
           "n": "2",
           "children": [],
-          "index": 722,
+          "index": 725,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -39710,12 +39748,12 @@
               "whitespace": true
             }
           ],
-          "index": 723
+          "index": 726
         },
         {
           "n": "3",
           "children": [],
-          "index": 724,
+          "index": 727,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -39765,12 +39803,12 @@
               "whitespace": true
             }
           ],
-          "index": 725
+          "index": 728
         },
         {
           "n": "4",
           "children": [],
-          "index": 726,
+          "index": 729,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -39825,12 +39863,12 @@
               "whitespace": true
             }
           ],
-          "index": 727
+          "index": 730
         },
         {
           "n": "5",
           "children": [],
-          "index": 728,
+          "index": 731,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -39910,12 +39948,12 @@
               "whitespace": true
             }
           ],
-          "index": 729
+          "index": 732
         },
         {
           "n": "6",
           "children": [],
-          "index": 730,
+          "index": 733,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -39975,12 +40013,12 @@
               "whitespace": true
             }
           ],
-          "index": 731
+          "index": 734
         },
         {
           "n": "7",
           "children": [],
-          "index": 732,
+          "index": 735,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -40035,12 +40073,12 @@
               "whitespace": true
             }
           ],
-          "index": 733
+          "index": 736
         },
         {
           "n": "8",
           "children": [],
-          "index": 734,
+          "index": 737,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -40105,12 +40143,12 @@
               "whitespace": true
             }
           ],
-          "index": 735
+          "index": 738
         },
         {
           "n": "9",
           "children": [],
-          "index": 736,
+          "index": 739,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -40175,12 +40213,12 @@
               "whitespace": true
             }
           ],
-          "index": 737
+          "index": 740
         },
         {
           "n": "10",
           "children": [],
-          "index": 738,
+          "index": 741,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -40235,12 +40273,12 @@
               "whitespace": true
             }
           ],
-          "index": 739
+          "index": 742
         },
         {
           "n": "11",
           "children": [],
-          "index": 740,
+          "index": 743,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -40290,12 +40328,12 @@
               "whitespace": true
             }
           ],
-          "index": 741
+          "index": 744
         },
         {
           "n": "12",
           "children": [],
-          "index": 742,
+          "index": 745,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -40320,13 +40358,13 @@
               "whitespace": true
             }
           ],
-          "index": 743
+          "index": 746
         },
         {
           "unit": "ed2page",
           "n": "2.67",
           "children": [],
-          "index": 744,
+          "index": 747,
           "tagname": "milestone",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -40361,12 +40399,12 @@
               "whitespace": true
             }
           ],
-          "index": 745
+          "index": 748
         },
         {
           "n": "13",
           "children": [],
-          "index": 746,
+          "index": 749,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -40421,12 +40459,12 @@
               "whitespace": true
             }
           ],
-          "index": 747
+          "index": 750
         },
         {
           "n": "14",
           "children": [],
-          "index": 748,
+          "index": 751,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -40466,12 +40504,12 @@
               "whitespace": true
             }
           ],
-          "index": 749
+          "index": 752
         },
         {
           "n": "15",
           "children": [],
-          "index": 750,
+          "index": 753,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -40526,12 +40564,12 @@
               "whitespace": true
             }
           ],
-          "index": 751
+          "index": 754
         },
         {
           "n": "16",
           "children": [],
-          "index": 752,
+          "index": 755,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -40596,12 +40634,12 @@
               "whitespace": true
             }
           ],
-          "index": 753
+          "index": 756
         },
         {
           "n": "17",
           "children": [],
-          "index": 754,
+          "index": 757,
           "tagname": "lb",
           "textpart_index": 7,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -40656,10 +40694,10 @@
               "whitespace": false
             }
           ],
-          "index": 755
+          "index": 758
         }
       ],
-      "index": 699,
+      "index": 702,
       "tagname": "p",
       "textpart_index": 7,
       "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -40668,7 +40706,7 @@
     {
       "n": "19.483",
       "children": [],
-      "index": 756,
+      "index": 759,
       "tagname": "pb",
       "textpart_index": 7,
       "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:8",
@@ -40680,7 +40718,7 @@
         {
           "n": "1",
           "children": [],
-          "index": 758,
+          "index": 761,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -40716,17 +40754,17 @@
                       "whitespace": false
                     }
                   ],
-                  "index": 761
+                  "index": 764
                 }
               ],
-              "index": 760,
+              "index": 763,
               "tagname": "num",
               "textpart_index": 8,
               "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
               "urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9@<num>[0]"
             }
           ],
-          "index": 759,
+          "index": 762,
           "tagname": "label",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -40771,12 +40809,12 @@
               "whitespace": true
             }
           ],
-          "index": 762
+          "index": 765
         },
         {
           "n": "2",
           "children": [],
-          "index": 763,
+          "index": 766,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -40841,12 +40879,12 @@
               "whitespace": true
             }
           ],
-          "index": 764
+          "index": 767
         },
         {
           "n": "3",
           "children": [],
-          "index": 765,
+          "index": 768,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -40901,12 +40939,12 @@
               "whitespace": true
             }
           ],
-          "index": 766
+          "index": 769
         },
         {
           "n": "4",
           "children": [],
-          "index": 767,
+          "index": 770,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -40966,12 +41004,12 @@
               "whitespace": true
             }
           ],
-          "index": 768
+          "index": 771
         },
         {
           "n": "5",
           "children": [],
-          "index": 769,
+          "index": 772,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -41031,12 +41069,12 @@
               "whitespace": true
             }
           ],
-          "index": 770
+          "index": 773
         },
         {
           "n": "6",
           "children": [],
-          "index": 771,
+          "index": 774,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -41086,12 +41124,12 @@
               "whitespace": true
             }
           ],
-          "index": 772
+          "index": 775
         },
         {
           "n": "7",
           "children": [],
-          "index": 773,
+          "index": 776,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -41151,12 +41189,12 @@
               "whitespace": true
             }
           ],
-          "index": 774
+          "index": 777
         },
         {
           "n": "8",
           "children": [],
-          "index": 775,
+          "index": 778,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -41216,12 +41254,12 @@
               "whitespace": true
             }
           ],
-          "index": 776
+          "index": 779
         },
         {
           "n": "9",
           "children": [],
-          "index": 777,
+          "index": 780,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -41281,12 +41319,12 @@
               "whitespace": true
             }
           ],
-          "index": 778
+          "index": 781
         },
         {
           "n": "10",
           "children": [],
-          "index": 779,
+          "index": 782,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -41356,12 +41394,12 @@
               "whitespace": true
             }
           ],
-          "index": 780
+          "index": 783
         },
         {
           "n": "11",
           "children": [],
-          "index": 781,
+          "index": 784,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -41416,12 +41454,12 @@
               "whitespace": true
             }
           ],
-          "index": 782
+          "index": 785
         },
         {
           "n": "12",
           "children": [],
-          "index": 783,
+          "index": 786,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -41476,12 +41514,12 @@
               "whitespace": true
             }
           ],
-          "index": 784
+          "index": 787
         },
         {
           "n": "13",
           "children": [],
-          "index": 785,
+          "index": 788,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -41561,12 +41599,12 @@
               "whitespace": true
             }
           ],
-          "index": 786
+          "index": 789
         },
         {
           "n": "14",
           "children": [],
-          "index": 787,
+          "index": 790,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -41621,12 +41659,12 @@
               "whitespace": true
             }
           ],
-          "index": 788
+          "index": 791
         },
         {
           "n": "15",
           "children": [],
-          "index": 789,
+          "index": 792,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -41691,12 +41729,12 @@
               "whitespace": true
             }
           ],
-          "index": 790
+          "index": 793
         },
         {
           "n": "16",
           "children": [],
-          "index": 791,
+          "index": 794,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -41746,12 +41784,12 @@
               "whitespace": true
             }
           ],
-          "index": 792
+          "index": 795
         },
         {
           "n": "17",
           "children": [],
-          "index": 793,
+          "index": 796,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -41821,12 +41859,12 @@
               "whitespace": true
             }
           ],
-          "index": 794
+          "index": 797
         },
         {
           "n": "18",
           "children": [],
-          "index": 795,
+          "index": 798,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -41886,12 +41924,12 @@
               "whitespace": true
             }
           ],
-          "index": 796
+          "index": 799
         },
         {
           "n": "19.484",
           "children": [],
-          "index": 797,
+          "index": 800,
           "tagname": "pb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -41900,7 +41938,7 @@
         {
           "n": "1",
           "children": [],
-          "index": 798,
+          "index": 801,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -41960,12 +41998,12 @@
               "whitespace": true
             }
           ],
-          "index": 799
+          "index": 802
         },
         {
           "n": "2",
           "children": [],
-          "index": 800,
+          "index": 803,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -42020,12 +42058,12 @@
               "whitespace": true
             }
           ],
-          "index": 801
+          "index": 804
         },
         {
           "n": "3",
           "children": [],
-          "index": 802,
+          "index": 805,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -42085,12 +42123,12 @@
               "whitespace": true
             }
           ],
-          "index": 803
+          "index": 806
         },
         {
           "n": "4",
           "children": [],
-          "index": 804,
+          "index": 807,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -42135,12 +42173,12 @@
               "whitespace": true
             }
           ],
-          "index": 805
+          "index": 808
         },
         {
           "n": "5",
           "children": [],
-          "index": 806,
+          "index": 809,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -42200,12 +42238,12 @@
               "whitespace": true
             }
           ],
-          "index": 807
+          "index": 810
         },
         {
           "n": "6",
           "children": [],
-          "index": 808,
+          "index": 811,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -42265,12 +42303,12 @@
               "whitespace": true
             }
           ],
-          "index": 809
+          "index": 812
         },
         {
           "n": "7",
           "children": [],
-          "index": 810,
+          "index": 813,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -42320,12 +42358,12 @@
               "whitespace": true
             }
           ],
-          "index": 811
+          "index": 814
         },
         {
           "n": "8",
           "children": [],
-          "index": 812,
+          "index": 815,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -42385,12 +42423,12 @@
               "whitespace": true
             }
           ],
-          "index": 813
+          "index": 816
         },
         {
           "n": "9",
           "children": [],
-          "index": 814,
+          "index": 817,
           "tagname": "lb",
           "textpart_index": 8,
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",
@@ -42435,10 +42473,10 @@
               "whitespace": false
             }
           ],
-          "index": 815
+          "index": 818
         }
       ],
-      "index": 757,
+      "index": 760,
       "tagname": "p",
       "textpart_index": 8,
       "textpart_urn": "urn:cts:greekLit:tlg0057.tlg111.verbatim-grc1:9",

@@ -1,0 +1,282 @@
+{
+  "author": "Sophocles\n                ",
+  "language": "grc",
+  "table_of_contents": [
+    {
+      "depth": 0,
+      "label": "Episode",
+      "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:",
+      "subtype": "episode"
+    },
+    {
+      "depth": 0,
+      "label": "Choral",
+      "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:",
+      "subtype": "choral",
+      "subpassages": [
+        {
+          "depth": 1,
+          "label": "Strophe 1",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:1",
+          "subtype": "strophe"
+        },
+        {
+          "depth": 1,
+          "label": "Antistrophe 1",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:1",
+          "subtype": "antistrophe"
+        },
+        {
+          "depth": 1,
+          "label": "Strophe 2",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:2",
+          "subtype": "strophe"
+        },
+        {
+          "depth": 1,
+          "label": "Antistrophe 2",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:2",
+          "subtype": "antistrophe"
+        },
+        {
+          "depth": 1,
+          "label": "Epode",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:",
+          "subtype": "epode"
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "label": "Episode",
+      "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:",
+      "subtype": "episode"
+    },
+    {
+      "depth": 0,
+      "label": "Choral",
+      "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:",
+      "subtype": "choral"
+    },
+    {
+      "depth": 0,
+      "label": "Choral",
+      "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:",
+      "subtype": "choral",
+      "subpassages": [
+        {
+          "depth": 1,
+          "label": "Strophe 1",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:1",
+          "subtype": "strophe"
+        },
+        {
+          "depth": 1,
+          "label": "Antistrophe 1",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:1",
+          "subtype": "antistrophe"
+        },
+        {
+          "depth": 1,
+          "label": "Epode",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:",
+          "subtype": "epode"
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "label": "Episode",
+      "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:",
+      "subtype": "episode"
+    },
+    {
+      "depth": 0,
+      "label": "Choral",
+      "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:",
+      "subtype": "choral",
+      "subpassages": [
+        {
+          "depth": 1,
+          "label": "Strophe 1",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:1",
+          "subtype": "strophe"
+        },
+        {
+          "depth": 1,
+          "label": "Antistrophe 1",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:1",
+          "subtype": "antistrophe"
+        },
+        {
+          "depth": 1,
+          "label": "Strophe 2",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:2",
+          "subtype": "strophe"
+        },
+        {
+          "depth": 1,
+          "label": "Antistrophe 2",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:2",
+          "subtype": "antistrophe"
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "label": "Episode",
+      "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:",
+      "subtype": "episode"
+    },
+    {
+      "depth": 0,
+      "label": "Choral",
+      "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:",
+      "subtype": "choral",
+      "subpassages": [
+        {
+          "depth": 1,
+          "label": "Strophe 1",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:1",
+          "subtype": "strophe"
+        },
+        {
+          "depth": 1,
+          "label": "Antistrophe 1",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:1",
+          "subtype": "antistrophe"
+        },
+        {
+          "depth": 1,
+          "label": "Strophe 2",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:2",
+          "subtype": "strophe"
+        },
+        {
+          "depth": 1,
+          "label": "Antistrophe 2",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:2",
+          "subtype": "antistrophe"
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "label": "Episode",
+      "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:",
+      "subtype": "episode",
+      "subpassages": [
+        {
+          "depth": 1,
+          "label": "Lyric",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:",
+          "subtype": "lyric"
+        },
+        {
+          "depth": 1,
+          "label": "Dialogue",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:",
+          "subtype": "dialogue"
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "label": "Choral",
+      "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:",
+      "subtype": "choral",
+      "subpassages": [
+        {
+          "depth": 1,
+          "label": "Strophe 1",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:1",
+          "subtype": "strophe"
+        },
+        {
+          "depth": 1,
+          "label": "Antistrophe 1",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:1",
+          "subtype": "antistrophe"
+        },
+        {
+          "depth": 1,
+          "label": "Strophe 2",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:2",
+          "subtype": "strophe"
+        },
+        {
+          "depth": 1,
+          "label": "Antistrophe 2",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:2",
+          "subtype": "antistrophe"
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "label": "Episode",
+      "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:",
+      "subtype": "episode",
+      "subpassages": [
+        {
+          "depth": 1,
+          "label": "Anapests",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:",
+          "subtype": "anapests"
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "label": "Choral",
+      "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:",
+      "subtype": "choral",
+      "subpassages": [
+        {
+          "depth": 1,
+          "label": "Strophe 1",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:1",
+          "subtype": "strophe"
+        },
+        {
+          "depth": 1,
+          "label": "Strophe 2",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:2",
+          "subtype": "strophe"
+        },
+        {
+          "depth": 1,
+          "label": "Antistrophe 1",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:1",
+          "subtype": "antistrophe"
+        },
+        {
+          "depth": 1,
+          "label": "Strophe 3",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:3",
+          "subtype": "strophe"
+        },
+        {
+          "depth": 1,
+          "label": "Antistrophe 2",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:2",
+          "subtype": "antistrophe"
+        },
+        {
+          "depth": 1,
+          "label": "Antistrophe 3",
+          "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:3",
+          "subtype": "antistrophe"
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "label": "Episode",
+      "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2:",
+      "subtype": "episode"
+    }
+  ],
+  "title": "Τραχίνιαι                \n                ",
+  "urn": "urn:cts:greekLit:tlg0011.tlg001.perseus-grc2"
+}

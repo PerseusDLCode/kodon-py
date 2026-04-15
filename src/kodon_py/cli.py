@@ -6,6 +6,7 @@ Usage:
     kodon ingest load
     kodon ingest all ./tei-sources
     kodon ingest status ./tei-sources
+    kodon ingest pipeline ./tei-sources
 """
 
 import logging
@@ -177,9 +178,7 @@ def pipeline_command(
 
     pipeline = Pipeline(reader=TEIXMLReader(), stages=stages, writer=writer)
 
-    tei_files = [
-        t for t in discover_tei_files(source_dir) if "__cts__" not in t.name
-    ]
+    tei_files = [t for t in discover_tei_files(source_dir) if "__cts__" not in t.name]
     total = len(tei_files)
 
     if total == 0:
