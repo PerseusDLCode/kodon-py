@@ -86,5 +86,134 @@ def parse_command(source_dir: Path, output_dir: Path):
     click.echo(f"\nParsed: {parsed}, Skipped: {skipped}, Errors: {errors}")
 
 
+@ingest.command("pipeline")
+@click.argument("source_dir", type=click.Path(exists=True, path_type=Path))
+@click.option(
+    "--output-dir",
+    "-o",
+    type=click.Path(path_type=Path),
+    default=DEFAULT_OUTPUT_DIR,
+    help=f"Output directory (default: {DEFAULT_OUTPUT_DIR})",
+)
+@click.option(
+    "--with-morphology",
+    is_flag=True,
+    default=False,
+    help="Run Stanza morphological analysis (adds lemma, pos, morphology to tokens).",
+)
+@click.option(
+    "--commentary-source",
+    type=click.Path(exists=True, path_type=Path),
+    default=None,
+    help="Path to a JSON file mapping token URNs to commentary links.",
+)
+@click.option(
+    "--output-format",
+    type=click.Choice(["json", "tei"], case_sensitive=False),
+    default="json",
+    show_default=True,
+    help="Output format: 'json' (default) or 'tei' (annotated TEI XML with <w> tags).",
+)
+@click.option(
+    "--stanza-model-dir",
+    type=click.Path(),
+    default="./stanza_models",
+    show_default=True,
+    help="Directory containing Stanza model files.",
+)
+@click.option(
+    "--skip-existing/--no-skip-existing",
+    default=True,
+    show_default=True,
+    help="Skip output files that already exist on disk.",
+)
+def pipeline_command(
+    source_dir: Path,
+    output_dir: Path,
+    with_morphology: bool,
+    commentary_source: Path | None,
+    output_format: str,
+    stanza_model_dir: str,
+    skip_existing: bool,
+):
+    """
+    Run the annotated pipeline on TEI XML files.
+
+    Supports optional morphological analysis (--with-morphology), commentary
+    linking (--commentary-source), and output as annotated TEI XML
+    (--output-format tei).
+
+    \b
+    Examples:
+      kodon ingest pipeline ./tei-sources
+      kodon ingest pipeline ./tei-sources --with-morphology --output-format tei
+      kodon ingest pipeline ./tei-sources --commentary-source ./notes.json
+    """
+    from kodon_py.pipeline import (
+        CommentaryStage,
+        JSONCommentarySource,
+        JSONWriter,
+        MorphologyStage,
+        Pipeline,
+        TEIXMLReader,
+        TEIXMLWriter,
+    )
+
+    source_dir = source_dir.resolve()
+    output_dir = output_dir.resolve()
+
+    stages = []
+
+    if with_morphology:
+        stages.append(MorphologyStage(model_dir=stanza_model_dir))
+        click.echo("Morphology stage enabled.")
+
+    if commentary_source is not None:
+        stages.append(CommentaryStage(source=JSONCommentarySource(commentary_source)))
+        click.echo(f"Commentary stage enabled (source: {commentary_source}).")
+
+    suffix = ".json" if output_format == "json" else ".xml"
+    writer = JSONWriter() if output_format == "json" else TEIXMLWriter()
+
+    pipeline = Pipeline(reader=TEIXMLReader(), stages=stages, writer=writer)
+
+    tei_files = [
+        t for t in discover_tei_files(source_dir) if "__cts__" not in t.name
+    ]
+    total = len(tei_files)
+
+    if total == 0:
+        click.echo("No TEI XML files found.")
+        return
+
+    click.echo(f"Found {total} TEI XML files in {source_dir}")
+
+    sources = [
+        (
+            tei_path,
+            get_json_path(tei_path, source_dir, output_dir).with_suffix(suffix),
+        )
+        for tei_path in tei_files
+    ]
+
+    processed = 0
+    skipped = 0
+    errors = 0
+
+    with click.progressbar(sources, label="Processing") as items:
+        for src, dest in items:
+            if skip_existing and dest.exists():
+                skipped += 1
+                continue
+            try:
+                pipeline.run(src, dest)
+                processed += 1
+            except Exception as e:
+                errors += 1
+                logger.error(f"Failed to process {src}: {e}")
+
+    click.echo(f"\nProcessed: {processed}, Skipped: {skipped}, Errors: {errors}")
+
+
 if __name__ == "__main__":
     cli()
