@@ -214,5 +214,81 @@ def pipeline_command(
     click.echo(f"\nProcessed: {processed}, Skipped: {skipped}, Errors: {errors}")
 
 
+@ingest.command("render")
+@click.argument("json_dir", type=click.Path(exists=True, path_type=Path))
+@click.option(
+    "--output-dir",
+    "-o",
+    type=click.Path(path_type=Path),
+    default=DEFAULT_OUTPUT_DIR,
+    help=f"Output directory for XML files (default: {DEFAULT_OUTPUT_DIR})",
+)
+@click.option(
+    "--suffix",
+    default="annotated",
+    show_default=True,
+    help="Suffix inserted before the .xml extension in output filenames.",
+)
+@click.option(
+    "--skip-existing/--no-skip-existing",
+    default=True,
+    show_default=True,
+    help="Skip output files that already exist on disk.",
+)
+def render_command(json_dir: Path, output_dir: Path, suffix: str, skip_existing: bool):
+    """
+    Render previously parsed JSON files as annotated TEI XML.
+
+    Reads each *.json file in JSON_DIR (excluding *.metadata.json sidecars)
+    and writes a corresponding annotated TEI XML file produced by TEIXMLWriter.
+
+    \b
+    Example:
+      kodon ingest render ./output/json --output-dir ./output/xml
+    """
+    import json
+
+    from kodon_py.pipeline import TEIXMLWriter
+
+    json_dir = json_dir.resolve()
+    output_dir = output_dir.resolve()
+
+    json_files = sorted(
+        p for p in json_dir.rglob("*.json") if not p.name.endswith(".metadata.json")
+    )
+    total = len(json_files)
+
+    if total == 0:
+        click.echo("No JSON files found.")
+        return
+
+    click.echo(f"Found {total} JSON files in {json_dir}")
+
+    writer = TEIXMLWriter()
+    processed = 0
+    skipped = 0
+    errors = 0
+
+    with click.progressbar(json_files, label="Rendering") as files:
+        for json_path in files:
+            rel = json_path.relative_to(json_dir)
+            dest = output_dir / rel.with_name(f"{rel.stem}.{suffix}.xml")
+
+            if skip_existing and dest.exists():
+                skipped += 1
+                continue
+
+            try:
+                with open(json_path, encoding="utf-8") as f:
+                    document = json.load(f)
+                writer.write(document, dest)
+                processed += 1
+            except Exception as e:
+                errors += 1
+                logger.error(f"Failed to render {json_path}: {e}")
+
+    click.echo(f"\nProcessed: {processed}, Skipped: {skipped}, Errors: {errors}")
+
+
 if __name__ == "__main__":
     cli()

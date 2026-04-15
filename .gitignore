@@ -16,3 +16,4 @@ kodon-db.sqlite
 static/output.css
 
 tailwindcss
+.DS_Store

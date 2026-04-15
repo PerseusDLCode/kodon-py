@@ -6,13 +6,12 @@ DocumentWriter implementations for the kodon-py pipeline.
     the ``.metadata.json`` sidecar file.
 
 ``TEIXMLWriter``
-    Re-parses the original TEI XML file and patches text nodes in-place,
-    replacing raw text with ``<w>`` elements that carry token-level
-    annotations (URN, lemma, POS, morphological features).  Cross-reference
-    links become ``<ref>`` wrappers; commentary links become ``<interp>``
-    siblings.
+    Builds a new XML file from the output of JSON writer, converting
+    inline annotations to standoff and (TODO) normalizing the TEI
+    elements that are used.
 """
 
+import copy
 import json
 import logging
 import re
@@ -29,9 +28,11 @@ TEI = f"{{{TEI_NS}}}"
 
 # TEI elements whose text content should be tokenised into <w> elements.
 # Other elements (pb, lb, milestone, gap …) carry no prose text.
-_PROSE_TAGS = frozenset(
-    ["p", "head", "l", "q", "quote", "hi", "label", "note", "foreign", "sic", "corr"]
-)
+_PROSE_TAGS = frozenset(["p", "head", "l", "q", "quote", "hi", "label", "foreign"])
+
+# TEI elements that should be extracted from the body and placed in <standOff>.
+# <choice> carries its <sic>/<corr> or <orig>/<reg> children along with it.
+_STANDOFF_TAGS = frozenset(["note", "choice", "del", "gap"])
 
 
 # ---------------------------------------------------------------------------
@@ -93,25 +94,7 @@ _ELEMENT_URN_RE = re.compile(r"@<(\w+)>\[(\d+)\]$")
 
 class TEIXMLWriter:
     """
-    Produces annotated TEI XML with ``<w>`` elements for each token.
-
-    Strategy
-    --------
-    1.  Re-parse the original TEI XML file (``document["source_file"]``).
-    2.  Build a lookup: ``(textpart_urn, tagname, occurrence_index)`` →
-        ``ElementDict`` from the document dict.
-    3.  Walk the lxml ``<body>`` element.  When a prose element (``<p>``,
-        ``<l>`` etc.) is encountered, locate its ``ElementDict`` using the
-        same per-tagname-per-textpart counter that produced the URN during
-        parsing, then replace its text content with ``<w>`` child elements.
-    4.  Tokens with ``links`` of type ``"cross_reference"`` are wrapped in
-        ``<ref target="…">``.  Commentary links become ``<interp>``
-        siblings inserted after the corresponding ``<w>``.
-    5.  Serialise the modified tree.
-
-    The re-parse approach preserves all TEI header content, processing
-    instructions, namespace declarations, and non-prose elements without
-    any extra work.
+    Produces (standoff) annotated and normalized TEI XML with ``<w>`` elements for each token.
     """
 
     def write(self, document: dict, destination: Path | str) -> None:
@@ -134,8 +117,12 @@ class TEIXMLWriter:
         if body is None:
             raise ValueError("No <body> element found in source TEI XML")
 
-        walker = _TreeWalker(element_lookup)
+        standoff_el = etree.Element(f"{TEI}standOff")
+        walker = _TreeWalker(element_lookup, standoff_el)
         walker.walk(body)
+
+        if len(standoff_el):
+            root.append(standoff_el)
 
         dest = Path(destination)
         dest.parent.mkdir(parents=True, exist_ok=True)
@@ -155,8 +142,11 @@ class _TreeWalker:
     elements drawn from the document dict.
     """
 
-    def __init__(self, element_lookup: dict) -> None:
+    def __init__(self, element_lookup: dict, standoff: etree._Element) -> None:
         self._lookup = element_lookup
+        self._standoff = standoff
+        # Per-type <listAnnotation> children of <standOff>, created on demand.
+        self._standoff_lists: dict[str, etree._Element] = {}
         # Per-textpart, per-tagname occurrence counters — mirrors the
         # counting in TEIParser.handle_element.
         self._counters: dict[str, dict[str, int]] = {}
@@ -182,8 +172,12 @@ class _TreeWalker:
         if localname in _PROSE_TAGS and self._current_textpart_urn is not None:
             self._patch_prose_element(node, localname)
         else:
-            for child in node:
-                self.walk(child)
+            for child in list(node):
+                if etree.QName(child).localname in _STANDOFF_TAGS:
+                    self._move_to_standoff(child)
+                    node.remove(child)
+                else:
+                    self.walk(child)
 
     def _compute_textpart_urn(self, div_node: etree._Element) -> str:
         """
@@ -203,10 +197,36 @@ class _TreeWalker:
         doc_urn = getattr(self, "_doc_urn", "")
         return f"{doc_urn}:{'.'.join(n_parts)}" if n_parts else doc_urn
 
+    def _move_to_standoff(self, node: etree._Element) -> None:
+        """
+        Deep-copy *node* into the appropriate ``<listAnnotation>`` inside
+        ``<standOff>``, annotated with the current textpart URN as ``target``.
+        """
+        tagname = etree.QName(node).localname
+        list_ann = self._standoff_lists.get(tagname)
+        if list_ann is None:
+            list_ann = etree.SubElement(self._standoff, f"{TEI}listAnnotation")
+            list_ann.set("type", tagname)
+            self._standoff_lists[tagname] = list_ann
+
+        annotation = etree.SubElement(list_ann, f"{TEI}annotation")
+        annotation.set("target", self._current_textpart_urn or "")
+        annotation.append(copy.deepcopy(node))
+
     def _patch_prose_element(self, node: etree._Element, tagname: str) -> None:
         """
         Replace the text content of a prose element with ``<w>`` elements.
+
+        Any standoff-candidate children (``<note>``, ``<choice>`` etc.) are
+        extracted into ``<standOff>`` before the element is rebuilt so that
+        their tokens do not appear inline.
         """
+        # Extract any embedded standoff elements before clearing the node.
+        for child in list(node):
+            if etree.QName(child).localname in _STANDOFF_TAGS:
+                self._move_to_standoff(child)
+                node.remove(child)
+
         tp_urn = self._current_textpart_urn
         counter = self._counters.setdefault(tp_urn, {})
         idx = counter.get(tagname, 0)
@@ -220,7 +240,8 @@ class _TreeWalker:
                 self.walk(child)
             return
 
-        # Collect all tokens from the ElementDict's text_run children
+        # Collect tokens, stopping at standoff-candidate children so their
+        # text does not appear inline.
         tokens = _collect_tokens(element_dict)
         if not tokens:
             for child in node:
@@ -268,13 +289,16 @@ class _TreeWalker:
 
 def _collect_tokens(element_dict: dict) -> list[dict]:
     """
-    Recursively collect all tokens from an ElementDict's children,
-    preserving document order.
+    Recursively collect tokens from an ElementDict's children, preserving
+    document order.  Descent stops at standoff-candidate children
+    (``_STANDOFF_TAGS``) so their tokens are not included in the inline text.
     """
     tokens: list[dict] = []
     for child in element_dict.get("children", []):
         if child.get("tagname") == "text_run":
             tokens.extend(child.get("tokens", []))
+        elif child.get("tagname") in _STANDOFF_TAGS:
+            continue
         else:
             tokens.extend(_collect_tokens(child))
     return tokens
