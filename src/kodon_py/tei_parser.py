@@ -64,23 +64,6 @@ logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
 
-greek_tokenizer = stanza.Pipeline(
-    "grc",
-    processors="tokenize",
-    package="perseus",
-    model_dir="./stanza_models",
-    download_method=stanza.DownloadMethod.REUSE_RESOURCES,
-)
-
-latin_tokenizer = stanza.Pipeline(
-    "la",
-    processors="tokenize",
-    package="perseus",
-    model_dir="./stanza_models",
-    download_method=stanza.DownloadMethod.REUSE_RESOURCES,
-)
-
-
 def create_table_of_contents(textparts, textpart_labels):
     textparts = [
         dict(
@@ -144,6 +127,9 @@ class TEIParser(ContentHandler):
     as strings for later parsing and use.
     """
 
+    _greek_tokenizer: stanza.Pipeline | None = None
+    _latin_tokenizer: stanza.Pipeline | None = None
+
     def __init__(self, filename: Path | str):
         self.filename = filename
         self.tree = etree.parse(filename)
@@ -178,6 +164,31 @@ class TEIParser(ContentHandler):
 
         for body in self.tree.iterfind(".//tei:body", namespaces=NAMESPACES):
             lxml.sax.saxify(body, self)
+
+    @classmethod
+    def _get_tokenizer(
+        cls, language: str, model_dir: str = "./stanza_models"
+    ) -> stanza.Pipeline:
+        if language in ("la", "lat"):
+            if cls._latin_tokenizer is None:
+                cls._latin_tokenizer = stanza.Pipeline(
+                    "la",
+                    processors="tokenize",
+                    package="perseus",
+                    model_dir=model_dir,
+                    download_method=stanza.DownloadMethod.REUSE_RESOURCES,
+                )
+            return cls._latin_tokenizer
+
+        if cls._greek_tokenizer is None:
+            cls._greek_tokenizer = stanza.Pipeline(
+                "grc",
+                processors="tokenize",
+                package="perseus",
+                model_dir=model_dir,
+                download_method=stanza.DownloadMethod.REUSE_RESOURCES,
+            )
+        return cls._greek_tokenizer
 
     def add_textpart_to_stack(self, attrs: dict):
         subtype = attrs.get("subtype")
@@ -463,14 +474,7 @@ class TEIParser(ContentHandler):
                 self.handle_element(localname, clean_attrs)
 
     def tokenize(self, s: str):
-        tokenizer = None
-
-        if self.language == "grc":
-            tokenizer = greek_tokenizer
-        elif self.language in ("la", "lat"):
-            tokenizer = latin_tokenizer
-        else:
-            tokenizer = greek_tokenizer
+        tokenizer = TEIParser._get_tokenizer(self.language or "grc")
 
         doc = tokenizer(s)
 

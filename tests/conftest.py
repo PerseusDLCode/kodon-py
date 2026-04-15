@@ -9,7 +9,7 @@ import pytest
 
 
 @pytest.fixture
-def temp_dir():
+def tmp_dir():
     """Create a temporary directory for test files."""
     tmpdir = Path(tempfile.mkdtemp())
     yield tmpdir
@@ -32,9 +32,9 @@ def test_tei_file(test_tei_dir):
 
 
 @pytest.fixture
-def json_output_dir(temp_dir):
+def json_output_dir(tmp_dir):
     """Create a temporary directory for JSON output."""
-    path = temp_dir / "json_output"
+    path = tmp_dir / "json_output"
     path.mkdir()
     return path
 
