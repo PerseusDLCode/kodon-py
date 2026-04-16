@@ -6,15 +6,15 @@ DocumentWriter implementations for the kodon-py pipeline.
     the ``.metadata.json`` sidecar file.
 
 ``TEIXMLWriter``
-    Builds a new XML file from the output of JSON writer, converting
-    inline annotations to standoff and (TODO) normalizing the TEI
-    elements that are used.
+    Builds a new XML file by walking the document JSON depth-first and
+    emitting lxml elements, copying the ``<teiHeader>`` from the source
+    file verbatim.  Every token in a ``text_run`` becomes a ``<w>``
+    element carrying its URN and morphological attributes.
 """
 
 import copy
 import json
 import logging
-import re
 from pathlib import Path
 
 from lxml import etree
@@ -26,13 +26,10 @@ logger = logging.getLogger(__name__)
 TEI_NS = "http://www.tei-c.org/ns/1.0"
 TEI = f"{{{TEI_NS}}}"
 
-# TEI elements whose text content should be tokenised into <w> elements.
-# Other elements (pb, lb, milestone, gap …) carry no prose text.
-_PROSE_TAGS = frozenset(["p", "head", "l", "q", "quote", "hi", "label", "foreign"])
-
-# TEI elements that should be extracted from the body and placed in <standOff>.
-# <choice> carries its <sic>/<corr> or <orig>/<reg> children along with it.
-_STANDOFF_TAGS = frozenset(["note", "choice", "del", "gap"])
+# Keys in an element dict that are internal bookkeeping, not XML attributes.
+_ELEMENT_SKIP_KEYS = frozenset(
+    {"children", "index", "tagname", "textpart_index", "textpart_urn", "urn", "tokens"}
+)
 
 
 # ---------------------------------------------------------------------------
@@ -87,14 +84,15 @@ class JSONWriter:
 # TEIXMLWriter
 # ---------------------------------------------------------------------------
 
-# Regex to extract tagname and index from element URNs like
-# "urn:cts:...@<p>[0]"
-_ELEMENT_URN_RE = re.compile(r"@<(\w+)>\[(\d+)\]$")
-
 
 class TEIXMLWriter:
     """
-    Produces (standoff) annotated and normalized TEI XML with ``<w>`` elements for each token.
+    Produces annotated TEI XML by walking the document JSON depth-first.
+
+    The ``<teiHeader>`` is copied verbatim from the source file.  The body
+    is reconstructed entirely from the JSON: each element dict becomes an
+    lxml element, and each token in a ``text_run`` becomes a ``<w>`` element
+    carrying its URN and morphological attributes as XML attributes.
     """
 
     def write(self, document: dict, destination: Path | str) -> None:
@@ -102,217 +100,73 @@ class TEIXMLWriter:
         if not source_path:
             raise ValueError("DocumentDict must contain 'source_file' for TEIXMLWriter")
 
-        tree = etree.parse(source_path)
-        root = tree.getroot()
+        # Copy the header from the source file verbatim.
+        source_tree = etree.parse(source_path)
+        source_root = source_tree.getroot()
+        header = source_root.find(f"{TEI}teiHeader")
+        if header is None:
+            raise ValueError("No <teiHeader> found in source TEI XML")
 
-        # Build element lookup keyed by (textpart_urn, tagname, index)
-        element_lookup: dict[tuple[str, str, int], dict] = {}
-        for el in document.get("elements", []):
-            m = _ELEMENT_URN_RE.search(el.get("urn", ""))
-            if m:
-                key = (el["textpart_urn"], m.group(1), int(m.group(2)))
-                element_lookup[key] = el
+        # Build the output tree.
+        nsmap = {None: TEI_NS}
+        root = etree.Element(f"{TEI}TEI", nsmap=nsmap)
+        root.append(copy.deepcopy(header))
 
-        body = root.find(f".//{TEI}body")
-        if body is None:
-            raise ValueError("No <body> element found in source TEI XML")
+        text_el = etree.SubElement(root, f"{TEI}text")
+        text_el.set(
+            "{http://www.w3.org/XML/1998/namespace}lang", document.get("language", "")
+        )
+        body_el = etree.SubElement(text_el, f"{TEI}body")
 
-        standoff_el = etree.Element(f"{TEI}standOff")
-        walker = _TreeWalker(element_lookup, standoff_el)
-        walker.walk(body)
+        doc_urn = document.get("urn", "")
+        div_edition = etree.SubElement(body_el, f"{TEI}div")
+        div_edition.set("type", "edition")
+        div_edition.set("n", doc_urn)
 
-        if len(standoff_el):
-            root.append(standoff_el)
+        for element_dict in document.get("elements", []):
+            _emit_element(element_dict, div_edition)
 
         dest = Path(destination)
         dest.parent.mkdir(parents=True, exist_ok=True)
-        tree.write(
+        etree.indent(root, space="  ")
+        etree.ElementTree(root).write(
             str(dest),
             encoding="UTF-8",
             xml_declaration=True,
-            pretty_print=True,
         )
         logger.info(f"Saved annotated TEI XML: {dest}")
 
 
-class _TreeWalker:
+def _emit_element(element_dict: dict, parent: etree._Element) -> None:
     """
-    Walks an lxml element tree and replaces text nodes in prose elements
-    with sequences of ``<w>`` (and optionally ``<ref>`` / ``<interp>``)
-    elements drawn from the document dict.
+    Recursively emit *element_dict* as an lxml child of *parent*.
+
+    ``text_run`` pseudo-elements are not emitted as XML tags; instead their
+    tokens are emitted directly as ``<w>`` children of *parent*.
     """
+    tagname = element_dict.get("tagname")
+    if tagname is None:
+        return
 
-    def __init__(self, element_lookup: dict, standoff: etree._Element) -> None:
-        self._lookup = element_lookup
-        self._standoff = standoff
-        # Per-type <listAnnotation> children of <standOff>, created on demand.
-        self._standoff_lists: dict[str, etree._Element] = {}
-        # Per-textpart, per-tagname occurrence counters — mirrors the
-        # counting in TEIParser.handle_element.
-        self._counters: dict[str, dict[str, int]] = {}
-        self._current_textpart_urn: str | None = None
+    if tagname == "text_run":
+        for token in element_dict.get("tokens", []):
+            parent.append(_make_token_element(token))
+        return
 
-    def walk(self, node: etree._Element) -> None:
-        localname = etree.QName(node).localname
+    el = etree.SubElement(parent, f"{TEI}{tagname}")
+    for key, val in element_dict.items():
+        if key not in _ELEMENT_SKIP_KEYS and val is not None:
+            el.set(key, str(val))
 
-        # Track textpart URN as we descend into <div type="textpart"> elements.
-        if localname == "div":
-            div_type = node.get("type")
-            if div_type == "edition":
-                doc_urn = node.get("n", "")
-                # Reset state for a new document
-                self._counters = {}
-                self._current_textpart_urn = None
-                self._doc_urn = doc_urn
-            elif div_type == "textpart":
-                self._current_textpart_urn = self._compute_textpart_urn(node)
-                if self._current_textpart_urn not in self._counters:
-                    self._counters[self._current_textpart_urn] = {}
-
-        if localname in _PROSE_TAGS and self._current_textpart_urn is not None:
-            self._patch_prose_element(node, localname)
-        else:
-            for child in list(node):
-                if etree.QName(child).localname in _STANDOFF_TAGS:
-                    self._move_to_standoff(child)
-                    node.remove(child)
-                else:
-                    self.walk(child)
-
-    def _compute_textpart_urn(self, div_node: etree._Element) -> str:
-        """
-        Reconstruct the textpart URN by walking up to collect @n values.
-        This mirrors the location-building logic in TEIParser.
-        """
-        n_parts: list[str] = []
-        node: etree._Element | None = div_node
-        while node is not None:
-            if etree.QName(node).localname == "div" and node.get("type") == "textpart":
-                n = node.get("n")
-                if n:
-                    n_parts.insert(0, n)
-            elif etree.QName(node).localname == "div" and node.get("type") == "edition":
-                break
-            node = node.getparent()
-        doc_urn = getattr(self, "_doc_urn", "")
-        return f"{doc_urn}:{'.'.join(n_parts)}" if n_parts else doc_urn
-
-    def _move_to_standoff(self, node: etree._Element) -> None:
-        """
-        Deep-copy *node* into the appropriate ``<listAnnotation>`` inside
-        ``<standOff>``, annotated with the current textpart URN as ``target``.
-        """
-        tagname = etree.QName(node).localname
-        list_ann = self._standoff_lists.get(tagname)
-        if list_ann is None:
-            list_ann = etree.SubElement(self._standoff, f"{TEI}listAnnotation")
-            list_ann.set("type", tagname)
-            self._standoff_lists[tagname] = list_ann
-
-        annotation = etree.SubElement(list_ann, f"{TEI}annotation")
-        annotation.set("target", self._current_textpart_urn or "")
-        annotation.append(copy.deepcopy(node))
-
-    def _patch_prose_element(self, node: etree._Element, tagname: str) -> None:
-        """
-        Replace the text content of a prose element with ``<w>`` elements.
-
-        Any standoff-candidate children (``<note>``, ``<choice>`` etc.) are
-        extracted into ``<standOff>`` before the element is rebuilt so that
-        their tokens do not appear inline.
-        """
-        # Extract any embedded standoff elements before clearing the node.
-        for child in list(node):
-            if etree.QName(child).localname in _STANDOFF_TAGS:
-                self._move_to_standoff(child)
-                node.remove(child)
-
-        tp_urn = self._current_textpart_urn
-        counter = self._counters.setdefault(tp_urn, {})
-        idx = counter.get(tagname, 0)
-        counter[tagname] = idx + 1
-
-        key = (tp_urn, tagname, idx)
-        element_dict = self._lookup.get(key)
-        if element_dict is None:
-            # No matching ElementDict — walk children normally
-            for child in node:
-                self.walk(child)
-            return
-
-        # Collect tokens, stopping at standoff-candidate children so their
-        # text does not appear inline.
-        tokens = _collect_tokens(element_dict)
-        if not tokens:
-            for child in node:
-                self.walk(child)
-            return
-
-        # Clear the element's text and children, then repopulate with <w> nodes
-        node.text = None
-        # Remove child elements that are pure text containers; keep structural
-        # children (lb, pb, milestone) that carry no text tokens.
-        structural_children = [
-            c for c in list(node) if etree.QName(c).localname not in _PROSE_TAGS
-        ]
-        for c in list(node):
-            node.remove(c)
-
-        prev: etree._Element | None = None
-        for token in tokens:
-            w_or_ref = _make_token_element(token)
-
-            if prev is None:
-                node.text = (node.text or "") + ""
-            else:
-                # whitespace is encoded on w.tail
-                pass
-
-            node.append(w_or_ref)
-            prev = w_or_ref
-
-            # Commentary interp elements come as siblings after the <w>
-            for link in token.get("links", []):
-                if link.get("type") == "commentary":
-                    interp = etree.SubElement(node, f"{TEI}interp")
-                    interp.set("ana", "commentary")
-                    interp.set("corresp", token["urn"])
-                    interp.set("target", link["target_urn"])
-                    if link.get("display_label"):
-                        interp.set("n", link["display_label"])
-
-        # Re-append any structural children that were present originally
-        for c in structural_children:
-            node.append(c)
-            self.walk(c)
-
-
-def _collect_tokens(element_dict: dict) -> list[dict]:
-    """
-    Recursively collect tokens from an ElementDict's children, preserving
-    document order.  Descent stops at standoff-candidate children
-    (``_STANDOFF_TAGS``) so their tokens are not included in the inline text.
-    """
-    tokens: list[dict] = []
     for child in element_dict.get("children", []):
-        if child.get("tagname") == "text_run":
-            tokens.extend(child.get("tokens", []))
-        elif child.get("tagname") in _STANDOFF_TAGS:
-            continue
-        else:
-            tokens.extend(_collect_tokens(child))
-    return tokens
+        _emit_element(child, el)
 
 
 def _make_token_element(token: dict) -> etree._Element:
     """
-    Build a ``<w>`` element (or ``<ref><w/></ref>`` for cross-references)
-    from a TokenDict.
+    Build a ``<w>`` element from a TokenDict, attaching URN, lemma, POS,
+    xpos, and all morphological features as XML attributes.
     """
-    cross_ref_links = [
-        lnk for lnk in token.get("links", []) if lnk.get("type") == "cross_reference"
-    ]
-
     w = etree.Element(f"{TEI}w")
     w.set("n", token["urn"])
     if token.get("lemma"):
@@ -324,19 +178,8 @@ def _make_token_element(token: dict) -> etree._Element:
     for feat_key, feat_val in token.get("morphology", {}).items():
         w.set(feat_key.lower(), feat_val)
     w.text = token["text"]
-    w.tail = " " if token.get("whitespace") else ""
 
-    if not cross_ref_links:
-        return w
+    if token.get("whitespace"):
+        w.set("rend", "space-after")
 
-    # Wrap in <ref> for the first cross-reference link.
-    # Multiple cross-reference links on the same token are unusual;
-    # we wrap once and set the first target.
-    ref = etree.Element(f"{TEI}ref")
-    ref.set("target", cross_ref_links[0]["target_urn"])
-    if cross_ref_links[0].get("display_label"):
-        ref.set("n", cross_ref_links[0]["display_label"])
-    ref.append(w)
-    ref.tail = w.tail
-    w.tail = None
-    return ref
+    return w

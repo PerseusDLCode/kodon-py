@@ -30,6 +30,7 @@ Usage:
 # - [ ] Explore lemmatization options: https://github.com/bowphs/SIGTYP-2024-hierarchical-transformers/issues/1
 
 import logging
+import re
 from pathlib import Path
 from xml.sax import xmlreader
 from xml.sax.handler import ContentHandler
@@ -105,6 +106,24 @@ def nest_textparts(textparts):
     return [item for _level, item in stack]
 
 
+def _rewrite_element_urn(element: dict, new_textpart_urn: str) -> None:
+    """
+    Rewrite the ``textpart_urn``, ``urn``, and all descendant token URNs of
+    *element* to use *new_textpart_urn*.  Used to backfill ``<speaker>``
+    elements whose URNs were stamped before the enclosing line number was known.
+    """
+    old_urn = element.get("textpart_urn", "")
+    element["textpart_urn"] = new_textpart_urn
+    element["urn"] = element.get("urn", "").replace(old_urn, new_textpart_urn, 1)
+
+    for child in element.get("children", []):
+        if child.get("tagname") == "text_run":
+            for token in child.get("tokens", []):
+                token["urn"] = token["urn"].replace(old_urn, new_textpart_urn, 1)
+        else:
+            _rewrite_element_urn(child, new_textpart_urn)
+
+
 def remove_ns_from_attrs(attrs: xmlreader.AttributesNSImpl):
     a = {}
 
@@ -160,6 +179,7 @@ class TEIParser(ContentHandler):
         self.textpart_stack = []
         self.textparts = []
         self.unhandled_elements = set()
+        self._pending_speaker = None
 
         for body in self.tree.iterfind(".//tei:body", namespaces=NAMESPACES):
             lxml.sax.saxify(body, self)
@@ -263,6 +283,9 @@ class TEIParser(ContentHandler):
                 }
             )
 
+            if el.get("tagname") == "speaker":
+                self._pending_speaker = el
+
             if len(self.element_stack) > 0:
                 if (
                     len(
@@ -287,7 +310,23 @@ class TEIParser(ContentHandler):
             )
 
     def get_citable_elements(self):
-        refsDecl = self.tree.find(".//tei:refsDecl", namespaces=NAMESPACES)
+        """
+        Parse ``<cRefPattern>`` entries in the CTS ``<refsDecl>`` and return a
+        set of element tagnames (e.g. ``{'l'}``) that carry citation ``@n``
+        values but are *not* ``<div>`` elements (divs are already tracked as
+        textparts).  These elements should update ``current_textpart_urn``
+        when encountered during parsing.
+        """
+        citable = set()
+        for pattern in self.tree.findall(
+            ".//tei:refsDecl[@n='CTS']/tei:cRefPattern", namespaces=NAMESPACES
+        ):
+            replacement = pattern.get("replacementPattern", "")
+            # Extract tagnames from XPath fragments like tei:l[@n='$1']
+            for tagname in re.findall(r"tei:(\w+)\[@n='\$\d+'\]", replacement):
+                if tagname != "div":
+                    citable.add(tagname)
+        return citable
 
     def get_editionStmt(self):
         return self.get_stringifiedXML("editionStmt")
@@ -363,6 +402,23 @@ class TEIParser(ContentHandler):
 
         element_index = self.global_element_index
         self.global_element_index += 1
+
+        if tagname == "speaker":
+            self._pending_speaker = None
+
+        # If this element is a citable unit (e.g. <l>) and carries an @n,
+        # update current_textpart_urn so that all tokens inside it receive
+        # the correct citation URN.  Also backfill the preceding <speaker>
+        # element, which was finalised before the line number was known.
+        if self.citable_elements and tagname in self.citable_elements:
+            n = attrs.get("n")
+            if n is not None:
+                location = [t["n"] for t in self.textpart_stack if t.get("n")] + [n]
+                self.current_textpart_urn = f"{self.urn}:{'.'.join(location)}"
+                current_textpart_urn = self.current_textpart_urn
+                if self._pending_speaker is not None:
+                    _rewrite_element_urn(self._pending_speaker, self.current_textpart_urn)
+                    self._pending_speaker = None
 
         attrs.update(
             {
