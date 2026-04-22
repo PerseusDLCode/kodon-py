@@ -41,6 +41,8 @@ from lxml import etree
 
 NAMESPACES = {"tei": "http://www.tei-c.org/ns/1.0"}
 
+PARATEXTUAL_ELEMENTS = frozenset({"note", "noteGrp", "speaker", "sp"})
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
@@ -109,7 +111,7 @@ def nest_textparts(textparts):
 def _rewrite_element_urn(element: dict, new_textpart_urn: str) -> None:
     """
     Rewrite the ``textpart_urn``, ``urn``, and all descendant token URNs of
-    *element* to use *new_textpart_urn*.  Used to backfill ``<speaker>``
+    *element* to use *new_textpart_urn*.  Used to backfill, e.g., ``<speaker>``
     elements whose URNs were stamped before the enclosing line number was known.
     """
     old_urn = element.get("textpart_urn", "")
@@ -160,6 +162,11 @@ class TEIParser(ContentHandler):
         # one.
         self.citable_elements = self.get_citable_elements()
         self.editionStmt = self.get_editionStmt()
+        # inside_paratext is a flag that
+        # toggles off when inside, e.g., a <note>
+        # tag, as textparts should contain only
+        # canonical text, not paratexts.
+        self.inside_paratext = False
         self.language = None
         self.publicationStmt = self.get_publicationStmt()
         self.refsDecl = self.get_refsDecl()
@@ -314,7 +321,7 @@ class TEIParser(ContentHandler):
         Parse ``<cRefPattern>`` entries in the CTS ``<refsDecl>`` and return a
         set of element tagnames (e.g. ``{'l'}``) that carry citation ``@n``
         values but are *not* ``<div>`` elements (divs are already tracked as
-        textparts).  These elements should update ``current_textpart_urn``
+        textparts). These elements should update ``current_textpart_urn``
         when encountered during parsing.
         """
         citable = set()
@@ -408,7 +415,7 @@ class TEIParser(ContentHandler):
 
         # If this element is a citable unit (e.g. <l>) and carries an @n,
         # update current_textpart_urn so that all tokens inside it receive
-        # the correct citation URN.  Also backfill the preceding <speaker>
+        # the correct citation URN. Also backfill the preceding <speaker>
         # element, which was finalised before the line number was known.
         if self.citable_elements and tagname in self.citable_elements:
             n = attrs.get("n")
@@ -417,7 +424,9 @@ class TEIParser(ContentHandler):
                 self.current_textpart_urn = f"{self.urn}:{'.'.join(location)}"
                 current_textpart_urn = self.current_textpart_urn
                 if self._pending_speaker is not None:
-                    _rewrite_element_urn(self._pending_speaker, self.current_textpart_urn)
+                    _rewrite_element_urn(
+                        self._pending_speaker, self.current_textpart_urn
+                    )
                     self._pending_speaker = None
 
         attrs.update(
@@ -441,6 +450,22 @@ class TEIParser(ContentHandler):
             self.element_stack[-1]["children"].append(attrs)
 
         self.element_stack.append(attrs)
+
+        self.toggle_inside_paratext(tagname)
+
+    def maybe_add_token_to_textpart(self, token):
+        if self.inside_paratext:
+            return
+
+        textpart = None
+        if len(self.textpart_stack) > 0:
+            textpart = self.textpart_stack[-1]
+
+        if textpart is not None:
+            if textpart.get("tokens") is not None:
+                textpart["tokens"].append(token)
+            else:
+                textpart["tokens"] = [token]
 
     def process_tokens(self, tokens):
         text_run = []
@@ -469,11 +494,7 @@ class TEIParser(ContentHandler):
                 "whitespace": len(tok.spaces_after) > 0,
             }
 
-            if textpart is not None:
-                if textpart.get("tokens") is not None:
-                    textpart["tokens"].append(token)
-                else:
-                    textpart["tokens"] = [token]
+            self.maybe_add_token_to_textpart(token)
 
             text_run.append(token)
 
@@ -520,6 +541,8 @@ class TEIParser(ContentHandler):
                 | "q"
                 | "quote"
                 | "sic"
+                | "sp"
+                | "speaker"
             ):
                 return self.handle_element(localname, clean_attrs)
             case _:
@@ -528,6 +551,12 @@ class TEIParser(ContentHandler):
                 )
                 self.unhandled_elements.add(localname)
                 self.handle_element(localname, clean_attrs)
+
+    def toggle_inside_paratext(self, tagname: str):
+        if tagname in PARATEXTUAL_ELEMENTS:
+            self.inside_paratext = True
+        else:
+            self.inside_paratext = False
 
     def tokenize(self, s: str):
         tokenizer = TEIParser._get_tokenizer(self.language or "grc")
