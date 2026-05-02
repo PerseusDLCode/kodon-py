@@ -43,6 +43,8 @@ NAMESPACES = {"tei": "http://www.tei-c.org/ns/1.0"}
 
 PARATEXTUAL_ELEMENTS = frozenset({"note", "noteGrp", "speaker", "sp"})
 
+WORK_TYPES = frozenset({"commentary", "edition", "translation"})
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
@@ -71,9 +73,10 @@ def create_table_of_contents(textparts, textpart_labels):
     textparts = [
         dict(
             depth=t["depth"],
+            index=t["index"],
             label=f"{t['subtype'].capitalize()} {t.get('n', '')}".strip(),
-            urn=t["urn"],
             subtype=t["subtype"],
+            urn=t["urn"],
         )
         for t in textparts
         if t.get("type") == "textpart"
@@ -368,7 +371,7 @@ class TEIParser(ContentHandler):
             )
 
     def handle_div(self, attrs: dict):
-        if attrs["type"] == "edition":
+        if attrs["type"] in WORK_TYPES:
             self.language = attrs["lang"]
             self.urn = attrs["n"]
 
@@ -522,7 +525,8 @@ class TEIParser(ContentHandler):
             # incrementally identify edge-cases and add handlers for them
             # as needed.
             case (
-                "choice"
+                "bibl"
+                | "choice"
                 | "corr"
                 | "del"
                 | "foreign"
@@ -538,6 +542,7 @@ class TEIParser(ContentHandler):
                 | "num"
                 | "p"
                 | "pb"
+                | "placeName"
                 | "q"
                 | "quote"
                 | "sic"

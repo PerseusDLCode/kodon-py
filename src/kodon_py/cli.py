@@ -49,7 +49,13 @@ def ingest():
     default=DEFAULT_OUTPUT_DIR,
     help=f"Output directory for JSON files (default: {DEFAULT_OUTPUT_DIR})",
 )
-def parse_command(source_dir: Path, output_dir: Path):
+@click.option(
+    "--skip-existing/--no-skip-existing",
+    default=True,
+    show_default=True,
+    help="Skip output files that already exist on disk.",
+)
+def parse_command(source_dir: Path, output_dir: Path, skip_existing: bool):
     """Parse TEI XML files to JSON. Skips files that already have JSON output."""
     source_dir = source_dir.resolve()
     output_dir = output_dir.resolve()
@@ -73,7 +79,7 @@ def parse_command(source_dir: Path, output_dir: Path):
         for tei_path in files:
             json_path = get_json_path(tei_path, source_dir, output_dir)
 
-            if json_path.exists():
+            if skip_existing and json_path.exists():
                 skipped += 1
                 continue
 
