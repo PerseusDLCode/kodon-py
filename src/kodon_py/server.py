@@ -100,13 +100,36 @@ def load_passage_from_urn(urn: str, json_dir: str | Path):
     for e in matching:
         groups.setdefault(e["textpart_urn"], []).append(e)
 
-    return [
-        {
-            "urn": tpurn,
-            "children": sorted(elements, key=lambda e: e.get("index", 0)),
-        }
-        for tpurn, elements in groups.items()
+    prev_urn = None
+    same_depth_textparts = [t for t in textparts if t["depth"] == textpart["depth"]]
+
+    if textpart["index"] > 0:
+        prev_textpart = [
+            t for t in same_depth_textparts if t["index"] == textpart["index"] - 1
+        ]
+
+        if len(prev_textpart) > 0:
+            prev_urn = prev_textpart[0]["urn"]
+
+    next_urn = None
+    next_textpart = [
+        t for t in same_depth_textparts if t["index"] == textpart["index"] + 1
     ]
+
+    if len(next_textpart) > 0:
+        next_urn = next_textpart[0]["urn"]
+
+    return {
+        "text_containers": [
+            {
+                "urn": tpurn,
+                "children": sorted(elements, key=lambda e: e.get("index", 0)),
+            }
+            for tpurn, elements in groups.items()
+        ],
+        "previous": prev_urn,
+        "next": next_urn,
+    }
 
 
 def load_toc_from_urn(urn: str, json_dir: str):
