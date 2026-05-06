@@ -22,6 +22,7 @@ kodon = "kodon_py.cli:cli"
 [dependency-groups]
 dev = [
     "pytest>=9.0.3",
+    "ty>=0.0.34",
 ]
 
 [build-system]
