@@ -69,23 +69,41 @@ logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
 
+def is_int(s):
+    try:
+        int(s)
+    except ValueError:
+        return False
+    else:
+        return True
+
 def create_table_of_contents(textparts, textpart_labels):
-    textparts = [
-        dict(
-            depth=t["depth"],
-            index=t["index"],
-            label=f"{t['subtype'].capitalize()} {t.get('n', '')}".strip(),
-            subtype=t["subtype"],
-            urn=t["urn"],
-        )
-        for t in textparts
-        if t.get("type") == "textpart"
-    ]
+    ts = []
+
+    for t in textparts:
+        if t.get("type") == "textpart":
+            n = t.get("n", "")
+            label = ""
+
+            if is_int(n):
+                label = f"{t['subtype'].capitalize()} {t.get('n', '')}".strip()
+            else:
+                label = n
+
+            ts.append(
+                dict(
+                    depth=t["depth"],
+                    index=t["index"],
+                    label=label,
+                    subtype=t["subtype"],
+                    urn=t["urn"],
+                )
+            )
 
     if len(textpart_labels) == 1:
-        return textparts
+        return ts
 
-    return nest_textparts(textparts)
+    return nest_textparts(ts)
 
 
 def nest_textparts(textparts):
