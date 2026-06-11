@@ -35,7 +35,7 @@ from pathlib import Path
 from xml.sax import xmlreader
 from xml.sax.handler import ContentHandler
 
-import lxml.sax  # pyright: ignore
+import lxml.sax  # ty: ignore
 import stanza
 from lxml import etree
 
@@ -76,6 +76,7 @@ def is_int(s):
         return False
     else:
         return True
+
 
 def create_table_of_contents(textparts, textpart_labels):
     ts = []
