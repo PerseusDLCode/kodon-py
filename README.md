@@ -26,15 +26,15 @@ uv add --editable ../kodon-py
 Kodon parses TEI XML files into a format that renders straightforwardly in the
 browser, without the need for XSLT stylesheets.^[While XSL is not an issue in
 itself, many of its features are locked behind proprietary licenses and
-software, making robust impelmentations cost-prohibitive for many small digital
+software, making robust implementations cost-prohibitive for many small digital
 humanities projects.] Kodon's format also makes further annotation trivial by
 identifying each token in the corpus with a unique [CTS
 URN](https://cite-architecture.github.io/ctsurn_spec/).
 
 Much of the challenge of working with TEI XML emerges from lack of standardized
-encodings even within a single corpus. Two key issues emerge with many
+encodings even within a single corpus. Two key issues arise with many
 TEI-based projects: publishing the research as HTML and enriching existing TEI
-with paratextual data. Further, because the structure of any TEI document is
+with paratextual data. Because the structure of any TEI document is
 not fully known until after the document has been parsed and processed,
 automatic enrichment of TEI-encoded data is a difficult and often intractable
 task: generally speaking, so much needs to be known about the minutiae of the
@@ -58,7 +58,7 @@ then be collected and passed to a more complete NLP process, either using
 `stanza`'s full pipeline or using another service entirely, such as
 [spaCy](https://spacy.io).
 
-To make this explanation more concrete, see here an example of the AST for the
+To make this explanation more concrete, see here a fragment of the AST for the
 [First 1000 Years of Greek](https://opengreekandlatin.github.io/First1KGreek/)
 [version](https://github.com/OpenGreekAndLatin/First1KGreek/blob/master/data/tlg0057/tlg001/tlg0057.tlg001.1st1K-grc2.xml)
 of Galen's _Adhortatio ad artes addiscendas_:
@@ -106,7 +106,6 @@ of Galen's _Adhortatio ad artes addiscendas_:
           "textpart_urn": "urn:cts:greekLit:tlg0057.tlg001.1st1K-grc2:1",
           "urn": "urn:cts:greekLit:tlg0057.tlg001.1st1K-grc2:1@<lb>[0]"
         },
-...
 ```
 
 During tokenization, each token is assigned a CTS URN. These URNs can be used
@@ -140,7 +139,7 @@ Kodon is currently being developed with support from the [Perseus
 Project](https://github.com/perseusdl).
 
 Kodon's development has also been supported by Galenus Verbatim, which in turn
-was funded by l'[Institut universitaire de France](https://www.iufrance.fr).
+was funded by the [Institut universitaire de France](https://www.iufrance.fr) as well as by the [Insitut des Sciences de l'Antiquité de l'Alliance Sorbonne Université](https://sciences-antiquite.sorbonne-universite.fr/).
 
 Kodon was originally developed under the auspices of the
 [_Ajax_ Multi-Commentary](https://multi.ajmch.ch), which was generously by the Swiss
