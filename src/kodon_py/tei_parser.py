@@ -26,24 +26,18 @@ Usage:
     print(f"Elements: {len(parser.elements)}")
 """
 
-## TODO
-# - [ ] Explore lemmatization options: https://github.com/bowphs/SIGTYP-2024-hierarchical-transformers/issues/1
-
 import logging
 import re
-from pathlib import Path
+import unicodedata
+
 from xml.sax import xmlreader
 from xml.sax.handler import ContentHandler
 
 import lxml.sax  # ty: ignore
-import stanza
+
 from lxml import etree
 
-NAMESPACES = {"tei": "http://www.tei-c.org/ns/1.0"}
-
-PARATEXTUAL_ELEMENTS = frozenset({"note", "noteGrp", "speaker", "sp"})
-
-WORK_TYPES = frozenset({"commentary", "edition", "translation"})
+PARATEXTUAL_ELEMENTS = frozenset({"note", "noteGrp", "speaker"})
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -51,101 +45,11 @@ logger.setLevel(logging.DEBUG)
 console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.INFO)
 
-tmp_dir = Path("tmp")
-
-if not tmp_dir.exists():
-    tmp_dir.mkdir()
-
-log_filepath = tmp_dir / Path(f"{__name__}.log")
-
-file_handler = logging.FileHandler(log_filepath, mode="w")
-
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
 console_handler.setFormatter(formatter)
-file_handler.setFormatter(formatter)
 
 logger.addHandler(console_handler)
-logger.addHandler(file_handler)
-
-
-def is_int(s):
-    try:
-        int(s)
-    except ValueError:
-        return False
-    else:
-        return True
-
-
-def create_table_of_contents(textparts, textpart_labels):
-    ts = []
-
-    for t in textparts:
-        if t.get("type") == "textpart":
-            n = t.get("n", "")
-            label = ""
-
-            if is_int(n):
-                label = f"{t['subtype'].capitalize()} {t.get('n', '')}".strip()
-            else:
-                label = n
-
-            ts.append(
-                dict(
-                    depth=t["depth"],
-                    index=t["index"],
-                    label=label,
-                    subtype=t["subtype"],
-                    urn=t["urn"],
-                )
-            )
-
-    if len(textpart_labels) == 1:
-        return ts
-
-    return nest_textparts(ts)
-
-
-def nest_textparts(textparts):
-    stack = []
-
-    for item in textparts:
-        level = item["depth"]
-
-        if len(stack) == 0:
-            stack.append((level, item))
-            continue
-
-        children = []
-
-        while stack and stack[-1][0] > level:
-            children.append(stack.pop()[1])
-
-        if children:
-            item["subpassages"] = list(reversed(children))
-
-        stack.append((level, item))
-
-    return [item for _level, item in stack]
-
-
-def _rewrite_element_urn(element: dict, new_textpart_urn: str) -> None:
-    """
-    Rewrite the ``textpart_urn``, ``urn``, and all descendant token URNs of
-    *element* to use *new_textpart_urn*.  Used to backfill, e.g., ``<speaker>``
-    elements whose URNs were stamped before the enclosing line number was known.
-    """
-    old_urn = element.get("textpart_urn", "")
-    element["textpart_urn"] = new_textpart_urn
-    element["urn"] = element.get("urn", "").replace(old_urn, new_textpart_urn, 1)
-
-    for child in element.get("children", []):
-        if child.get("tagname") == "text_run":
-            for token in child.get("tokens", []):
-                token["urn"] = token["urn"].replace(old_urn, new_textpart_urn, 1)
-        else:
-            _rewrite_element_urn(child, new_textpart_urn)
 
 
 def remove_ns_from_attrs(attrs: xmlreader.AttributesNSImpl):
@@ -159,372 +63,132 @@ def remove_ns_from_attrs(attrs: xmlreader.AttributesNSImpl):
     return a
 
 
+class TEIParserError(Exception):
+    pass
+
+
 class TEIParser(ContentHandler):
-    """
-    The TEIParser holds information from the TEI XML version
-    of a given text.
+    def __init__(self, root: etree._Element, base_urn: str, chunk_unit: str):
+        self.root = root
+        self.base_urn = base_urn
+        self.chunk_unit = chunk_unit
 
-    The XML structure of the editionStmt,
-    publicationStmt, respStmt, and sourceDesc are stored
-    as strings for later parsing and use.
-    """
-
-    _greek_tokenizer: stanza.Pipeline | None = None
-    _latin_tokenizer: stanza.Pipeline | None = None
-
-    def __init__(self, filename: Path | str):
-        self.filename = filename
-        self.tree = etree.parse(filename)
-        self.tokenizer = None
-
-        self.author = self.get_author()
-        # citable_elements are those that are defined
-        # in the refsDecl; we need to track these in
-        # order to update the URN whenever we encounter
-        # one.
-        self.citable_elements = self.get_citable_elements()
-        self.editionStmt = self.get_editionStmt()
-        # inside_paratext is a flag that
-        # toggles off when inside, e.g., a <note>
-        # tag, as textparts should contain only
-        # canonical text, not paratexts.
-        self.inside_paratext = False
-        self.language = None
-        self.publicationStmt = self.get_publicationStmt()
-        self.refsDecl = self.get_refsDecl()
-        self.respStmt = self.get_respStmt()
-        self.sourceDesc = self.get_sourceDesc()
-        self.title = self.get_title()
-        self.urn = None
-
-        self.current_tokens: list[str] = []
-        self.current_textpart_location = None
-        self.current_textpart_urn = None
-
-        self.element_stack = []
+        self.citable_parts = []
+        self.citable_stack = []
+        self.current_urn = None
         self.elements = []
+        self.element_set = set()
+        self.element_stack = []
         self.global_element_index = 0
-        self.textpart_labels = []
-        self.textpart_stack = []
-        self.textparts = []
-        self.unhandled_elements = set()
+        self._paratext_depth = 0
+        self.primary_text = ""
+        self._primary_text_offset = 0
         self._pending_speaker = None
 
-        for body in self.tree.iterfind(".//tei:body", namespaces=NAMESPACES):
-            lxml.sax.saxify(body, self)
-
-    @classmethod
-    def _get_tokenizer(
-        cls, language: str, model_dir: str = "./stanza_models"
-    ) -> stanza.Pipeline:
-        if language in ("la", "lat"):
-            if cls._latin_tokenizer is None:
-                cls._latin_tokenizer = stanza.Pipeline(
-                    "la",
-                    processors="tokenize",
-                    package="perseus",
-                    model_dir=model_dir,
-                    download_method=stanza.DownloadMethod.REUSE_RESOURCES,
-                )
-            return cls._latin_tokenizer
-
-        if cls._greek_tokenizer is None:
-            cls._greek_tokenizer = stanza.Pipeline(
-                "grc",
-                processors="tokenize",
-                package="perseus",
-                model_dir=model_dir,
-                download_method=stanza.DownloadMethod.REUSE_RESOURCES,
-            )
-        return cls._greek_tokenizer
-
-    def add_textpart_to_stack(self, attrs: dict):
-        subtype = attrs.get("subtype")
-
-        if subtype is not None and subtype not in self.textpart_labels:
-            self.textpart_labels.append(subtype)
-
-        location = self.determine_location(attrs)
-
-        self.current_textpart_location = location
-        self.current_textpart_urn = (
-            f"{self.urn}:{'.'.join(self.current_textpart_location)}"
-        )
-
-        attrs.update(
-            {
-                "depth": len(self.textpart_stack),
-                "index": len(self.textpart_stack) + len(self.textparts),
-                "location": location,
-                "urn": self.current_textpart_urn,
-            }
-        )
-
-        self.textpart_stack.append(attrs)
+        lxml.sax.saxify(self.root, self)
 
     def characters(self, content: str) -> None:
         if len(self.element_stack) == 0:
             if content.strip() != "":
                 logger.warning(
-                    f"{self.urn}\nCharacters must belong to an element, but no elements are available."
+                    "\t\tCharacters must belong to an element, but no elements are available."
                 )
                 logger.warning(content)
             return
 
+        if content.strip() == "":
+            return
+
         parent_element = self.element_stack[-1]
-        tokens = self.tokenize(content)
-        text_run = self.process_tokens(tokens)
 
-        if text_run is not None:
-            parent_element["children"].append(text_run)
+        text_run: dict[str, str | int] = {
+            "tagname": "text_run",
+            "content": re.sub(r"\s+", " ", content),
+        }
 
-    def determine_location(self, attrs: dict):
-        citation_n = attrs.get("n")
+        if self._paratext_depth == 0:
+            if (
+                self.primary_text
+                and not self.primary_text[-1].isspace()
+                and not content[0].isspace()
+                and unicodedata.category(content[0])[0] not in ("P", "S")
+            ):
+                self.primary_text += " "
+                self._primary_text_offset += 1
+            start = self._primary_text_offset
+            self.primary_text += content
+            self._primary_text_offset += len(content)
+            text_run["start"] = start
+            text_run["end"] = self._primary_text_offset
 
-        if citation_n is None:
-            logger.debug(f"{self.urn}\nUnnumbered textpart: {attrs}")
-
-        location = []
-
-        for n in [t.get("n") for t in self.textpart_stack]:
-            if n is not None:
-                location.append(n)
-
-        if citation_n is not None:
-            location.append(citation_n)
-
-        return location
+        parent_element["children"].append(text_run)
 
     def endElementNS(self, name: tuple[str | None, str], qname: str | None) -> None:
         _uri, localname = name
 
-        if localname == "div" and len(self.textpart_stack) > 0:
-            textpart = self.textpart_stack.pop()
+        el = self.element_stack.pop()
 
-            self.textparts.append(textpart)
+        if localname in PARATEXTUAL_ELEMENTS:
+            self._paratext_depth -= 1
 
-        elif len(self.element_stack) > 0:
-            el = self.element_stack.pop()
+        if el.get("tagname") == "speaker":
+            self._pending_speaker = el
 
-            el.update(
-                {
-                    "urn": el.get("urn", self.current_textpart_urn),
-                }
-            )
+        if el.get("type") is not None and el.get("n") is not None:
+            self.citable_stack.pop()
 
-            if el.get("tagname") == "speaker":
-                self._pending_speaker = el
-
-            if len(self.element_stack) > 0:
-                if (
-                    len(
-                        [
-                            x
-                            for x in self.element_stack[-1]["children"]
-                            if x.get("index") == el["index"]
-                        ]
-                    )
-                    == 0
-                ):
-                    self.elements.append(el)
-            else:
+        # Don't append the element if it
+        # is part of another element's children — it will
+        # be appended with that element
+        if len(self.element_stack) > 0:
+            if (
+                len(
+                    [
+                        x
+                        for x in self.element_stack[-1]["children"]
+                        if x.get("index") == el["index"]
+                    ]
+                )
+                == 0
+            ):
                 self.elements.append(el)
-
-    def get_author(self):
-        el = self.tree.find(".//tei:author", namespaces=NAMESPACES)
-
-        if el is not None:
-            return etree.tostring(
-                el, encoding="unicode", method="text", xml_declaration=False
-            )
-
-    def get_citable_elements(self):
-        """
-        Parse ``<cRefPattern>`` entries in the CTS ``<refsDecl>`` and return a
-        set of element tagnames (e.g. ``{'l'}``) that carry citation ``@n``
-        values but are *not* ``<div>`` elements (divs are already tracked as
-        textparts). These elements should update ``current_textpart_urn``
-        when encountered during parsing.
-        """
-        citable = set()
-        for pattern in self.tree.findall(
-            ".//tei:refsDecl[@n='CTS']/tei:cRefPattern", namespaces=NAMESPACES
-        ):
-            replacement = pattern.get("replacementPattern", "")
-            # Extract tagnames from XPath fragments like tei:l[@n='$1']
-            for tagname in re.findall(r"tei:(\w+)\[@n='\$\d+'\]", replacement):
-                if tagname != "div":
-                    citable.add(tagname)
-        return citable
-
-    def get_editionStmt(self):
-        return self.get_stringifiedXML("editionStmt")
-
-    def get_publicationStmt(self):
-        return self.get_stringifiedXML("publicationStmt")
-
-    def get_refsDecl(self):
-        return self.get_stringifiedXML("refsDecl")
-
-    def get_respStmt(self):
-        return self.get_stringifiedXML("respStmt")
-
-    def get_sourceDesc(self):
-        return self.get_stringifiedXML("sourceDesc", required=True)
-
-    def get_stringifiedXML(self, tagname: str, required=False):
-        el = self.tree.find(f".//tei:{tagname}", namespaces=NAMESPACES)
-
-        if required and el is None:
-            raise ValueError(f"{tagname} is required! {self.filename}")
-
-        if el is not None:
-            return etree.tostring(el, encoding="unicode", xml_declaration=False)
-
-    def get_title(self):
-        el = self.tree.find(".//tei:title", namespaces=NAMESPACES)
-
-        if el is not None:
-            return etree.tostring(
-                el, encoding="unicode", method="text", xml_declaration=False
-            )
-
-    def handle_div(self, attrs: dict):
-        if attrs["type"] in WORK_TYPES:
-            self.language = attrs["lang"]
-            self.urn = attrs["n"]
-
-        elif attrs["type"] == "textpart":
-            self.add_textpart_to_stack(attrs)
+        else:
+            self.elements.append(el)
 
     def handle_element(self, tagname: str, attrs: dict):
-        textpart = None
-
-        if len(self.textpart_stack) == 0:
-            logger.warning(
-                f"{self.urn}\nElements should not appear outside of textparts: {tagname}, {attrs}"
-            )
-
-            if len(self.textparts) > 0:
-                textpart = self.textparts[-1]
-        else:
-            textpart = self.textpart_stack[-1]
-
-        textpart_index = -1
-        urn_element_index = -1
-        current_textpart_urn = self.current_textpart_urn
-        if textpart is None:
-            logger.warning(
-                f"{self.urn}\nOrphaned element: {tagname}, {attrs} — no textpart available."
-            )
-            current_textpart_urn = f"{self.urn}:-1"
-        else:
-            textpart_index = textpart["index"]
-            urn_element_index = sum(
-                [
-                    1
-                    for el in self.elements + self.element_stack
-                    if el["textpart_urn"] == current_textpart_urn
-                    and el["tagname"] == tagname
-                ]
-            )
-
         element_index = self.global_element_index
+
         self.global_element_index += 1
 
         if tagname == "speaker":
             self._pending_speaker = None
 
-        # If this element is a citable unit (e.g. <l>) and carries an @n,
-        # update current_textpart_urn so that all tokens inside it receive
-        # the correct citation URN. Also backfill the preceding <speaker>
-        # element, which was finalised before the line number was known.
-        if self.citable_elements and tagname in self.citable_elements:
-            n = attrs.get("n")
-            if n is not None:
-                location = [t["n"] for t in self.textpart_stack if t.get("n")] + [n]
-                self.current_textpart_urn = f"{self.urn}:{'.'.join(location)}"
-                current_textpart_urn = self.current_textpart_urn
-                if self._pending_speaker is not None:
-                    _rewrite_element_urn(
-                        self._pending_speaker, self.current_textpart_urn
-                    )
-                    self._pending_speaker = None
+        if attrs.get("type") is not None and attrs.get("n") is not None:
+            self.citable_stack.append(attrs)
+
+            location = [c["n"] for c in self.citable_stack if c.get("n")]
+
+            self.current_urn = f"{self.base_urn}:{'.'.join(location)}"
 
         attrs.update(
             {
                 "children": [],
                 "index": element_index,
                 "tagname": tagname,
-                "textpart_index": textpart_index,
-                "textpart_urn": current_textpart_urn,
-                "urn": f"{current_textpart_urn}@<{tagname}>[{urn_element_index}]",
+                "urn": self.current_urn,
             }
         )
 
-        # If there is an unclosed element at the end of the stack,
-        # add this element to its children.
         if len(self.element_stack) > 0:
-            if self.element_stack[-1]["textpart_index"] != attrs["textpart_index"]:
-                logger.warning(
-                    f"{self.urn}\nOpen element belongs to a different textpart than current element: {self.element_stack[-1]}\n{attrs}"
-                )
             self.element_stack[-1]["children"].append(attrs)
 
         self.element_stack.append(attrs)
 
-        self.toggle_inside_paratext(tagname)
+        self.maybe_increment_paratext_depth(tagname)
 
-    def maybe_add_token_to_textpart(self, token):
-        if self.inside_paratext:
-            return
-
-        textpart = None
-        if len(self.textpart_stack) > 0:
-            textpart = self.textpart_stack[-1]
-
-        if textpart is not None:
-            if textpart.get("tokens") is not None:
-                textpart["tokens"].append(token)
-            else:
-                textpart["tokens"] = [token]
-
-    def process_tokens(self, tokens):
-        text_run = []
-
-        textpart = None
-        if len(self.textpart_stack) > 0:
-            textpart = self.textpart_stack[-1]
-
-        for tok in tokens:
-            if tok.text.strip() == "":
-                continue
-
-            if textpart is not None:
-                urn_token_index = (
-                    sum(
-                        [1 for t in textpart.get("tokens", []) if t["text"] == tok.text]
-                    )
-                    + 1
-                )
-            else:
-                urn_token_index = 1
-
-            token = {
-                "text": tok.text,
-                "urn": f"{self.current_textpart_urn}@{tok.text}[{urn_token_index}]",
-                "whitespace": len(tok.spaces_after) > 0,
-            }
-
-            self.maybe_add_token_to_textpart(token)
-
-            text_run.append(token)
-
-        if len(text_run) > 0:
-            element_index = self.global_element_index
-            self.global_element_index += 1
-
-            return {"tagname": "text_run", "tokens": text_run, "index": element_index}
+    def maybe_increment_paratext_depth(self, tagname: str):
+        if tagname in PARATEXTUAL_ELEMENTS:
+            self._paratext_depth += 1
 
     def startElementNS(
         self,
@@ -535,64 +199,32 @@ class TEIParser(ContentHandler):
         _uri, localname = name
         clean_attrs = remove_ns_from_attrs(attrs)
 
-        match localname:
-            case "body":
-                pass
-            case "div":
-                return self.handle_div(clean_attrs)
-            # By keeping track of elements that we _don't_ handle, we can
-            # incrementally identify edge-cases and add handlers for them
-            # as needed.
-            case (
-                "bibl"
-                | "choice"
-                | "corr"
-                | "del"
-                | "foreign"
-                | "gap"
-                | "head"
-                | "hi"
-                | "l"
-                | "label"
-                | "lb"
-                | "lg"
-                | "milestone"
-                | "note"
-                | "num"
-                | "p"
-                | "pb"
-                | "placeName"
-                | "q"
-                | "quote"
-                | "sic"
-                | "sp"
-                | "speaker"
-            ):
-                return self.handle_element(localname, clean_attrs)
-            case _:
-                logger.debug(
-                    f"{self.urn}\nUnknown element {localname} in {self.current_textpart_urn}"
-                )
-                self.unhandled_elements.add(localname)
-                self.handle_element(localname, clean_attrs)
+        self.element_set.add(localname)
+        self.handle_element(localname, clean_attrs)
 
-    def toggle_inside_paratext(self, tagname: str):
-        if tagname in PARATEXTUAL_ELEMENTS:
-            self.inside_paratext = True
+
+def inject_tokens(elements: list[dict], tokens: list[dict]) -> None:
+    """Replace text_run nodes in the element tree with token nodes in place.
+
+    tokens must include start_char and end_char (offsets into primary_text).
+    text_run nodes without start/end (i.e. paratext) are left untouched.
+    """
+    for el in elements:
+        _inject_into_element(el, tokens)
+
+
+def _inject_into_element(el: dict, tokens: list[dict]) -> None:
+    new_children = []
+    for child in el.get("children", []):
+        if child.get("tagname") == "text_run" and "start" in child:
+            run_tokens = [
+                t for t in tokens if child["start"] <= t["start_char"] < child["end"]
+            ]
+            if run_tokens:
+                new_children.extend({**t, "tagname": "token"} for t in run_tokens)
+            else:
+                new_children.append(child)
         else:
-            self.inside_paratext = False
-
-    def tokenize(self, s: str):
-        tokenizer = TEIParser._get_tokenizer(self.language or "grc")
-
-        doc = tokenizer(s)
-
-        if doc is None:
-            return []
-
-        tokens = []
-        for sentence in doc.sentences:  # pyright: ignore
-            for token in sentence.tokens:
-                tokens.append(token)
-
-        return tokens
+            _inject_into_element(child, tokens)
+            new_children.append(child)
+    el["children"] = new_children

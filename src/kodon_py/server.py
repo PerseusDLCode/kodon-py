@@ -3,8 +3,10 @@ import os
 from pathlib import Path
 
 from flask import Flask
+from lxml import etree
 
 from kodon_py.config import default_config
+from kodon_py.tei_parser import TEIParser
 from kodon_py.urn_utils import parse_urn
 
 
@@ -35,97 +37,81 @@ def create_app(json_dir=None, config=None, test_config=None):
     return app
 
 
-def load_passage_from_urn(urn: str, json_dir: str | Path):
+def _chunk_dir_for_urn(urn: str, json_dir: str | Path):
     parsed = parse_urn(urn)
 
     if not parsed.collection or not parsed.work_component:
-        return None
+        return None, None
 
-    work_path = os.path.join(
-        json_dir,
-        str(parsed.text_group),
-        str(parsed.work),
-        f"{parsed.work_component}.json",
+    chunk_dir = (
+        Path(json_dir) / str(parsed.text_group) / str(parsed.work) / str(parsed.work_component)
     )
 
-    if not os.path.exists(work_path):
+    return parsed, chunk_dir
+
+
+def _flatten_leaves(nodes: list[dict]) -> list[dict]:
+    leaves = []
+
+    for node in nodes:
+        if "path" in node:
+            leaves.append(node)
+        elif "subpassages" in node:
+            leaves.extend(_flatten_leaves(node["subpassages"]))
+
+    return leaves
+
+
+def load_passage_from_urn(urn: str, json_dir: str | Path):
+    parsed, chunk_dir = _chunk_dir_for_urn(urn, json_dir)
+
+    if parsed is None:
         return None
 
-    with open(work_path) as f:
-        work_data = json.load(f)
+    metadata_path = chunk_dir / "metadata.json"
 
-    textparts = work_data.get("textparts", [])
-    if not parsed.passage_component:
-        if not textparts:
+    if not metadata_path.exists():
+        return None
+
+    with open(metadata_path) as f:
+        metadata = json.load(f)
+
+    leaves = _flatten_leaves(metadata.get("table_of_contents", []))
+
+    if not leaves:
+        return None
+
+    if parsed.passage_component:
+        leaf = next((leaf for leaf in leaves if leaf["urn"] == urn), None)
+
+        if leaf is None:
             return None
-
-        textpart_labels = work_data.get("textpart_labels")
-
-        assert textpart_labels is not None, f"No textpart_labels for {urn}"
-
-        target_textpart_label = None
-
-        if len(textpart_labels) > 2:
-            target_textpart_label = textpart_labels[-2]
-        else:
-            target_textpart_label = textpart_labels[-1]
-
-        reachable_textparts = [
-            t for t in textparts if t["subtype"] == target_textpart_label
-        ]
-        textpart = sorted(reachable_textparts, key=lambda t: t["index"])[0]
-        parsed = parse_urn(textpart["urn"])
     else:
-        textpart = [t for t in textparts if t["urn"] == urn][0]
+        leaf = leaves[0]
 
-    passage = str(parsed.passage_component)
+    chunk_path = chunk_dir / leaf["path"]
 
-    all_elements = work_data.get("elements", [])
-
-    def textpart_matches(e: dict) -> bool:
-        if textpart["index"] == e["textpart_index"]:
-            return True
-
-        textpart_urn = e["textpart_urn"]
-        tp_passage = parse_urn(textpart_urn).passage_component
-        return tp_passage == passage or str(tp_passage).startswith(passage + ".")
-
-    matching = [e for e in all_elements if textpart_matches(e)]
-
-    if not matching:
+    if not chunk_path.exists():
         return None
 
-    # Group by textpart_urn, preserving order of first occurrence
-    groups: dict[str, list] = {}
-    for e in matching:
-        groups.setdefault(e["textpart_urn"], []).append(e)
+    chunk_root = etree.parse(str(chunk_path)).getroot()
+    content_el = chunk_root.find("elements")
 
-    prev_urn = None
-    same_depth_textparts = [t for t in textparts if t["depth"] == textpart["depth"]]
+    if content_el is None:
+        return None
 
-    if textpart["index"] > 0:
-        prev_textpart = [
-            t for t in same_depth_textparts if t["index"] == textpart["index"] - 1
-        ]
+    base_urn = chunk_root.get("base_urn", "")
+    unit = chunk_root.get("unit", "")
+    cts_urn = chunk_root.get("cts_urn", "")
+    prev_urn = chunk_root.get("prev_urn")
+    next_urn = chunk_root.get("next_urn")
 
-        if len(prev_textpart) > 0:
-            prev_urn = prev_textpart[0]["urn"]
-
-    next_urn = None
-    next_textpart = [
-        t for t in same_depth_textparts if t["index"] == textpart["index"] + 1
-    ]
-
-    if len(next_textpart) > 0:
-        next_urn = next_textpart[0]["urn"]
+    parser = TEIParser(content_el, base_urn, unit)
+    children = parser.elements[0]["children"] if parser.elements else []
 
     return {
         "text_containers": [
-            {
-                "urn": tpurn,
-                "children": sorted(elements, key=lambda e: e.get("index", 0)),
-            }
-            for tpurn, elements in groups.items()
+            {"urn": cts_urn, "children": children},
         ],
         "previous": prev_urn,
         "next": next_urn,
@@ -133,23 +119,15 @@ def load_passage_from_urn(urn: str, json_dir: str | Path):
 
 
 def load_toc_from_urn(urn: str, json_dir: str):
-    parsed = parse_urn(urn)
+    parsed, chunk_dir = _chunk_dir_for_urn(urn, json_dir)
 
-    if not parsed.collection or not parsed.work_component:
+    if parsed is None:
         return None
 
-    work_path = os.path.join(
-        json_dir,
-        str(parsed.text_group),
-        str(parsed.work),
-        f"{parsed.work_component}.metadata.json",
-    )
+    metadata_path = chunk_dir / "metadata.json"
 
-    if not os.path.exists(work_path):
+    if not metadata_path.exists():
         return None
 
-    data = None
-    with open(work_path) as f:
-        data = json.load(f)
-
-    return data
+    with open(metadata_path) as f:
+        return json.load(f)

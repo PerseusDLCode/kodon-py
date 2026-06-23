@@ -3,7 +3,7 @@
 import pytest
 
 from kodon_py.server import create_app
-from kodon_py.ingestion import get_json_path, parse_tei_to_json
+from kodon_py.ingestion import get_chunk_dir, ingest_tei_file
 
 
 @pytest.fixture
@@ -11,13 +11,13 @@ def app(tmp_dir, test_tei_file):
     """Create application for testing with ingested data."""
     app = create_app({"TESTING": True})
 
-    # Parse and load the test TEI file as JSON
+    # Chunk the test TEI file
     with app.app_context():
         source_dir = test_tei_file.parent
-        json_output_dir = tmp_dir / "json"
-        json_output_dir.mkdir()
-        json_path = get_json_path(test_tei_file, source_dir, json_output_dir)
-        parse_tei_to_json(test_tei_file, json_path)
+        chunk_output_dir = tmp_dir / "chunks"
+        chunk_output_dir.mkdir()
+        chunk_dir = get_chunk_dir(test_tei_file, source_dir, chunk_output_dir)
+        ingest_tei_file(test_tei_file, chunk_dir)
 
     yield app
 
