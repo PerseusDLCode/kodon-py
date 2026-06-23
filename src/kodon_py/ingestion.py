@@ -181,26 +181,28 @@ def make_label(node: dict) -> str:
 
 
 def nest_textparts(textparts: list[dict]) -> list[dict]:
+    """Build a tree from a flat, depth-annotated, document-ordered list.
+
+    Each item becomes a child of the nearest preceding item with a
+    strictly smaller depth; items with no such ancestor are roots.
+    """
+    roots: list[dict] = []
     stack: list[tuple[int, dict]] = []
 
     for item in textparts:
         level = item["depth"]
 
-        if not stack:
-            stack.append((level, item))
-            continue
+        while stack and stack[-1][0] >= level:
+            stack.pop()
 
-        children = []
-
-        while stack and stack[-1][0] > level:
-            children.append(stack.pop()[1])
-
-        if children:
-            item["subpassages"] = list(reversed(children))
+        if stack:
+            stack[-1][1].setdefault("subpassages", []).append(item)
+        else:
+            roots.append(item)
 
         stack.append((level, item))
 
-    return [item for _level, item in stack]
+    return roots
 
 
 def create_table_of_contents(toc_nodes: list[dict]) -> list[dict]:

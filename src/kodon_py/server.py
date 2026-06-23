@@ -10,7 +10,7 @@ from kodon_py.tei_parser import TEIParser
 from kodon_py.urn_utils import parse_urn
 
 
-def create_app(json_dir=None, config=None, test_config=None):
+def create_app(fragment_dir=None, config=None, test_config=None):
     if config is None:
         config = default_config
 
@@ -18,7 +18,7 @@ def create_app(json_dir=None, config=None, test_config=None):
 
     app.config.from_mapping(
         SECRET_KEY=os.getenv("FLASK_APP_SECRET_KEY", "dev"),
-        JSON_DIR=json_dir,
+        FRAGMENT_DIR=fragment_dir,
     )
 
     if test_config is None:
@@ -37,14 +37,17 @@ def create_app(json_dir=None, config=None, test_config=None):
     return app
 
 
-def _chunk_dir_for_urn(urn: str, json_dir: str | Path):
+def _chunk_dir_for_urn(urn: str, fragment_dir: str | Path):
     parsed = parse_urn(urn)
 
     if not parsed.collection or not parsed.work_component:
         return None, None
 
     chunk_dir = (
-        Path(json_dir) / str(parsed.text_group) / str(parsed.work) / str(parsed.work_component)
+        Path(fragment_dir)
+        / str(parsed.text_group)
+        / str(parsed.work)
+        / str(parsed.work_component)
     )
 
     return parsed, chunk_dir
@@ -62,8 +65,8 @@ def _flatten_leaves(nodes: list[dict]) -> list[dict]:
     return leaves
 
 
-def load_passage_from_urn(urn: str, json_dir: str | Path):
-    parsed, chunk_dir = _chunk_dir_for_urn(urn, json_dir)
+def load_passage_from_urn(urn: str, fragment_dir: str | Path):
+    parsed, chunk_dir = _chunk_dir_for_urn(urn, fragment_dir)
 
     if parsed is None:
         return None
@@ -118,8 +121,8 @@ def load_passage_from_urn(urn: str, json_dir: str | Path):
     }
 
 
-def load_toc_from_urn(urn: str, json_dir: str):
-    parsed, chunk_dir = _chunk_dir_for_urn(urn, json_dir)
+def load_toc_from_urn(urn: str, fragment_dir: str):
+    parsed, chunk_dir = _chunk_dir_for_urn(urn, fragment_dir)
 
     if parsed is None:
         return None
