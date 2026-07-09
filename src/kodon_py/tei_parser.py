@@ -101,23 +101,25 @@ class TEIParser(ContentHandler):
 
         parent_element = self.element_stack[-1]
 
+        normalized_content = re.sub(r"\s+", " ", content)
+
         text_run: dict[str, str | int] = {
             "tagname": "text_run",
-            "content": re.sub(r"\s+", " ", content),
+            "content": normalized_content,
         }
 
         if self._paratext_depth == 0:
             if (
                 self.primary_text
                 and not self.primary_text[-1].isspace()
-                and not content[0].isspace()
-                and unicodedata.category(content[0])[0] not in ("P", "S")
+                and not normalized_content[0].isspace()
+                and unicodedata.category(normalized_content[0])[0] not in ("P", "S")
             ):
                 self.primary_text += " "
                 self._primary_text_offset += 1
             start = self._primary_text_offset
-            self.primary_text += content
-            self._primary_text_offset += len(content)
+            self.primary_text += normalized_content
+            self._primary_text_offset += len(normalized_content)
             text_run["start"] = start
             text_run["end"] = self._primary_text_offset
 
